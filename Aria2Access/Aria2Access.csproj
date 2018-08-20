@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Aria2Access</AssemblyName>
+    <RootNamespace>Aria2Access</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EdjCase.JsonRpc.Client" Version="3.0.1" />
+  </ItemGroup>
+
+</Project>

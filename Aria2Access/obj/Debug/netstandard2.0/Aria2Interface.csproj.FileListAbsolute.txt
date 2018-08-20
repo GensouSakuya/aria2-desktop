@@ -1,0 +1,6 @@
+F:\Other\Solutions\github\aria2-win-gui\Aria2Interface\bin\Debug\netstandard2.0\Aria2Interface.deps.json
+F:\Other\Solutions\github\aria2-win-gui\Aria2Interface\bin\Debug\netstandard2.0\Aria2Interface.dll
+F:\Other\Solutions\github\aria2-win-gui\Aria2Interface\obj\Debug\netstandard2.0\Aria2Interface.csprojAssemblyReference.cache
+F:\Other\Solutions\github\aria2-win-gui\Aria2Interface\obj\Debug\netstandard2.0\Aria2Interface.csproj.CoreCompileInputs.cache
+F:\Other\Solutions\github\aria2-win-gui\Aria2Interface\obj\Debug\netstandard2.0\Aria2Interface.AssemblyInfoInputs.cache
+F:\Other\Solutions\github\aria2-win-gui\Aria2Interface\obj\Debug\netstandard2.0\Aria2Interface.AssemblyInfo.cs
