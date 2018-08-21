@@ -6,6 +6,10 @@
     <RootNamespace>Aria2Access</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\bin\Debug</OutputPath>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="EdjCase.JsonRpc.Client" Version="3.0.1" />
   </ItemGroup>

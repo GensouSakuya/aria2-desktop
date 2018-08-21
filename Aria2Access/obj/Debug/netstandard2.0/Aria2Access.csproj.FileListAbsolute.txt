@@ -1,6 +1,0 @@
-F:\Other\Solutions\github\aria2-win-gui\Aria2Interface\bin\Debug\netstandard2.0\Aria2Access.deps.json
-F:\Other\Solutions\github\aria2-win-gui\Aria2Interface\bin\Debug\netstandard2.0\Aria2Access.dll
-F:\Other\Solutions\github\aria2-win-gui\Aria2Interface\obj\Debug\netstandard2.0\Aria2Access.csprojAssemblyReference.cache
-F:\Other\Solutions\github\aria2-win-gui\Aria2Interface\obj\Debug\netstandard2.0\Aria2Access.csproj.CoreCompileInputs.cache
-F:\Other\Solutions\github\aria2-win-gui\Aria2Interface\obj\Debug\netstandard2.0\Aria2Access.AssemblyInfoInputs.cache
-F:\Other\Solutions\github\aria2-win-gui\Aria2Interface\obj\Debug\netstandard2.0\Aria2Access.AssemblyInfo.cs
