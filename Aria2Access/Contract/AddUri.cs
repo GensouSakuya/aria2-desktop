@@ -1,23 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Aria2Access
 {
-    internal class AddTorrentRequest : BaseRequest
+    internal class AddUriRequest:BaseRequest
     {
-        public string torrent { get; set; }
+        public List<string> Uris { get; set; }
         public Options Options { get; set; }
         public int? Position { get; set; }
 
-        protected override string MethodName => "aria2.addTorrent";
+        protected override string MethodName => "aria2.addUri";
 
         protected override void PrepareParam()
         {
-            if (string.IsNullOrWhiteSpace(torrent))
+            if (Uris == null || !Uris.Any())
             {
                 throw new Exception();
             }
             
-            AddParam(torrent);
+            AddParam(Uris);
 
             if (Options != null)
             {
@@ -26,6 +28,17 @@ namespace Aria2Access
                 {
                     AddParam(Position);
                 }
+            }
+        }
+    }
+
+    internal class AddUriResponse : BaseResponse
+    {
+        public string GID
+        {
+            get
+            {
+                return Result as string;
             }
         }
     }

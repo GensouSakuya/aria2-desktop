@@ -18,12 +18,12 @@ namespace Aria2Access
 
         public BaseResponse SendRequest(BaseRequest req)
         {
-            return _client.SendRequestAsync(req.ToRpcRequest()).Result.GetResponse();
+            return new BaseResponse(_client.SendRequestAsync(req.ToRpcRequest()).Result);
         }
 
         public async Task<BaseResponse> SendRequestAsync(BaseRequest req)
         {
-            return (await _client.SendRequestAsync(req.ToRpcRequest())).GetResponse();
+            return new BaseResponse(await _client.SendRequestAsync(req.ToRpcRequest()));
         }
     }
 }
