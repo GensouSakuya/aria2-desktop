@@ -16,9 +16,10 @@ namespace Aria2Access
         /// <param name="split">下载连接数</param>
         /// <param name="proxy">代理地址</param>
         /// <param name="position">下载队列位置，超过队列长度则排到队尾</param>
-        public static void AddUri(string uri, int? split = null, string proxy = null, int? position = null)
+        /// <returns>下载请求的GID</returns>
+        public static string AddUri(string uri, int? split = null, string proxy = null, int? position = null)
         {
-            AddUri(new List<string>
+            return AddUri(new List<string>
             {
                 uri
             }, split, proxy, position);
@@ -31,15 +32,16 @@ namespace Aria2Access
         /// <param name="split">下载所有链接的总连接数</param>
         /// <param name="proxy">代理地址</param>
         /// <param name="position">下载队列位置，超过队列长度则排到队尾</param>
-        public static void AddUri(IEnumerable<string> uris, int? split = 0, string proxy = null,int? position = null)
+        /// <returns>下载请求的GID</returns>
+        public static string AddUri(IEnumerable<string> uris, int? split = 0, string proxy = null,int? position = null)
         {
             var option = split.HasValue || !string.IsNullOrWhiteSpace(proxy) ? new Options(split, proxy) : null;
-            _proxy.SendRequest(new AddUriRequest
+            return (_proxy.SendRequest(new AddUriRequest
             {
                 Uris = uris.ToList(),
                 Options = option,
                 Position = position
-            });
+            }) as AddUriResponse)?.GID;
         }
 
         /// <summary>
@@ -49,17 +51,18 @@ namespace Aria2Access
         /// <param name="split">下载连接数</param>
         /// <param name="proxy">代理地址</param>
         /// <param name="position">下载队列位置，超过队列长度则排到队尾</param>
-        public static void AddTorrentBase64(string torrentBase64, int? split = 0, string proxy = null, int? position = null)
+        /// <returns>下载请求的GID</returns>
+        public static string AddTorrentBase64(string torrentBase64, int? split = 0, string proxy = null, int? position = null)
         {
             var option = split.HasValue || !string.IsNullOrWhiteSpace(proxy) ? new Options(split, proxy) : null;
-            _proxy.SendRequest(new AddTorrentRequest
+            return (_proxy.SendRequest(new AddTorrentRequest
             {
                 torrent = torrentBase64,
                 Options = option,
                 Position = position
-            });
+            }) as AddTorrentResponse)?.GID;
         }
-        
+
         /// <summary>
         /// 新增BT下载
         /// </summary>
@@ -67,7 +70,8 @@ namespace Aria2Access
         /// <param name="split">下载连接数</param>
         /// <param name="proxy">代理地址</param>
         /// <param name="position">下载队列位置，超过队列长度则排到队尾</param>
-        public static void AddTorrentFile(string torrentFilePath, int? split = 0, string proxy = null, int? position = null)
+        /// <returns>下载请求的GID</returns>
+        public static string AddTorrentFile(string torrentFilePath, int? split = 0, string proxy = null, int? position = null)
         {
             if (!File.Exists(torrentFilePath))
             {
@@ -75,10 +79,9 @@ namespace Aria2Access
             }
 
             FileInfo fi = new FileInfo(torrentFilePath);
-            AddTorrentFile(fi, split, proxy, position);
+            return AddTorrentFile(fi, split, proxy, position);
         }
-
-
+        
         /// <summary>
         /// 新增BT下载
         /// </summary>
@@ -86,7 +89,8 @@ namespace Aria2Access
         /// <param name="split">下载连接数</param>
         /// <param name="proxy">代理地址</param>
         /// <param name="position">下载队列位置，超过队列长度则排到队尾</param>
-        public static void AddTorrentFile(FileInfo torrentFile, int? split = 0, string proxy = null, int? position = null)
+        /// <returns>下载请求的GID</returns>
+        public static string AddTorrentFile(FileInfo torrentFile, int? split = 0, string proxy = null, int? position = null)
         {
             byte[] buff = new byte[torrentFile.Length];
 
@@ -96,7 +100,7 @@ namespace Aria2Access
             }
 
             var base64Torrent = Convert.ToBase64String(buff);
-            AddTorrentBase64(base64Torrent, split, proxy, position);
+            return AddTorrentBase64(base64Torrent, split, proxy, position);
         }
     }
 }
