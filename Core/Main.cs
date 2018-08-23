@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Aria2Access;
+using Model;
 using System;
 
 namespace Core
@@ -26,9 +27,11 @@ namespace Core
             Shutdown();
         }
 
-        private volatile object lockObj = new object();
+        private volatile object configLocker = new object();
         private ConfigInfo _config = null;
         private string _configFilePath = null;
+        private volatile object aria2Locker = new object();
+        private Aria2 _aria2 = null;
 
         protected ConfigInfo Config
         {
@@ -36,7 +39,7 @@ namespace Core
             {
                 if (_config == null)
                 {
-                    lock (lockObj)
+                    lock (configLocker)
                     {
                         if (_config == null)
                         {
@@ -50,6 +53,26 @@ namespace Core
                 }
 
                 return _config;
+            }
+        }
+
+        protected Aria2 Aria2
+        {
+            get
+            {
+                if (_aria2 == null)
+                {
+                    lock (aria2Locker)
+                    {
+                        if (_aria2 == null)
+                        {
+                            //TODO:增加path
+                            _aria2 = Aria2Manager.StartUp("",Config.ToString(),Config.Aria2Host, Config.ListenPort);
+                        }
+                    }
+                }
+
+                return _aria2;
             }
         }
     }
