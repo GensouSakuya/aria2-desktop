@@ -5,9 +5,19 @@ using System.Linq;
 
 namespace Aria2Access
 {
-    public static class Aria2Manager
+    public class Aria2
     {
-        private static ServerProxy _proxy = new ServerProxy("http://localhost:6800/jsonrpc", null);
+        public Aria2(string host, string port)
+        {
+            if (!host.StartsWith("http://") && !host.StartsWith("https://"))
+            {
+                host = "http://" + host;
+            }
+            var url = $"{host}:{port}/jsonrpc";
+            _proxy = new ServerProxy(url, null);
+        }
+
+        private ServerProxy _proxy = null;
 
         /// <summary>
         /// 新增下载
@@ -17,7 +27,7 @@ namespace Aria2Access
         /// <param name="proxy">代理地址</param>
         /// <param name="position">下载队列位置，超过队列长度则排到队尾</param>
         /// <returns>下载请求的GID</returns>
-        public static string AddUri(string uri, int? split = null, string proxy = null, int? position = null)
+        public string AddUri(string uri, int? split = null, string proxy = null, int? position = null)
         {
             return AddUri(new List<string>
             {
@@ -33,7 +43,7 @@ namespace Aria2Access
         /// <param name="proxy">代理地址</param>
         /// <param name="position">下载队列位置，超过队列长度则排到队尾</param>
         /// <returns>下载请求的GID</returns>
-        public static string AddUri(IEnumerable<string> uris, int? split = 0, string proxy = null,int? position = null)
+        public string AddUri(IEnumerable<string> uris, int? split = 0, string proxy = null,int? position = null)
         {
             var option = split.HasValue || !string.IsNullOrWhiteSpace(proxy) ? new Options(split, proxy) : null;
             return (_proxy.SendRequest(new AddUriRequest
@@ -52,7 +62,7 @@ namespace Aria2Access
         /// <param name="proxy">代理地址</param>
         /// <param name="position">下载队列位置，超过队列长度则排到队尾</param>
         /// <returns>下载请求的GID</returns>
-        public static string AddTorrentBase64(string torrentBase64, int? split = 0, string proxy = null, int? position = null)
+        public string AddTorrentBase64(string torrentBase64, int? split = 0, string proxy = null, int? position = null)
         {
             var option = split.HasValue || !string.IsNullOrWhiteSpace(proxy) ? new Options(split, proxy) : null;
             return (_proxy.SendRequest(new AddTorrentRequest
@@ -71,7 +81,7 @@ namespace Aria2Access
         /// <param name="proxy">代理地址</param>
         /// <param name="position">下载队列位置，超过队列长度则排到队尾</param>
         /// <returns>下载请求的GID</returns>
-        public static string AddTorrentFile(string torrentFilePath, int? split = 0, string proxy = null, int? position = null)
+        public string AddTorrentFile(string torrentFilePath, int? split = 0, string proxy = null, int? position = null)
         {
             if (!File.Exists(torrentFilePath))
             {
@@ -90,7 +100,7 @@ namespace Aria2Access
         /// <param name="proxy">代理地址</param>
         /// <param name="position">下载队列位置，超过队列长度则排到队尾</param>
         /// <returns>下载请求的GID</returns>
-        public static string AddTorrentFile(FileInfo torrentFile, int? split = 0, string proxy = null, int? position = null)
+        public string AddTorrentFile(FileInfo torrentFile, int? split = 0, string proxy = null, int? position = null)
         {
             byte[] buff = new byte[torrentFile.Length];
 
