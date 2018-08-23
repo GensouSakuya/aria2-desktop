@@ -7,7 +7,7 @@ namespace Aria2Access
 {
     public class Aria2
     {
-        public Aria2(string host, string port)
+        public Aria2(string host, int port)
         {
             if (!host.StartsWith("http://") && !host.StartsWith("https://"))
             {
