@@ -7,6 +7,9 @@ namespace Model
         //启用rpc:enable-rpc=true 必须配置
         //允许外部访问:rpc-listen-all=true 必须配置
 
+        //Aria2服务地址
+        public string Aria2Host { get; set; } = "localhost";
+
         //RPC端口，默认6800
         //rpc-listen-port
         public int ListenPort { get; set; } = 6800;
