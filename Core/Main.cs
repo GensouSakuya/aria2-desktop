@@ -16,14 +16,15 @@ namespace Core
             //3.使用配置启动Aria2
         }
 
-        public void Dispose()
+        public void Shutdown()
         {
-            if (_config != null)
-            {
-                _config = ConfigManager.SaveToFile();
-            }
+
         }
 
+        public void Dispose()
+        {
+            Shutdown();
+        }
 
         private volatile object lockObj = new object();
         private ConfigInfo _config = null;
