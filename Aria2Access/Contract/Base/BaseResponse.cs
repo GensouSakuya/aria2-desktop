@@ -5,8 +5,16 @@ namespace Aria2Access
 {
     internal class BaseResponse
     {
-        public BaseResponse()
+        private BaseResponse()
         { }
+
+        public BaseResponse(BaseResponse res)
+        {
+            Guid = res.Guid;
+            IsSuccess = res.IsSuccess;
+            Result = res.Result;
+            ErrorMessage = res.ErrorMessage;
+        }
 
         public BaseResponse(RpcResponse rpcRes)
         {
@@ -18,10 +26,10 @@ namespace Aria2Access
 
         public Guid Guid { get; set; }
 
-        public bool IsSuccess { get; set; }
+        public bool IsSuccess { get; private set; }
 
-        public object Result { get; set; }
+        public object Result { get; private set; }
 
-        public string ErrorMessage { get;  set; }
+        public string ErrorMessage { get; private set; }
     }
 }
