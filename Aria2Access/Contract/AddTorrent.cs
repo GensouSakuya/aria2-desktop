@@ -32,12 +32,11 @@ namespace Aria2Access
 
     internal class AddTorrentResponse : BaseResponse
     {
-        public string GID
+        public AddTorrentResponse(BaseResponse res) : base(res)
         {
-            get
-            {
-                return Result as string;
-            }
+            GID = res.Result as string;
         }
+
+        public string GID { get; private set; }
     }
 }

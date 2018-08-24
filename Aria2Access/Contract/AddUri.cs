@@ -34,12 +34,11 @@ namespace Aria2Access
 
     internal class AddUriResponse : BaseResponse
     {
-        public string GID
+        public AddUriResponse(BaseResponse res) : base(res)
         {
-            get
-            {
-                return Result as string;
-            }
+            GID = res.Result as string;
         }
+
+        public string GID { get; private set; }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Aria2Access
@@ -47,13 +48,34 @@ namespace Aria2Access
         public async Task<string> AddUri(IEnumerable<string> uris, int? split = 0, string proxy = null,int? position = null)
         {
             var option = split.HasValue || !string.IsNullOrWhiteSpace(proxy) ? new Options(split, proxy) : null;
-            var res = await _proxy.SendRequestAsync(new AddUriRequest
+            var res = new AddUriResponse(await _proxy.SendRequestAsync(new AddUriRequest
             {
                 Uris = uris.ToList(),
                 Options = option,
                 Position = position
-            }) as AddUriResponse;
+            }));
             return res?.GID;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="gid"></param>
+        /// <param name="keys"></param>
+        public async Task<DownloadStatusModel> TellStatus(string gid, Expression<Func<DownloadStatusModel, DownloadStatusModel>> keys = null)
+        {
+            var strKeys = new List<string>();
+            if (keys != null)
+            {
+                MemberInitExpression init = keys.Body as MemberInitExpression;
+                strKeys.AddRange(init.Bindings.Select(p => p.Member.Name));
+            }
+            var res = new TellStatusResponse(await _proxy.SendRequestAsync(new TellStatusRequest
+            {
+                GID = gid,
+                Keys = strKeys
+            }));
+            return res?.Info;
         }
 
         /// <summary>

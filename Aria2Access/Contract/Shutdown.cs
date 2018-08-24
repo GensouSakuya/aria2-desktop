@@ -11,5 +11,8 @@
 
     internal class ShutdownResponse : BaseResponse
     {
+        public ShutdownResponse(BaseResponse res) : base(res)
+        {
+        }
     }
 }
