@@ -116,6 +116,6 @@
     <Error Condition="!Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets'))" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>xcopy /E/I/Y "$(SolutionDir)\Aria2" ".\Aria2"</PostBuildEvent>
+    <PostBuildEvent>xcopy /E/I/Y/D "$(SolutionDir)\Aria2" ".\Aria2"</PostBuildEvent>
   </PropertyGroup>
 </Project>
