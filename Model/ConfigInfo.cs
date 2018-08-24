@@ -66,7 +66,7 @@ namespace Model
             var configStr = new StringBuilder();
             configStr.Append($"--enable-rpc=true --rpc-listen-all=true --rpc-listen-port={ListenPort} ");
             configStr.Append(
-                $"--max-concurrent-downloads={MaxCurrentDownloads} --continue={EnableRedownload.ToString()} --max-connection-per-server={ConnectionPerServer} ");
+                $"--max-concurrent-downloads={MaxCurrentDownloads} --continue={EnableRedownload.ToString().ToLower()} --max-connection-per-server={ConnectionPerServer} ");
             configStr.Append(
                 $"--min-split-size={MinSplitSize}M --max-overall-download-limit={DownloadSpeedLimit} --max-overall-upload-limit={UploadSpeedLimit} ");
             configStr.Append($@"--dir=""{DownloadPath}"" ");
