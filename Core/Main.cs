@@ -6,7 +6,12 @@ namespace Core
 {
     public class Main: IDisposable
     {
-        public void Start(string configFilePath = null)
+        public Main(string configFilePath = null)
+        {
+            Start(configFilePath);
+        }
+
+        protected void Start(string configFilePath = null)
         {
             _configFilePath = configFilePath ?? ConfigConst.Default_Config_File_Path;
 
@@ -49,6 +54,11 @@ namespace Core
 
                 return _config;
             }
+        }
+
+        public Aria2 Aria2
+        {
+            get { return _aria2; }
         }
     }
 }
