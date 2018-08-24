@@ -11,5 +11,10 @@ namespace Shell
         {
             MainManager.StartUp();
         }
+
+        private void Shutdown(object sender, ExitEventArgs e)
+        {
+            MainManager.Shutdown();
+        }
     }
 }

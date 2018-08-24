@@ -20,5 +20,13 @@ namespace Shell
                 }
             }
         }
+
+        public static void Shutdown()
+        {
+            if (Main != null)
+            {
+                Main.Shutdown();
+            }
+        }
     }
 }
