@@ -15,12 +15,12 @@ namespace Core
         {
             _configFilePath = configFilePath ?? ConfigConst.Default_Config_File_Path;
 
-            _aria2 = Aria2Manager.StartUp(Config.Aria2Path, Config.ToString(), Config.Aria2Host, Config.ListenPort);
+            Aria2 = Aria2Manager.StartUp(Config.Aria2Path, Config.ToString(), Config.Aria2Host, Config.ListenPort);
         }
 
         public void Shutdown()
         {
-            Aria2Manager.Shutdown(_aria2);
+            Aria2Manager.Shutdown(Aria2);
         }
 
         public void Dispose()
@@ -31,7 +31,6 @@ namespace Core
         private volatile object configLocker = new object();
         private ConfigInfo _config = null;
         private string _configFilePath = null;
-        private Aria2 _aria2 = null;
 
         protected ConfigInfo Config
         {
@@ -56,9 +55,6 @@ namespace Core
             }
         }
 
-        public Aria2 Aria2
-        {
-            get { return _aria2; }
-        }
+        internal Aria2 Aria2 { get; private set; } = null;
     }
 }
