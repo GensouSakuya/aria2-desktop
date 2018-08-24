@@ -24,5 +24,11 @@ namespace Shell
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NewDownload window = new NewDownload();
+            window.Show();
+        }
     }
 }
