@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Aria2Access
 {
@@ -27,9 +28,9 @@ namespace Aria2Access
         /// <param name="proxy">代理地址</param>
         /// <param name="position">下载队列位置，超过队列长度则排到队尾</param>
         /// <returns>下载请求的GID</returns>
-        public string AddUri(string uri, int? split = null, string proxy = null, int? position = null)
+        public async Task<string> AddUri(string uri, int? split = null, string proxy = null, int? position = null)
         {
-            return AddUri(new List<string>
+            return await AddUri(new List<string>
             {
                 uri
             }, split, proxy, position);
@@ -43,15 +44,16 @@ namespace Aria2Access
         /// <param name="proxy">代理地址</param>
         /// <param name="position">下载队列位置，超过队列长度则排到队尾</param>
         /// <returns>下载请求的GID</returns>
-        public string AddUri(IEnumerable<string> uris, int? split = 0, string proxy = null,int? position = null)
+        public async Task<string> AddUri(IEnumerable<string> uris, int? split = 0, string proxy = null,int? position = null)
         {
             var option = split.HasValue || !string.IsNullOrWhiteSpace(proxy) ? new Options(split, proxy) : null;
-            return (_proxy.SendRequest(new AddUriRequest
+            var res = await _proxy.SendRequestAsync(new AddUriRequest
             {
                 Uris = uris.ToList(),
                 Options = option,
                 Position = position
-            }) as AddUriResponse)?.GID;
+            }) as AddUriResponse;
+            return res?.GID;
         }
 
         /// <summary>
