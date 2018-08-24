@@ -6,8 +6,13 @@ namespace Core
 {
     public static class ConfigManager
     {
-        public static ConfigInfo GetFromFile(string path = ConfigConst.Default_Config_File_Path)
+        public static ConfigInfo GetFromFile(string path)
         {
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                throw new System.Exception("缺少配置文件路径");
+            }
+
             if (!File.Exists(path))
             {
                 return null;
@@ -22,17 +27,30 @@ namespace Core
             return JsonConvert.DeserializeObject<ConfigInfo>(configStr);
         }
 
-        public static ConfigInfo SaveToFile(ConfigInfo config = null, string path = ConfigConst.Default_Config_File_Path)
+        public static ConfigInfo SaveToFile(string path, ConfigInfo config = null)
         {
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                throw new System.Exception("缺少配置文件路径");
+            }
+
             //不指定则保存默认配置
             if (config == null)
             {
                 config = new ConfigInfo();
             }
             var confStr = JsonConvert.SerializeObject(config);
+
             if (!File.Exists(path))
             {
-                File.Create(path);
+                var dir = new FileInfo(path).Directory;
+                if (!dir.Exists)
+                {
+                    dir.Create();
+                }
+
+                var st = File.Create(path);
+                st.Close();
             }
 
             using (StreamWriter stream = File.CreateText(path))
