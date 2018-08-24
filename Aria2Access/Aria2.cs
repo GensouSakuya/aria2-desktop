@@ -115,7 +115,8 @@ namespace Aria2Access
 
         public void Shutdown()
         {
-            var res = (_proxy.SendRequest(new ShutdownRequest { }) as ShutdownResponse);
+            //TODO:如果等待响应则会锁住，但文档中说调用后是有响应的
+            _proxy.SendRequestWithoutResponse(new ShutdownRequest { });
         }
     }
 }

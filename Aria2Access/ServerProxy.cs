@@ -21,6 +21,11 @@ namespace Aria2Access
             return new BaseResponse(_client.SendRequestAsync(req.ToRpcRequest()).Result);
         }
 
+        public void SendRequestWithoutResponse(BaseRequest req)
+        {
+            _client.SendRequestAsync(req.ToRpcRequest()).Wait(new TimeSpan(0, 0, 3));
+        }
+
         public async Task<BaseResponse> SendRequestAsync(BaseRequest req)
         {
             return new BaseResponse(await _client.SendRequestAsync(req.ToRpcRequest()));
