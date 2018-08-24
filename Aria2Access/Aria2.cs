@@ -112,5 +112,10 @@ namespace Aria2Access
             var base64Torrent = Convert.ToBase64String(buff);
             return AddTorrentBase64(base64Torrent, split, proxy, position);
         }
+
+        public void Shutdown()
+        {
+            var res = (_proxy.SendRequest(new ShutdownRequest { }) as ShutdownResponse);
+        }
     }
 }
