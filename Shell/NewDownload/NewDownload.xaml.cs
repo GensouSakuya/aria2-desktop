@@ -35,7 +35,13 @@ namespace Shell
         
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            await MainManager.Main.StartDownload(model.DownloadUrl);
+            MessageBox.Show(await MainManager.Main.StartDownload(model.DownloadUrl));
+        }
+
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var status = await MainManager.Main.GetDownloadProcess(model.DownloadUrl);
+            MessageBox.Show(status.Status.ToString());
         }
     }
 }
