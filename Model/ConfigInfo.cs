@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 namespace Model
 {
@@ -7,7 +8,7 @@ namespace Model
         //启用rpc:enable-rpc=true 必须配置
         //允许外部访问:rpc-listen-all=true 必须配置
 
-        public string Aria2Path { get; set; }
+        public string Aria2Path { get; set; } = $@".\Aria2\{(Environment.Is64BitOperatingSystem ? "x64" : "x86")}\aria2c.exe";
         
         //Aria2服务地址
         public string Aria2Host { get; set; } = "localhost";
