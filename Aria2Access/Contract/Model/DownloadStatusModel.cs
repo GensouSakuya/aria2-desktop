@@ -23,7 +23,7 @@ namespace Aria2Access
         public string Following { get; set; }
         public string BelongsTo { get; set; }
         public string Dir { get; set; }
-        public List<string> Files { get; set; }
+        public List<FileModel> Files { get; set; }
         public List<BitTorrentModel> BitTorrent { get; set; }
         public int VerifiedLength { get; set; }
         public bool VerifyIntegrityPending { get; set; }
