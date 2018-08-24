@@ -8,18 +8,14 @@ namespace Core
     {
         public void Start(string configFilePath = null)
         {
-            _configFilePath = configFilePath;
+            _configFilePath = configFilePath ?? ConfigConst.Default_Config_File_Path;
 
-            //1.获取配置
-
-            //2.根据配置文件组装Aria2配置
-
-            //3.使用配置启动Aria2
+            _aria2 = Aria2Manager.StartUp(Config.Aria2Path, Config.ToString(), Config.Aria2Host, Config.ListenPort);
         }
 
         public void Shutdown()
         {
-
+            Aria2Manager.Shutdown(_aria2);
         }
 
         public void Dispose()
@@ -30,7 +26,6 @@ namespace Core
         private volatile object configLocker = new object();
         private ConfigInfo _config = null;
         private string _configFilePath = null;
-        private volatile object aria2Locker = new object();
         private Aria2 _aria2 = null;
 
         protected ConfigInfo Config
@@ -53,26 +48,6 @@ namespace Core
                 }
 
                 return _config;
-            }
-        }
-
-        protected Aria2 Aria2
-        {
-            get
-            {
-                if (_aria2 == null)
-                {
-                    lock (aria2Locker)
-                    {
-                        if (_aria2 == null)
-                        {
-                            //TODO:增加path
-                            _aria2 = Aria2Manager.StartUp("",Config.ToString(),Config.Aria2Host, Config.ListenPort);
-                        }
-                    }
-                }
-
-                return _aria2;
             }
         }
     }
