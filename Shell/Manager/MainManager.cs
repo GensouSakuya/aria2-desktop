@@ -5,7 +5,7 @@ namespace Shell
     public static class MainManager
     {
         public static Main Main { get; private set; } = null;
-        private static volatile object locker = null;
+        private static volatile object locker = new object();
 
         public static void StartUp()
         {
