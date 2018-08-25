@@ -86,15 +86,15 @@ namespace Aria2Access
         /// <param name="proxy">代理地址</param>
         /// <param name="position">下载队列位置，超过队列长度则排到队尾</param>
         /// <returns>下载请求的GID</returns>
-        public string AddTorrentBase64(string torrentBase64, int? split = 0, string proxy = null, int? position = null)
+        public async Task<string> AddTorrentBase64(string torrentBase64, int? split = 0, string proxy = null, int? position = null)
         {
             var option = split.HasValue || !string.IsNullOrWhiteSpace(proxy) ? new Options(split, proxy) : null;
-            return (_proxy.SendRequest(new AddTorrentRequest
+            return new AddTorrentResponse(await _proxy.SendRequestAsync(new AddTorrentRequest
             {
                 torrent = torrentBase64,
                 Options = option,
                 Position = position
-            }) as AddTorrentResponse)?.GID;
+            }))?.GID;
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Aria2Access
         /// <param name="proxy">代理地址</param>
         /// <param name="position">下载队列位置，超过队列长度则排到队尾</param>
         /// <returns>下载请求的GID</returns>
-        public string AddTorrentFile(string torrentFilePath, int? split = 0, string proxy = null, int? position = null)
+        public async Task<string> AddTorrentFile(string torrentFilePath, int? split = 0, string proxy = null, int? position = null)
         {
             if (!File.Exists(torrentFilePath))
             {
@@ -113,9 +113,9 @@ namespace Aria2Access
             }
 
             FileInfo fi = new FileInfo(torrentFilePath);
-            return AddTorrentFile(fi, split, proxy, position);
+            return await AddTorrentFile(fi, split, proxy, position);
         }
-        
+
         /// <summary>
         /// 新增BT下载
         /// </summary>
@@ -124,7 +124,7 @@ namespace Aria2Access
         /// <param name="proxy">代理地址</param>
         /// <param name="position">下载队列位置，超过队列长度则排到队尾</param>
         /// <returns>下载请求的GID</returns>
-        public string AddTorrentFile(FileInfo torrentFile, int? split = 0, string proxy = null, int? position = null)
+        public async Task<string> AddTorrentFile(FileInfo torrentFile, int? split = 0, string proxy = null, int? position = null)
         {
             byte[] buff = new byte[torrentFile.Length];
 
@@ -134,7 +134,7 @@ namespace Aria2Access
             }
 
             var base64Torrent = Convert.ToBase64String(buff);
-            return AddTorrentBase64(base64Torrent, split, proxy, position);
+            return await AddTorrentBase64(base64Torrent, split, proxy, position);
         }
 
         /// <summary>
