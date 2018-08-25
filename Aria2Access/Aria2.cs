@@ -208,6 +208,28 @@ namespace Aria2Access
         {
             var res = new ForcePauseAllResponse(await _proxy.SendRequestAsync(new ForcePauseAllRequest()));
         }
+        
+        /// <summary>
+        /// 取消暂停下载任务
+        /// </summary>
+        /// <param name="gid"></param>
+        /// <returns></returns>
+        public async Task<string> Unpause(string gid)
+        {
+            var res = new UnpauseResponse(await _proxy.SendRequestAsync(new UnpauseRequest
+            {
+                GID = gid
+            }));
+            return res?.GID;
+        }
+
+        /// <summary>
+        /// 取消暂停全部下载任务
+        /// </summary>
+        public async void UnpauseAll()
+        {
+            var res = new UnpauseAllResponse(await _proxy.SendRequestAsync(new UnpauseAllRequest()));
+        }
 
         public void Shutdown()
         {
