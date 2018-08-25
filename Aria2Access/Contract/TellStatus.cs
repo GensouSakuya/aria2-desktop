@@ -35,6 +35,4 @@ namespace Aria2Access
         }
         public DownloadStatusModel Info { get; private set; }
     }
-
-
 }

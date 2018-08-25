@@ -2,11 +2,11 @@
 
 namespace Aria2Access
 {
-    internal class RemoveRequest : BaseRequest
+    internal class ForceRemoveRequest : BaseRequest
     {
         public string GID { get; set; }
 
-        protected override string MethodName => "aria2.remove";
+        protected override string MethodName => "aria2.forceRemove";
         protected override void PrepareParam()
         {
             if (string.IsNullOrWhiteSpace(GID))
@@ -18,9 +18,9 @@ namespace Aria2Access
         }
     }
 
-    internal class RemoveResponse : BaseResponse
+    internal class ForceRemoveResponse : BaseResponse
     {
-        public RemoveResponse(BaseResponse res) : base(res)
+        public ForceRemoveResponse(BaseResponse res) : base(res)
         {
             GID = res.Result as string;
         }

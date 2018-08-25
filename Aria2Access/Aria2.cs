@@ -142,9 +142,23 @@ namespace Aria2Access
         /// </summary>
         /// <param name="gid"></param>
         /// <returns></returns>
-        public async Task<string> RemoveResponse(string gid)
+        public async Task<string> Remove(string gid)
         {
             var res = new RemoveResponse(await _proxy.SendRequestAsync(new RemoveRequest
+            {
+                GID = gid
+            }));
+            return res?.GID;
+        }
+
+        /// <summary>
+        /// 强制移除下载任务
+        /// </summary>
+        /// <param name="gid"></param>
+        /// <returns></returns>
+        public async Task<string> ForceRemove(string gid)
+        {
+            var res = new ForceRemoveResponse(await _proxy.SendRequestAsync(new ForceRemoveRequest
             {
                 GID = gid
             }));
