@@ -174,6 +174,11 @@ namespace Aria2Access
             return res?.GID;
         }
 
+        public async void PauseAll()
+        {
+            var res = new PauseAllResponse(await _proxy.SendRequestAsync(new PauseAllRequest()));
+        }
+
         public void Shutdown()
         {
             //TODO:如果等待响应则会锁住，但文档中说调用后是有响应的
