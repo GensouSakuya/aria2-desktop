@@ -165,6 +165,11 @@ namespace Aria2Access
             return res?.GID;
         }
 
+        /// <summary>
+        /// 暂停下载任务
+        /// </summary>
+        /// <param name="gid"></param>
+        /// <returns></returns>
         public async Task<string> Pause(string gid)
         {
             var res = new PauseResponse(await _proxy.SendRequestAsync(new PauseRequest
@@ -174,9 +179,34 @@ namespace Aria2Access
             return res?.GID;
         }
 
+        /// <summary>
+        /// 强制暂停下载任务
+        /// </summary>
+        /// <param name="gid"></param>
+        /// <returns></returns>
+        public async Task<string> ForcePause(string gid)
+        {
+            var res = new ForcePauseResponse(await _proxy.SendRequestAsync(new ForcePauseRequest
+            {
+                GID = gid
+            }));
+            return res?.GID;
+        }
+
+        /// <summary>
+        /// 暂停全部下载任务
+        /// </summary>
         public async void PauseAll()
         {
             var res = new PauseAllResponse(await _proxy.SendRequestAsync(new PauseAllRequest()));
+        }
+
+        /// <summary>
+        /// 强制暂停全部下载任务
+        /// </summary>
+        public async void ForcePauseAll()
+        {
+            var res = new ForcePauseAllResponse(await _proxy.SendRequestAsync(new ForcePauseAllRequest()));
         }
 
         public void Shutdown()
