@@ -137,6 +137,20 @@ namespace Aria2Access
             return AddTorrentBase64(base64Torrent, split, proxy, position);
         }
 
+        /// <summary>
+        /// 移除下载任务
+        /// </summary>
+        /// <param name="gid"></param>
+        /// <returns></returns>
+        public async Task<string> RemoveResponse(string gid)
+        {
+            var res = new RemoveResponse(await _proxy.SendRequestAsync(new RemoveRequest
+            {
+                GID = gid
+            }));
+            return res?.GID;
+        }
+
         public void Shutdown()
         {
             //TODO:如果等待响应则会锁住，但文档中说调用后是有响应的
