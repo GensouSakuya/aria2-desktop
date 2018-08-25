@@ -14,6 +14,10 @@ namespace Core
             {
                 GID = model.GID,
                 Status = status,
+                CompletedLength = model.CompletedLength,
+                DownloadSpeed = model.DownloadSpeed,
+                TotalLength = model.TotalLength,
+                UploadSpeed = model.UploadSpeed
             };
         }
     }

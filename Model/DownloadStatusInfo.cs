@@ -1,4 +1,6 @@
-﻿namespace Model
+﻿using System;
+
+namespace Model
 {
     public class DownloadStatusInfo
     {
@@ -6,8 +8,12 @@
         public DownloadStatus Status { get; set; }
         public long TotalLength { get; set; }
         public long CompletedLength { get; set; }
-        public long UploadLength { get; set; }
-        public string BitField { get; set; }
+
+        public decimal CompletePercent
+        {
+            get { return TotalLength == 0 ? 0 : Math.Round(CompletePercent / TotalLength, 1); }
+        }
+        
         public decimal DownloadSpeed { get; set; }
         public decimal UploadSpeed { get; set; }
     }
