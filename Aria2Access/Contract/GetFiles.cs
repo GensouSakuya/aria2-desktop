@@ -5,11 +5,11 @@ using System.Linq;
 
 namespace Aria2Access
 {
-    internal class GetUrisRequest : BaseRequest
+    internal class GetFilesRequest : BaseRequest
     {
         public string GID { get; set; }
 
-        protected override string MethodName => "aria2.getUris";
+        protected override string MethodName => "aria2.getFiles";
 
         protected override void PrepareParam()
         {
@@ -22,13 +22,13 @@ namespace Aria2Access
         }
     }
 
-    internal class GetUrisResponse : BaseResponse
+    internal class GetFilesResponse : BaseResponse
     {
-        public GetUrisResponse(BaseResponse res) : base(res)
+        public GetFilesResponse(BaseResponse res) : base(res)
         {
-            Info = JsonConvert.DeserializeObject<List<UriModel>>(res.Result as string);
+            Info = JsonConvert.DeserializeObject<List<FileModel>>(res.Result as string);
         }
 
-        public List<UriModel> Info { get; private set; }
+        public List<FileModel> Info { get; private set; }
     }
 }

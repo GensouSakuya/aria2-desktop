@@ -256,9 +256,23 @@ namespace Aria2Access
         /// </summary>
         /// <param name="gid"></param>
         /// <returns></returns>
-        public async Task<UriModel> GetUris(string gid)
+        public async Task<List<UriModel>> GetUris(string gid)
         {
             var res = new GetUrisResponse(await _proxy.SendRequestAsync(new GetUrisRequest
+            {
+                GID = gid
+            }));
+            return res?.Info;
+        }
+
+        /// <summary>
+        /// 获取下载任务的文件列表
+        /// </summary>
+        /// <param name="gid"></param>
+        /// <returns></returns>
+        public async Task<List<FileModel>> GetFiles(string gid)
+        {
+            var res = new GetFilesResponse(await _proxy.SendRequestAsync(new GetFilesRequest
             {
                 GID = gid
             }));
