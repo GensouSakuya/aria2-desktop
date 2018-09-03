@@ -310,7 +310,6 @@ namespace Aria2Access
         /// <summary>
         /// 获取所有下载中任务
         /// </summary>
-        /// <param name="gid"></param>
         /// <param name="keys"></param>
         public async Task<List<DownloadStatusModel>> TellActive(Expression<Func<DownloadStatusModel, DownloadStatusModel>> keys = null)
         {
@@ -322,6 +321,50 @@ namespace Aria2Access
             }
             var res = new TellActiveResponse(await _proxy.SendRequestAsync(new TellActiveRequest
             {
+                Keys = strKeys
+            }));
+            return res?.Info;
+        }
+
+        /// <summary>
+        /// 获取所有暂停任务
+        /// </summary>
+        /// <param name="keys"></param>
+        public async Task<List<DownloadStatusModel>> TellWaiting(Expression<Func<DownloadStatusModel, DownloadStatusModel>> keys = null)
+        {
+            var strKeys = new List<string>();
+            if (keys != null)
+            {
+                MemberInitExpression init = keys.Body as MemberInitExpression;
+                strKeys.AddRange(init.Bindings.Select(p => p.Member.Name));
+            }
+            var res = new TellWaitingResponse(await _proxy.SendRequestAsync(new TellWaitingRequest
+            {
+                Keys = strKeys
+            }));
+            return res?.Info;
+        }
+
+        /// <summary>
+        /// 获取指定范围的暂停任务
+        /// </summary>
+        /// <param name="startIndex"></param>
+        /// <param name="takeCount"></param>
+        /// <param name="keys"></param>
+        public async Task<List<DownloadStatusModel>> TellWaiting(int startIndex, int takeCount,
+            Expression<Func<DownloadStatusModel, DownloadStatusModel>> keys = null)
+        {
+            var strKeys = new List<string>();
+            if (keys != null)
+            {
+                MemberInitExpression init = keys.Body as MemberInitExpression;
+                strKeys.AddRange(init.Bindings.Select(p => p.Member.Name));
+            }
+
+            var res = new TellWaitingResponse(await _proxy.SendRequestAsync(new TellWaitingRequest
+            {
+                Offset = startIndex,
+                Num = takeCount,
                 Keys = strKeys
             }));
             return res?.Info;
