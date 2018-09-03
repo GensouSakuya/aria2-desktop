@@ -279,6 +279,20 @@ namespace Aria2Access
             return res?.Info;
         }
 
+        /// <summary>
+        /// 获取下载任务的Peer列表
+        /// </summary>
+        /// <param name="gid"></param>
+        /// <returns></returns>
+        public async Task<List<PeerModel>> GetPeers(string gid)
+        {
+            var res = new GetPeersResponse(await _proxy.SendRequestAsync(new GetPeersRequest
+            {
+                GID = gid
+            }));
+            return res?.Info;
+        }
+
         public void Shutdown()
         {
             //TODO:如果等待响应则会锁住，但文档中说调用后是有响应的
