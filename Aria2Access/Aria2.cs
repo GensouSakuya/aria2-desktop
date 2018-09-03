@@ -414,6 +414,42 @@ namespace Aria2Access
             return res?.Info;
         }
 
+        /// <summary>
+        /// 变更任务在队列中的位置
+        /// </summary>
+        /// <param name="gid"></param>
+        /// <param name="position"></param>
+        /// <param name="how"></param>
+        /// <returns></returns>
+        public async Task<int> ChangePosition(string gid, int position, EnumHowChangePosition how)
+        {
+            var res = new ChangePositionResponse(await _proxy.SendRequestAsync(new ChangePositionRequest
+            {
+                GID = gid,
+                How = how,
+                Position = position
+            }));
+            return res?.Position ?? 0;
+        }
+
+        /// <summary>
+        /// 变更任务到队首
+        /// </summary>
+        /// <param name="gid"></param>
+        /// <param name="position"></param>
+        /// <param name="how"></param>
+        /// <returns></returns>
+        public async Task<int> ChangePositionToFirst(string gid)
+        {
+            var res = new ChangePositionResponse(await _proxy.SendRequestAsync(new ChangePositionRequest
+            {
+                GID = gid,
+                How = EnumHowChangePosition.Set,
+                Position = 0
+            }));
+            return res?.Position ?? 0;
+        }
+
         public void Shutdown()
         {
             //TODO:如果等待响应则会锁住，但文档中说调用后是有响应的
