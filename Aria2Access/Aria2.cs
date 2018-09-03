@@ -251,6 +251,20 @@ namespace Aria2Access
             var res = new UnpauseAllResponse(await _proxy.SendRequestAsync(new UnpauseAllRequest()));
         }
 
+        /// <summary>
+        /// 获取下载任务的Uri
+        /// </summary>
+        /// <param name="gid"></param>
+        /// <returns></returns>
+        public async Task<UriModel> GetUris(string gid)
+        {
+            var res = new GetUrisResponse(await _proxy.SendRequestAsync(new GetUrisRequest
+            {
+                GID = gid
+            }));
+            return res?.Info;
+        }
+
         public void Shutdown()
         {
             //TODO:如果等待响应则会锁住，但文档中说调用后是有响应的
