@@ -58,27 +58,6 @@ namespace Aria2Access
         }
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="gid"></param>
-        /// <param name="keys"></param>
-        public async Task<DownloadStatusModel> TellStatus(string gid, Expression<Func<DownloadStatusModel, DownloadStatusModel>> keys = null)
-        {
-            var strKeys = new List<string>();
-            if (keys != null)
-            {
-                MemberInitExpression init = keys.Body as MemberInitExpression;
-                strKeys.AddRange(init.Bindings.Select(p => p.Member.Name));
-            }
-            var res = new TellStatusResponse(await _proxy.SendRequestAsync(new TellStatusRequest
-            {
-                GID = gid,
-                Keys = strKeys
-            }));
-            return res?.Info;
-        }
-
-        /// <summary>
         /// 新增BT下载
         /// </summary>
         /// <param name="torrentBase64">Base64编码的Torrent文件</param>
@@ -135,6 +114,47 @@ namespace Aria2Access
 
             var base64Torrent = Convert.ToBase64String(buff);
             return await AddTorrentBase64(base64Torrent, split, proxy, position);
+        }
+
+        /// <summary>
+        /// 新增Metalink下载
+        /// </summary>
+        /// <param name="uris"></param>
+        /// <param name="split"></param>
+        /// <param name="proxy"></param>
+        /// <param name="position"></param>
+        /// <returns></returns>
+        public async Task<string> AddMetalink(string metalink, int? split = 0, string proxy = null, int? position = null)
+        {
+            var option = split.HasValue || !string.IsNullOrWhiteSpace(proxy) ? new Options(split, proxy) : null;
+            var res = new AddMetalinkResponse(await _proxy.SendRequestAsync(new AddMetalinkRequest
+            {
+                Metalink = metalink,
+                Options = option,
+                Position = position
+            }));
+            return res?.GID;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="gid"></param>
+        /// <param name="keys"></param>
+        public async Task<DownloadStatusModel> TellStatus(string gid, Expression<Func<DownloadStatusModel, DownloadStatusModel>> keys = null)
+        {
+            var strKeys = new List<string>();
+            if (keys != null)
+            {
+                MemberInitExpression init = keys.Body as MemberInitExpression;
+                strKeys.AddRange(init.Bindings.Select(p => p.Member.Name));
+            }
+            var res = new TellStatusResponse(await _proxy.SendRequestAsync(new TellStatusRequest
+            {
+                GID = gid,
+                Keys = strKeys
+            }));
+            return res?.Info;
         }
 
         /// <summary>
