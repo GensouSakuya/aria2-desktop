@@ -450,6 +450,19 @@ namespace Aria2Access
             return res?.Position ?? 0;
         }
 
+        public async Task<List<int>> ChangeUri(string gid,int fileIndex,List<string> delUris = null,List<string> addUris = null,int? position = null)
+        {
+            var res = new ChangeUriResponse(await _proxy.SendRequestAsync(new ChangeUriRequest
+            {
+                GID = gid,
+                FileIndex = fileIndex,
+                AddUris = addUris,
+                DelUris = delUris,
+                Position = position
+            }));
+            return res?.UriResult ?? new List<int>();
+        }
+
         public void Shutdown()
         {
             //TODO:如果等待响应则会锁住，但文档中说调用后是有响应的
