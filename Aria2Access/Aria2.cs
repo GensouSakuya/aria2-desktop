@@ -450,6 +450,15 @@ namespace Aria2Access
             return res?.Position ?? 0;
         }
 
+        /// <summary>
+        /// 变更任务的uri
+        /// </summary>
+        /// <param name="gid"></param>
+        /// <param name="fileIndex"></param>
+        /// <param name="delUris"></param>
+        /// <param name="addUris"></param>
+        /// <param name="position"></param>
+        /// <returns></returns>
         public async Task<List<int>> ChangeUri(string gid,int fileIndex,List<string> delUris = null,List<string> addUris = null,int? position = null)
         {
             var res = new ChangeUriResponse(await _proxy.SendRequestAsync(new ChangeUriRequest
@@ -461,6 +470,20 @@ namespace Aria2Access
                 Position = position
             }));
             return res?.UriResult ?? new List<int>();
+        }
+
+        /// <summary>
+        /// 获取下载任务的设置
+        /// </summary>
+        /// <param name="gid"></param>
+        /// <returns></returns>
+        public async Task<object> GetOption(string gid)
+        {
+            var res = new GetOptionResponse(await _proxy.SendRequestAsync(new GetOptionRequest
+            {
+                GID = gid
+            }));
+            return res?.Option;
         }
 
         public void Shutdown()
