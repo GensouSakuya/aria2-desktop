@@ -30,5 +30,15 @@ namespace Shell
             NewDownload window = new NewDownload();
             window.Show();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            FrameContainer.Navigate(new Uri("FramePages/DownloadingPage.xaml", UriKind.Relative));
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            FrameContainer.Navigate(new Uri("FramePages/CompletePage.xaml", UriKind.Relative));
+        }
     }
 }
