@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="113,10,0,0" VerticalAlignment="Top" Width="93" Click="Button_Click" Height="42"/>
-        <Frame Content="Frame" x:Name="FrameContainer" HorizontalAlignment="Left" Height="339" Margin="113,71,0,0" VerticalAlignment="Top" Width="671" Source="FramePages/DownloadingPage.xaml"/>
+        <Button Name="NewDownloadButton" Content="新建下载" HorizontalAlignment="Left" Margin="113,10,0,0" VerticalAlignment="Top" Width="93" Click="NewDownloadButton_Click" Height="42"/>
+        <Frame Content="Frame" x:Name="FrameContainer" HorizontalAlignment="Left" Height="339" Margin="113,71,0,0" VerticalAlignment="Top" Width="671" Source="FramePages/CompletePage.xaml"/>
         <Button Content="Button" HorizontalAlignment="Left" Margin="23,100,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="23,152,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_2"/>
+        <Button Name="CompletePageButton" Content="已完成" HorizontalAlignment="Left" Margin="23,152,0,0" VerticalAlignment="Top" Width="75" Click="CompletePageButton_Click"/>
 
     </Grid>
 </Window>

@@ -90,6 +90,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Manager\DownloadTaskManager.cs" />
     <Compile Include="Manager\MainManager.cs" />
     <Compile Include="NewDownload\NewDownload.xaml.cs">
       <DependentUpon>NewDownload.xaml</DependentUpon>

@@ -25,7 +25,7 @@ namespace Shell
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void NewDownloadButton_Click(object sender, RoutedEventArgs e)
         {
             NewDownload window = new NewDownload();
             window.Show();
@@ -36,7 +36,7 @@ namespace Shell
             FrameContainer.Navigate(new Uri("FramePages/DownloadingPage.xaml", UriKind.Relative));
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void CompletePageButton_Click(object sender, RoutedEventArgs e)
         {
             FrameContainer.Navigate(new Uri("FramePages/CompletePage.xaml", UriKind.Relative));
         }
