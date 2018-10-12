@@ -1,6 +1,9 @@
 ﻿using Aria2Access;
 using Model;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Core
 {
@@ -16,6 +19,41 @@ namespace Core
             _configFilePath = configFilePath ?? ConfigConst.Default_Config_File_Path;
 
             Aria2 = Aria2Manager.StartUp(Config.Aria2Path, Config.ToString(), Config.Aria2Host, Config.ListenPort);
+        }
+
+        public List<DownloadStatusInfo> GetAllTasks()
+        {
+            var downloadTaskModelList = new List<DownloadStatusModel>();
+            var lockObj = new object();
+            var taskList = new List<Task>();
+            taskList.Add(Task.Factory.StartNew(() =>
+            {
+                lock (lockObj)
+                {
+                    downloadTaskModelList.AddRange(Aria2.TellActive().Result);
+                }
+            }));
+            taskList.Add(Task.Factory.StartNew(() =>
+            {
+                lock (lockObj)
+                {
+                    downloadTaskModelList.AddRange(Aria2.TellWaiting().Result);
+                }
+            }));
+            taskList.Add(Task.Factory.StartNew(() =>
+            {
+                lock (lockObj)
+                {
+                    downloadTaskModelList.AddRange(Aria2.TellStopped().Result);
+                }
+            }));
+            Task.WaitAll(taskList.ToArray());
+            return downloadTaskModelList.Select(p => p.Convert()).ToList();
+        }
+
+        public DownloadStatusInfo GetTaskDownloadStatus(string gid)
+        {
+            return Aria2.TellStatus(gid).Result.Convert();
         }
 
         public void Shutdown()
