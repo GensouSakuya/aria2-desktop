@@ -19,7 +19,7 @@ namespace Aria2Access
                 throw new Exception("未找到aria2应用");
             }
 
-            if (!Process.GetProcessesByName("aria2c").Any())
+            if (!Process.GetProcessesByName("aria2c-fg").Any())
             {
                 var process = new Process();
                 process.StartInfo.FileName = path;

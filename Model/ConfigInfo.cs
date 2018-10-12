@@ -8,7 +8,7 @@ namespace Model
         //启用rpc:enable-rpc=true 必须配置
         //允许外部访问:rpc-listen-all=true 必须配置
 
-        public string Aria2Path { get; set; } = $@".\Aria2\{(Environment.Is64BitOperatingSystem ? "x64" : "x86")}\aria2c.exe";
+        public string Aria2Path { get; set; } = $@".\Aria2\{(Environment.Is64BitOperatingSystem ? "x64" : "x86")}\aria2c-fg.exe";
         
         //Aria2服务地址
         public string Aria2Host { get; set; } = "localhost";
@@ -57,6 +57,9 @@ namespace Model
         //dir="./"
         public string DownloadPath { get; set; } = "./";
 
+        //是否允许跨域访问
+        public bool AllowOriginAll { get; set; } = false;
+
         //使用代理
         //测试后看看是否需要
         //all-proxy=localhost:1080
@@ -64,7 +67,7 @@ namespace Model
         public override string ToString()
         {
             var configStr = new StringBuilder();
-            configStr.Append($"--enable-rpc=true --rpc-listen-all=true --rpc-listen-port={ListenPort} ");
+            configStr.Append($"--enable-rpc=true --rpc-listen-all=true --rpc-listen-port={ListenPort} --rpc-allow-origin-all={AllowOriginAll.ToString().ToLower()} ");
             configStr.Append(
                 $"--max-concurrent-downloads={MaxCurrentDownloads} --continue={EnableRedownload.ToString().ToLower()} --max-connection-per-server={ConnectionPerServer} ");
             configStr.Append(
