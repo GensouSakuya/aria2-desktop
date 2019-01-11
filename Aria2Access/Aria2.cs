@@ -137,10 +137,10 @@ namespace Aria2Access
         }
 
         /// <summary>
-        /// 
+        /// 获取下载任务状态
         /// </summary>
         /// <param name="gid"></param>
-        /// <param name="keys"></param>
+        /// <param name="keys">需要获取的字段表达式</param>
         public async Task<DownloadStatusModel> TellStatus(string gid, Expression<Func<DownloadStatusModel, DownloadStatusModel>> keys = null)
         {
             var strKeys = new List<string>();
