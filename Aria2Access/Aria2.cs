@@ -341,8 +341,11 @@ namespace Aria2Access
             var strKeys = new List<string>();
             if (keys != null)
             {
-                MemberInitExpression init = keys.Body as MemberInitExpression;
-                strKeys.AddRange(init.Bindings.Select(p => p.Member.Name));
+                keys.ForEach(key =>
+                {
+                    MemberInitExpression init = key.Body as MemberInitExpression;
+                    strKeys.AddRange(init.Bindings.Select(p => p.Member.Name));
+                });
             }
             var res = new TellWaitingResponse(await _proxy.SendRequestAsync(new TellWaitingRequest
             {
