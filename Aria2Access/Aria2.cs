@@ -140,14 +140,17 @@ namespace Aria2Access
         /// 获取下载任务状态
         /// </summary>
         /// <param name="gid"></param>
-        /// <param name="keys">需要获取的字段表达式</param>
-        public async Task<DownloadStatusModel> TellStatus(string gid, Expression<Func<DownloadStatusModel, DownloadStatusModel>> keys = null)
+        /// <param name="keys">需要获取的属性表达式集合（不传则返回全部属性）</param>
+        public async Task<DownloadStatusModel> TellStatus(string gid, List<Expression<Func<DownloadStatusModel, object>>> keys = null)
         {
             var strKeys = new List<string>();
-            if (keys != null)
+            if (keys != null && keys.Any())
             {
-                MemberInitExpression init = keys.Body as MemberInitExpression;
-                strKeys.AddRange(init.Bindings.Select(p => p.Member.Name));
+                keys.ForEach(key =>
+                {
+                    MemberInitExpression init = key.Body as MemberInitExpression;
+                    strKeys.AddRange(init.Bindings.Select(p => p.Member.Name));
+                });
             }
             var res = new TellStatusResponse(await _proxy.SendRequestAsync(new TellStatusRequest
             {
@@ -311,13 +314,16 @@ namespace Aria2Access
         /// 获取所有下载中任务
         /// </summary>
         /// <param name="keys"></param>
-        public async Task<List<DownloadStatusModel>> TellActive(Expression<Func<DownloadStatusModel, DownloadStatusModel>> keys = null)
+        public async Task<List<DownloadStatusModel>> TellActive(List<Expression<Func<DownloadStatusModel, object>>> keys = null)
         {
             var strKeys = new List<string>();
             if (keys != null)
             {
-                MemberInitExpression init = keys.Body as MemberInitExpression;
-                strKeys.AddRange(init.Bindings.Select(p => p.Member.Name));
+                keys.ForEach(key =>
+                {
+                    MemberInitExpression init = key.Body as MemberInitExpression;
+                    strKeys.AddRange(init.Bindings.Select(p => p.Member.Name));
+                });
             }
             var res = new TellActiveResponse(await _proxy.SendRequestAsync(new TellActiveRequest
             {
@@ -330,7 +336,7 @@ namespace Aria2Access
         /// 获取所有暂停任务
         /// </summary>
         /// <param name="keys"></param>
-        public async Task<List<DownloadStatusModel>> TellWaiting(Expression<Func<DownloadStatusModel, DownloadStatusModel>> keys = null)
+        public async Task<List<DownloadStatusModel>> TellWaiting(List<Expression<Func<DownloadStatusModel, object>>> keys = null)
         {
             var strKeys = new List<string>();
             if (keys != null)
@@ -374,13 +380,16 @@ namespace Aria2Access
         /// 获取所有停止任务
         /// </summary>
         /// <param name="keys"></param>
-        public async Task<List<DownloadStatusModel>> TellStopped(Expression<Func<DownloadStatusModel, DownloadStatusModel>> keys = null)
+        public async Task<List<DownloadStatusModel>> TellStopped(List<Expression<Func<DownloadStatusModel, object>>> keys = null)
         {
             var strKeys = new List<string>();
             if (keys != null)
             {
-                MemberInitExpression init = keys.Body as MemberInitExpression;
-                strKeys.AddRange(init.Bindings.Select(p => p.Member.Name));
+                keys.ForEach(key =>
+                {
+                    MemberInitExpression init = key.Body as MemberInitExpression;
+                    strKeys.AddRange(init.Bindings.Select(p => p.Member.Name));
+                });
             }
             var res = new TellStoppedResponse(await _proxy.SendRequestAsync(new TellStoppedRequest
             {
