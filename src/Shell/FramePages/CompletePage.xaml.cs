@@ -1,4 +1,4 @@
-﻿using Model;
+﻿using GensouSakuya.Aria2.Desktop.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

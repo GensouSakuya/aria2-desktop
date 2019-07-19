@@ -1,7 +1,7 @@
-﻿using Model;
+﻿using GensouSakuya.Aria2.Desktop.Model;
 using System.Threading.Tasks;
 
-namespace Core
+namespace GensouSakuya.Aria2.Desktop.Core
 {
     public static partial class Aria2Extension
     {

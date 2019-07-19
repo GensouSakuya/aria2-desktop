@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <AssemblyName>GensouSakuya.Aria2.Desktop.Core</AssemblyName>
+    <RootNamespace>GensouSakuya.Aria2.Desktop.Core</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -15,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Model\Model.csproj" />
+    <ProjectReference Include="..\GensouSakuya.Aria2.Desktop.Model\GensouSakuya.Aria2.Desktop.Model.csproj" />
   </ItemGroup>
 
 </Project>

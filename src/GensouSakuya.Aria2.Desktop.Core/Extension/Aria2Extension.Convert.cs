@@ -1,8 +1,8 @@
 ﻿using GensouSakuya.Aria2.SDK.Model;
-using Model;
+using GensouSakuya.Aria2.Desktop.Model;
 using System;
 
-namespace Core
+namespace GensouSakuya.Aria2.Desktop.Core
 {
     public static partial class Aria2Extension
     {

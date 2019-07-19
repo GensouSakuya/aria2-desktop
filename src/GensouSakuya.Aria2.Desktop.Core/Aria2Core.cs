@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using GensouSakuya.Aria2.SDK;
 
-namespace Core
+namespace GensouSakuya.Aria2.Desktop.Core
 {
     public static class Aria2Core
     {

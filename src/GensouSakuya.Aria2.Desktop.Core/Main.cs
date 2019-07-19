@@ -1,11 +1,11 @@
 ﻿using GensouSakuya.Aria2.SDK.Model;
-using Model;
+using GensouSakuya.Aria2.Desktop.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Core
+namespace GensouSakuya.Aria2.Desktop.Core
 {
     public class Main: IDisposable
     {

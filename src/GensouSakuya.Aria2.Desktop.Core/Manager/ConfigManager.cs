@@ -1,8 +1,8 @@
-﻿using Model;
+﻿using GensouSakuya.Aria2.Desktop.Model;
 using Newtonsoft.Json;
 using System.IO;
 
-namespace Core
+namespace GensouSakuya.Aria2.Desktop.Core
 {
     public static class ConfigManager
     {

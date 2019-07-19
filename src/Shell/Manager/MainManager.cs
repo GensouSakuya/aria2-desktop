@@ -1,4 +1,4 @@
-﻿using Core;
+﻿using GensouSakuya.Aria2.Desktop.Core;
 
 namespace Shell
 {

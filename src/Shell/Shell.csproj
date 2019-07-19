@@ -123,13 +123,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj">
+    <ProjectReference Include="..\GensouSakuya.Aria2.Desktop.Core\GensouSakuya.Aria2.Desktop.Core.csproj">
       <Project>{a03b7c11-e063-412a-88fe-069084108aac}</Project>
-      <Name>Core</Name>
+      <Name>GensouSakuya.Aria2.Desktop.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Model\Model.csproj">
+    <ProjectReference Include="..\GensouSakuya.Aria2.Desktop.Model\GensouSakuya.Aria2.Desktop.Model.csproj">
       <Project>{a3d1828a-0be2-4325-876f-7eeebf343a0a}</Project>
-      <Name>Model</Name>
+      <Name>GensouSakuya.Aria2.Desktop.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

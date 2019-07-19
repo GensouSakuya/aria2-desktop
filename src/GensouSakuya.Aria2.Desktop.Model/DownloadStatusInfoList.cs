@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Model
+namespace GensouSakuya.Aria2.Desktop.Model
 {
     public class DownloadStatusInfoList
     {
