@@ -1,4 +1,4 @@
-﻿using Aria2Access;
+﻿using GensouSakuya.Aria2.SDK.Model;
 using Model;
 using System;
 

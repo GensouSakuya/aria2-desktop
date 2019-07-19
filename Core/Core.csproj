@@ -10,11 +10,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="GensouSakuya.Aria2.SDK" Version="0.8.1" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Aria2Access\Aria2Access.csproj" />
     <ProjectReference Include="..\Model\Model.csproj" />
   </ItemGroup>
 

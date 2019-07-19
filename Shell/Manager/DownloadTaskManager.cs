@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -53,7 +52,7 @@ namespace Shell
                     }
                     catch(Exception ex)
                     {
-
+                        
                     }
                     Thread.Sleep(200);
                 }

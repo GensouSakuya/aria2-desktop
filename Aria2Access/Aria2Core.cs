@@ -2,12 +2,13 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using GensouSakuya.Aria2.SDK;
 
 namespace Aria2Access
 {
-    public static class Aria2Manager
+    public static class Aria2Core
     {
-        public static Aria2 StartUp(string path,string args,string host,int port)
+        public static Aria2Client StartUp(string path,string args,string host,int port)
         {
             if (string.IsNullOrWhiteSpace(path))
             {
@@ -27,10 +28,10 @@ namespace Aria2Access
                 process.Start();
             }
 
-            return new Aria2(host, port);
+            return new Aria2Client(host, port);
         }
 
-        public static void Shutdown(Aria2 aria2)
+        public static void Shutdown(Aria2Client aria2)
         {
             aria2?.Shutdown();
         }

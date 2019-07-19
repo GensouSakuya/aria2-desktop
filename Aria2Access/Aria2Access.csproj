@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EdjCase.JsonRpc.Client" Version="3.0.1" />
+    <PackageReference Include="GensouSakuya.Aria2.SDK" Version="0.8.1" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
 

@@ -1,4 +1,4 @@
-﻿using Aria2Access;
+﻿using GensouSakuya.Aria2.SDK.Model;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -18,7 +18,7 @@ namespace Core
         {
             _configFilePath = configFilePath ?? ConfigConst.Default_Config_File_Path;
 
-            Aria2 = Aria2Manager.StartUp(Config.Aria2Path, Config.ToString(), Config.Aria2Host, Config.ListenPort);
+            Aria2 = Aria2Core.StartUp(Config.Aria2Path, Config.ToString(), Config.Aria2Host, Config.ListenPort);
         }
 
         public List<DownloadStatusInfo> GetAllTasks()
@@ -58,7 +58,7 @@ namespace Core
 
         public void Shutdown()
         {
-            Aria2Manager.Shutdown(Aria2);
+            Aria2Core.Shutdown(Aria2);
         }
 
         public void Dispose()
@@ -93,6 +93,6 @@ namespace Core
             }
         }
 
-        internal Aria2 Aria2 { get; private set; } = null;
+        internal GensouSakuya.Aria2.SDK.Aria2Client Aria2 { get; private set; } = null;
     }
 }

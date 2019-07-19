@@ -1,5 +1,4 @@
-﻿using Aria2Access;
-using Model;
+﻿using Model;
 using System.Threading.Tasks;
 
 namespace Core
