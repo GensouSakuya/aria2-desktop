@@ -18,7 +18,9 @@ namespace GensouSakuya.Aria2.Desktop.Core
         {
             _configFilePath = configFilePath ?? ConfigConst.Default_Config_File_Path;
 
-            Aria2 = Aria2Core.StartUp(Config.Aria2Path, Config.ToString(), Config.Aria2Host, Config.ListenPort);
+            Aria2 = Config.IsAria2ServerExist
+                ? Aria2Core.Connect(Config.Aria2Host, Config.ListenPort)
+                : Aria2Core.StartUp(Config.Aria2Path, Config.ToArgs(), Config.Aria2Host, Config.ListenPort);
         }
 
         public List<DownloadStatusInfo> GetAllTasks()
@@ -58,7 +60,10 @@ namespace GensouSakuya.Aria2.Desktop.Core
 
         public void Shutdown()
         {
-            Aria2Core.Shutdown(Aria2);
+            if (!Config.IsAria2ServerExist)
+            {
+                Aria2Core.Shutdown(Aria2);
+            }
         }
 
         public void Dispose()

@@ -28,6 +28,11 @@ namespace GensouSakuya.Aria2.Desktop.Core
                 process.Start();
             }
 
+            return Connect(host, port);
+        }
+
+        public static Aria2Client Connect(string host, int port)
+        {
             return new Aria2Client(host, port);
         }
 

@@ -5,6 +5,9 @@ namespace GensouSakuya.Aria2.Desktop.Model
 {
     public class ConfigInfo
     {
+        //是否已存在可用的Aria2服务
+        public bool IsAria2ServerExist { get; set; } = false;
+
         //启用rpc:enable-rpc=true 必须配置
         //允许外部访问:rpc-listen-all=true 必须配置
 
@@ -64,7 +67,7 @@ namespace GensouSakuya.Aria2.Desktop.Model
         //测试后看看是否需要
         //all-proxy=localhost:1080
 
-        public override string ToString()
+        public string ToArgs()
         {
             var configStr = new StringBuilder();
             configStr.Append($"--enable-rpc=true --rpc-listen-all=true --rpc-listen-port={ListenPort} --rpc-allow-origin-all={AllowOriginAll.ToString().ToLower()} ");
