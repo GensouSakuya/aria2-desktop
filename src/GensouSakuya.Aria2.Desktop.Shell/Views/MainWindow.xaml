@@ -1,17 +1,28 @@
 ﻿<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:GensouSakuya.Aria2.Desktop.Shell.ViewModels;assembly=GensouSakuya.Aria2.Desktop.Shell"
+        xmlns:view="clr-namespace:GensouSakuya.Aria2.Desktop.Shell.Views"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="300"
         x:Class="GensouSakuya.Aria2.Desktop.Shell.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="GensouSakuya.Aria2.Desktop.Shell">
-
+        Title="GensouSakuya.Aria2.Desktop.Shell"
+        VerticalContentAlignment="Stretch"
+        HorizontalContentAlignment="Stretch"
+        >
     <Design.DataContext>
-        <vm:MainWindowViewModel/>
+      <vm:MainWindowViewModel/>
     </Design.DataContext>
-
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+  <DockPanel>
+    <DockPanel DockPanel.Dock="Left" Width="120">
+      <view:LogoControl DockPanel.Dock="Top" Height="70"/>
+      <view:PageList DockPanel.Dock="Bottom"/>
+    </DockPanel>
+    <DockPanel DockPanel.Dock="Right">
+      <view:ToolBar DockPanel.Dock="Top" Height="50"/>
+      <view:DownloadList DockPanel.Dock="Bottom"/>
+    </DockPanel>
+  </DockPanel>
 
 </Window>

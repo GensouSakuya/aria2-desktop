@@ -3,6 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <ApplicationIcon />
+    <OutputType>Exe</OutputType>
+    <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,11 +16,52 @@
     <AvaloniaResource Include="**\*.xaml">
       <SubType>Designer</SubType>
     </AvaloniaResource>
-    <AvaloniaResource Include="Assets\*"/>
+    <AvaloniaResource Include="Assets\*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Remove="Controls\ToolButton.xaml" />
+    <AvaloniaResource Remove="Views\DownloadList.xaml" />
+    <AvaloniaResource Remove="Views\LogoControl.xaml" />
+    <AvaloniaResource Remove="Views\PageList.xaml" />
+    <AvaloniaResource Remove="Views\ToolBar.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Controls\ToolButton.xaml" />
+    <None Remove="Views\DownloadList.xaml" />
+    <None Remove="Views\LogoControl.xaml" />
+    <None Remove="Views\PageList.xaml" />
+    <None Remove="Views\ToolBar.xaml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.8.0" />
     <PackageReference Include="Avalonia.Desktop" Version="0.8.0" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="0.8.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\LogoControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\PageList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ToolBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DownloadList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\ToolButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
