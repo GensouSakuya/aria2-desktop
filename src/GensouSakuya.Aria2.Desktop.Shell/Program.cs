@@ -24,12 +24,14 @@ namespace GensouSakuya.Aria2.Desktop.Shell
         // container, etc.
         private static void AppMain(Application app, string[] args)
         {
-            var window = new MainWindow
+            MainWindow = new MainWindow
             {
                 DataContext = new MainWindowViewModel(),
             };
 
-            app.Run(window);
+            app.Run(MainWindow);
         }
+
+        public static MainWindow MainWindow { get; set; }
     }
 }
