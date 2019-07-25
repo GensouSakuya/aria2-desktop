@@ -22,14 +22,17 @@
   <ItemGroup>
     <AvaloniaResource Remove="Controls\ToolButton.xaml" />
     <AvaloniaResource Remove="Views\DownloadList.xaml" />
+    <AvaloniaResource Remove="Views\DownloadPage.xaml" />
+    <AvaloniaResource Remove="Views\ErrorDialog.xaml" />
     <AvaloniaResource Remove="Views\LogoControl.xaml" />
     <AvaloniaResource Remove="Views\PageList.xaml" />
     <AvaloniaResource Remove="Views\ToolBar.xaml" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Controls\ToolButton.xaml" />
     <None Remove="Views\DownloadList.xaml" />
+    <None Remove="Views\DownloadPage.xaml" />
+    <None Remove="Views\ErrorDialog.xaml" />
     <None Remove="Views\LogoControl.xaml" />
     <None Remove="Views\PageList.xaml" />
     <None Remove="Views\ToolBar.xaml" />
@@ -50,7 +53,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\ToolBar.xaml">
+    <EmbeddedResource Include="Controls\ToolBar.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -63,5 +66,30 @@
     <EmbeddedResource Include="Controls\ToolButton.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DownloadPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Other\ErrorDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GensouSakuya.Aria2.Desktop.Core\GensouSakuya.Aria2.Desktop.Core.csproj" />
+    <ProjectReference Include="..\GensouSakuya.Aria2.Desktop.Model\GensouSakuya.Aria2.Desktop.Model.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Controls\ToolBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\ToolButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Other\ErrorDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
   </ItemGroup>
 </Project>

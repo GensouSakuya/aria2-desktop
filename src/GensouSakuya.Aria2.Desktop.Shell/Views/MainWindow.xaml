@@ -2,6 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:GensouSakuya.Aria2.Desktop.Shell.ViewModels;assembly=GensouSakuya.Aria2.Desktop.Shell"
         xmlns:view="clr-namespace:GensouSakuya.Aria2.Desktop.Shell.Views"
+        xmlns:ctrl="clr-namespace:GensouSakuya.Aria2.Desktop.Shell.Controls"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="300"
@@ -20,7 +21,7 @@
       <view:PageList DockPanel.Dock="Bottom"/>
     </DockPanel>
     <DockPanel DockPanel.Dock="Right">
-      <view:ToolBar DockPanel.Dock="Top" Height="50"/>
+      <ctrl:ToolBar DockPanel.Dock="Top" Height="50"/>
       <view:DownloadList DockPanel.Dock="Bottom"/>
     </DockPanel>
   </DockPanel>

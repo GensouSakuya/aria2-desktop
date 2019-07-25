@@ -4,11 +4,14 @@ using Avalonia.Markup.Xaml;
 
 namespace GensouSakuya.Aria2.Desktop.Shell.Views
 {
-    public class ToolBar : UserControl
+    public class DownloadPage : Window
     {
-        public ToolBar()
+        public DownloadPage()
         {
             this.InitializeComponent();
+#if DEBUG
+            this.AttachDevTools();
+#endif
         }
 
         private void InitializeComponent()
