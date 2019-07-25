@@ -2,9 +2,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels;assembly=GensouSakuya.Aria2.Desktop.Shell"
              mc:Ignorable="d" d:DesignWidth="50" d:DesignHeight="50"
              x:Class="GensouSakuya.Aria2.Desktop.Shell.Controls.ToolButton">
-  <DockPanel>
-    
-  </DockPanel>
+  <UserControl.DataContext>
+    <vm:ToolButtonViewModel/>
+  </UserControl.DataContext>
+    <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+      <TextBlock>假装是图</TextBlock>
+      <TextBlock Text="{Binding Content}"></TextBlock>
+    </StackPanel>
+
 </UserControl>
