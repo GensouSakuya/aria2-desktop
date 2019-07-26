@@ -15,7 +15,7 @@ namespace Shell
 
         public static async Task RefreshTasks()
         {
-            var allTasks = await Task.Factory.StartNew(() => MainManager.Main.GetAllTasks());
+            var allTasks = await Task.Factory.StartNew(() => MainManager.Aria2Core.GetAllTasks());
             _downloadingTasks = new DownloadStatusInfoList(allTasks.Where(p => p.Status == DownloadStatus.Active));
             _otherTasks = new DownloadStatusInfoList(allTasks.Where(p => p.Status != DownloadStatus.Active));
         }
@@ -41,7 +41,7 @@ namespace Shell
                         var downloadingTasks = _downloadingTasks.List;
                         downloadingTasks.ForEach(p =>
                         {
-                            p = MainManager.Main.GetTaskDownloadStatus(p.GID);
+                            p = MainManager.Aria2Core.GetTaskDownloadStatus(p.GID);
                         });
                         var otherTasks = downloadingTasks.Where(p => p.Status != DownloadStatus.Active).ToList();
                         if (otherTasks.Any())

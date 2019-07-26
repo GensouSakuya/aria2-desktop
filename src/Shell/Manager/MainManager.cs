@@ -4,29 +4,29 @@ namespace Shell
 {
     public static class MainManager
     {
-        public static Main Main { get; private set; } = null;
+        public static Aria2Core Aria2Core { get; private set; } = null;
         private static volatile object locker = new object();
 
         public static void StartUp()
         {
-            if (Main == null)
-            {
-                lock (locker)
-                {
-                    if (Main == null)
-                    {
-                        Main = new Main();
-                    }
-                }
-            }
+            //if (Aria2Core == null)
+            //{
+            //    lock (locker)
+            //    {
+            //        if (Aria2Core == null)
+            //        {
+            //            Aria2Core = new Aria2Core();
+            //        }
+            //    }
+            //}
         }
 
         public static void Shutdown()
         {
-            if (Main != null)
-            {
-                Main.Shutdown();
-            }
+            //if (Aria2Core != null)
+            //{
+            //    Aria2Core.Shutdown();
+            //}
         }
     }
 }

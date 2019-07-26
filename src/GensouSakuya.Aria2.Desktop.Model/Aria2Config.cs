@@ -3,7 +3,7 @@ using System.Text;
 
 namespace GensouSakuya.Aria2.Desktop.Model
 {
-    public class ConfigInfo
+    public class Aria2Config
     {
         //是否已存在可用的Aria2服务
         public bool IsAria2ServerExist { get; set; } = false;

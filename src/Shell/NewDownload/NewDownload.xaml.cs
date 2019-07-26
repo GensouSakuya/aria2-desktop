@@ -35,13 +35,13 @@ namespace Shell
         
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            var gid = await MainManager.Main.StartDownload(model.DownloadUrl);
+            var gid = await MainManager.Aria2Core.StartDownload(model.DownloadUrl);
             MessageBox.Show(gid);
         }
 
         private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            var status = await MainManager.Main.GetDownloadProcess(model.DownloadUrl);
+            var status = await MainManager.Aria2Core.GetDownloadProcess(model.DownloadUrl);
             MessageBox.Show(status.Status.ToString());
         }
     }

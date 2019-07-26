@@ -24,6 +24,10 @@ namespace GensouSakuya.Aria2.Desktop.Shell
         // container, etc.
         private static void AppMain(Application app, string[] args)
         {
+            //TODO:获取配置信息并注入Aria2Core
+            
+            //_configFilePath = configFilePath ?? ConfigConst.Default_Config_File_Path;
+
             MainWindow = new MainWindow
             {
                 DataContext = new MainWindowViewModel(),

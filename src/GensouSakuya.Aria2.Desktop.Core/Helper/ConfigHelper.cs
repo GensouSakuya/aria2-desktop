@@ -4,9 +4,9 @@ using System.IO;
 
 namespace GensouSakuya.Aria2.Desktop.Core
 {
-    public static class ConfigManager
+    public static class ConfigHelper
     {
-        public static ConfigInfo GetFromFile(string path)
+        public static Aria2Config GetFromFile(string path)
         {
             if (string.IsNullOrWhiteSpace(path))
             {
@@ -24,10 +24,10 @@ namespace GensouSakuya.Aria2.Desktop.Core
                 configStr = file.ReadToEnd();
             }
 
-            return JsonConvert.DeserializeObject<ConfigInfo>(configStr);
+            return JsonConvert.DeserializeObject<Aria2Config>(configStr);
         }
 
-        public static ConfigInfo SaveToFile(string path, ConfigInfo config = null)
+        public static Aria2Config SaveToFile(string path, Aria2Config aria2Config = null)
         {
             if (string.IsNullOrWhiteSpace(path))
             {
@@ -35,11 +35,11 @@ namespace GensouSakuya.Aria2.Desktop.Core
             }
 
             //不指定则保存默认配置
-            if (config == null)
+            if (aria2Config == null)
             {
-                config = new ConfigInfo();
+                aria2Config = new Aria2Config();
             }
-            var confStr = JsonConvert.SerializeObject(config);
+            var confStr = JsonConvert.SerializeObject(aria2Config);
 
             if (!File.Exists(path))
             {
@@ -58,7 +58,7 @@ namespace GensouSakuya.Aria2.Desktop.Core
                 stream.Write(confStr);
             }
 
-            return config;
+            return aria2Config;
         }
     }
 }
