@@ -26,7 +26,7 @@
     <AvaloniaResource Remove="Views\ErrorDialog.xaml" />
     <AvaloniaResource Remove="Views\LogoControl.xaml" />
     <AvaloniaResource Remove="Views\PageList.xaml" />
-    <AvaloniaResource Remove="Views\ToolBar.xaml" />
+    <AvaloniaResource Remove="Controls\ToolBar.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,7 +35,7 @@
     <None Remove="Views\ErrorDialog.xaml" />
     <None Remove="Views\LogoControl.xaml" />
     <None Remove="Views\PageList.xaml" />
-    <None Remove="Views\ToolBar.xaml" />
+    <None Remove="Controls\ToolBar.xaml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.8.0" />

@@ -4,16 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:ctl="clr-namespace:GensouSakuya.Aria2.Desktop.Shell.Controls"
              xmlns:vm="clr-namespace:GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="100"
+             mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="100" Background="#dee8f2"
              x:Class="GensouSakuya.Aria2.Desktop.Shell.Controls.ToolBar">
   <UserControl.DataContext>
     <vm:ToolBarViewModel></vm:ToolBarViewModel>
   </UserControl.DataContext>
-  <Border Background="White">
-    <StackPanel Name="buttonStack" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
-        <ctl:ToolButton DataContext="{Binding CreateDownload}">
-        </ctl:ToolButton>
-        <Button>删除任务</Button>
-    </StackPanel>
-  </Border>
+  <StackPanel Name="buttonStack" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+    <ctl:ToolButton DataContext="{Binding CreateDownload}">
+    </ctl:ToolButton>
+    <Button>删除任务</Button>
+  </StackPanel>
 </UserControl>
