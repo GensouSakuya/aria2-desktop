@@ -15,15 +15,27 @@
     <Design.DataContext>
       <vm:MainWindowViewModel/>
     </Design.DataContext>
-  <DockPanel>
-    <DockPanel DockPanel.Dock="Left" Width="120">
-      <view:LogoControl DockPanel.Dock="Top" Height="70"/>
-      <view:PageList DockPanel.Dock="Bottom"/>
-    </DockPanel>
-    <DockPanel DockPanel.Dock="Right">
-      <ctrl:ToolBar DockPanel.Dock="Top" Height="50"/>
-      <view:DownloadList DockPanel.Dock="Bottom"/>
-    </DockPanel>
-  </DockPanel>
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto"></ColumnDefinition>
+      <ColumnDefinition Width="*"></ColumnDefinition>
+    </Grid.ColumnDefinitions>
+    <Grid Grid.Column="0">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"></RowDefinition>
+        <RowDefinition Height="*"></RowDefinition>
+      </Grid.RowDefinitions>
+      <view:LogoControl Grid.Row="0"/>
+      <view:PageList Grid.Row="1"/>
+    </Grid>
+    <Grid Grid.Column="1">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"></RowDefinition>
+        <RowDefinition Height="*"></RowDefinition>
+      </Grid.RowDefinitions>
+      <ctrl:ToolBar  Grid.Row="0"/>
+      <view:DownloadList  Grid.Row="1"/>
+    </Grid>
+  </Grid>
 
 </Window>
