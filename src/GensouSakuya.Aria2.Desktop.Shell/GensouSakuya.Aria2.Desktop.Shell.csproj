@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Icons\" />
     <Compile Update="**\*.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
@@ -17,6 +18,7 @@
       <SubType>Designer</SubType>
     </AvaloniaResource>
     <AvaloniaResource Include="Assets\*" />
+    <AvaloniaResource Include="Icons\*" />
   </ItemGroup>
 
   <ItemGroup>
