@@ -9,9 +9,14 @@
   <UserControl.DataContext>
     <vm:ToolBarViewModel></vm:ToolBarViewModel>
   </UserControl.DataContext>
-  <StackPanel Name="buttonStack" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
-    <ctl:ToolButton DataContext="{Binding CreateDownload}">
-    </ctl:ToolButton>
-    <Button>删除任务</Button>
+  <StackPanel Name="buttonStack" VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal">
+    <ItemsControl Items="{Binding Buttons}">
+      <ItemsControl.ItemTemplate>
+        <DataTemplate>
+          <ctl:ToolButton DataContext="{Binding .}">
+          </ctl:ToolButton>
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+    </ItemsControl>
   </StackPanel>
 </UserControl>

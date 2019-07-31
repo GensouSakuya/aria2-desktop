@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.ObjectModel;
 using Avalonia.Diagnostics.ViewModels;
-using Avalonia.Media.Imaging;
-using GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels;
 using GensouSakuya.Aria2.Desktop.Shell.Helper;
 using GensouSakuya.Aria2.Desktop.Shell.Views;
-using GensouSakuya.Aria2.Desktop.Shell.Views.Other;
 
 namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
 {
@@ -14,18 +9,19 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
     {
         public ToolBarViewModel()
         {
-            CreateDownload = new ToolButtonViewModel
+            Buttons = new ObservableCollection<ToolButtonViewModel>(new []
             {
-                Content ="新建下载任务",
-                Img = BitmapValueConverter.Instance.Convert("../../../Assets/avalonia-logo.ico",typeof(IBitmap),null,null),
-                Click = () =>
+                new ToolButtonViewModel
                 {
-                    DialogHelper.ShowDialog(new DownloadPage());
+                    Img = BitmapHelper.GetImg("Icons/icon-wm10-download.png"),
+                    Click = () =>
+                    {
+                        DialogHelper.ShowDialog(new DownloadPage());
+                    }
                 }
-            };
+            });
         }
 
-        public ToolButtonViewModel CreateDownload { get; set; }
-
+        public ObservableCollection<ToolButtonViewModel> Buttons { get; set; }
     }
 }
