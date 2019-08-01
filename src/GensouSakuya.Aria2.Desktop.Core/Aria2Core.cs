@@ -73,7 +73,7 @@ namespace GensouSakuya.Aria2.Desktop.Core
             Shutdown();
         }
 
-        internal Aria2Config Aria2Config { get; private set; } = null;
+        private readonly Aria2Config Aria2Config;
 
         internal GensouSakuya.Aria2.SDK.Aria2Client Aria2 { get; private set; } = null;
     }

@@ -1,5 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Logging.Serilog;
+using GensouSakuya.Aria2.Desktop.Core;
+using GensouSakuya.Aria2.Desktop.Model;
 using GensouSakuya.Aria2.Desktop.Shell.ViewModels;
 using GensouSakuya.Aria2.Desktop.Shell.Views;
 
@@ -23,10 +25,15 @@ namespace GensouSakuya.Aria2.Desktop.Shell
         // container, etc.
         private static void AppMain(Application app, string[] args)
         {
-            //TODO:获取配置信息并注入Aria2Core
-            
-            //_configFilePath = configFilePath ?? ConfigConst.Default_Config_File_Path;
-            
+            var config = ConfigHelper.GetFromFile(ConfigConst.Default_Config_File_Path);
+            if (config == null)
+            {
+                //TODO:增加弹出框提示未找到配置文件，是否初始化配置
+                config = new Aria2Config();
+            }
+
+            AvaloniaLocator.CurrentMutable.BindToSelf<Aria2Core>(new Aria2Core(config));
+
             MainWindow = new MainWindow
             {
                 DataContext = new MainWindowViewModel(),

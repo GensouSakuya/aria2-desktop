@@ -6,7 +6,7 @@ using GensouSakuya.Aria2.SDK;
 
 namespace GensouSakuya.Aria2.Desktop.Core
 {
-    public static class Aria2Helper
+    internal static class Aria2Helper
     {
         public static Aria2Client StartUp(string path,string args,string host,int port)
         {
