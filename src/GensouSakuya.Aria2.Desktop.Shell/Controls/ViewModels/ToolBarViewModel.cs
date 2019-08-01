@@ -9,15 +9,13 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
     {
         public ToolBarViewModel()
         {
-            Buttons = new ObservableCollection<ToolButtonViewModel>(new []
+            Buttons = new ObservableCollection<ToolButtonViewModel>();
+            Buttons.Add(new ToolButtonViewModel
             {
-                new ToolButtonViewModel
+                Img = BitmapHelper.GetImg("Icons/icon-wm10-download.png"),
+                Click = () =>
                 {
-                    Img = BitmapHelper.GetImg("Icons/icon-wm10-download.png"),
-                    Click = () =>
-                    {
-                        DialogHelper.ShowDialog(new DownloadPage());
-                    }
+                    DialogHelper.ShowDialog(new DownloadPage());
                 }
             });
         }
