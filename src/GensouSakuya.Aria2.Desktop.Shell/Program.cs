@@ -2,6 +2,7 @@
 using Avalonia.Logging.Serilog;
 using GensouSakuya.Aria2.Desktop.Core;
 using GensouSakuya.Aria2.Desktop.Model;
+using GensouSakuya.Aria2.Desktop.Shell.Helper;
 using GensouSakuya.Aria2.Desktop.Shell.ViewModels;
 using GensouSakuya.Aria2.Desktop.Shell.Views;
 
@@ -33,7 +34,7 @@ namespace GensouSakuya.Aria2.Desktop.Shell
             }
 
             AvaloniaLocator.CurrentMutable.BindToSelf<Aria2Core>(new Aria2Core(config));
-
+            Aria2Helper.Aria2.Start();
             MainWindow = new MainWindow
             {
                 DataContext = new MainWindowViewModel(),

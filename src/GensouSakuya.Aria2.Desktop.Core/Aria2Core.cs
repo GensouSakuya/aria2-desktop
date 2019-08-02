@@ -14,7 +14,7 @@ namespace GensouSakuya.Aria2.Desktop.Core
             Aria2Config = config;
         }
 
-        protected void Start()
+        public void Start()
         {
             //_configFilePath = configFilePath ?? ConfigConst.Default_Config_File_Path;
             if (Aria2 == null)
