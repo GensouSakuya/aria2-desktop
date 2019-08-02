@@ -41,9 +41,9 @@
     <None Remove="Controls\ToolBar.xaml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.8.0" />
-    <PackageReference Include="Avalonia.Desktop" Version="0.8.0" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="0.8.0" />
+    <PackageReference Include="Avalonia" Version="0.8.1" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.8.1" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.8.1" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\LogoControl.xaml">
