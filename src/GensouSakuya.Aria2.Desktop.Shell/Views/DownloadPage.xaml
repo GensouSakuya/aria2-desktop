@@ -5,22 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" Width="200" Height="250"
         x:Class="GensouSakuya.Aria2.Desktop.Shell.Views.DownloadPage"
-        Background="#ebf0f6"
+
         HasSystemDecorations="False"
         x:Name="DownloadPage"
         Title="DownloadPage">
   <Design.DataContext>
     <vm:DownloadPageViewModel/>
   </Design.DataContext>
-  <Grid>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="*"></RowDefinition>
-      <RowDefinition Height="Auto"></RowDefinition>
-    </Grid.RowDefinitions>
-    <TextBox Text="{Binding DownloadLink}" Margin="20" Grid.Row="0"></TextBox>
-    <DockPanel LastChildFill="false" Margin="0 5 0 20" Grid.Row="1">
-      <Button Content="确定" DockPanel.Dock="Left" Width="70" Margin="20 0 0 0" Command="{Binding Submit}" CommandParameter="{Binding ElementName=DownloadPage}"></Button>
-      <Button Content="取消" DockPanel.Dock="Right" Width="70" Margin="0 0 20 0" Command="{Binding Close}" CommandParameter="{Binding ElementName=DownloadPage}"></Button>
-    </DockPanel>
-  </Grid>
+  <!--暂时不加圆角，因为avalonia暂时还不支持背景透明-->
+  <Border BorderBrush="Black" BorderThickness="1"   Background="Transparent">
+    <Grid Background="#ebf0f6">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*"></RowDefinition>
+        <RowDefinition Height="Auto"></RowDefinition>
+      </Grid.RowDefinitions>
+      <TextBox Text="{Binding DownloadLink}" Margin="20" Grid.Row="0"></TextBox>
+      <DockPanel LastChildFill="false" Margin="0 5 0 20" Grid.Row="1">
+        <Button Content="确定" DockPanel.Dock="Left" Width="70" Margin="20 0 0 0" Command="{Binding Submit}" CommandParameter="{Binding ElementName=DownloadPage}"></Button>
+        <Button Content="取消" DockPanel.Dock="Right" Width="70" Margin="0 0 20 0" Command="{Binding Close}" CommandParameter="{Binding ElementName=DownloadPage}"></Button>
+      </DockPanel>
+    </Grid>
+  </Border>
 </Window>
