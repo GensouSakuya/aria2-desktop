@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
-using Avalonia.Diagnostics.ViewModels;
 using GensouSakuya.Aria2.Desktop.Shell.Helper;
+using GensouSakuya.Aria2.Desktop.Shell.ViewModels;
 using GensouSakuya.Aria2.Desktop.Shell.Views;
 
 namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
@@ -15,7 +15,12 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
                 Img = BitmapHelper.GetImg("Icons/icon-wm10-download.png"),
                 Click = () =>
                 {
-                    DialogHelper.ShowDialog(new DownloadPage());
+                    var page = new DownloadPage();
+                    page.DataContext = new DownloadPageViewModel()
+                    {
+                        Self = page
+                    };
+                    DialogHelper.ShowDialog(page);
                 }
             });
         }

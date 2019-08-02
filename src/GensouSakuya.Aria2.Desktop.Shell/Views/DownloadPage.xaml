@@ -1,9 +1,26 @@
 ﻿<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:GensouSakuya.Aria2.Desktop.Shell.ViewModels;assembly=GensouSakuya.Aria2.Desktop.Shell"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" Width="200" Height="250"
         x:Class="GensouSakuya.Aria2.Desktop.Shell.Views.DownloadPage"
+        Background="#ebf0f6"
+        HasSystemDecorations="False"
+        x:Name="DownloadPage"
         Title="DownloadPage">
-    Welcome to Avalonia!
+  <Design.DataContext>
+    <vm:DownloadPageViewModel/>
+  </Design.DataContext>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"></RowDefinition>
+      <RowDefinition Height="Auto"></RowDefinition>
+    </Grid.RowDefinitions>
+    <TextBox Text="{Binding DownloadLink}" Margin="20" Grid.Row="0"></TextBox>
+    <DockPanel LastChildFill="false" Margin="0 5 0 20" Grid.Row="1">
+      <Button Content="确定" DockPanel.Dock="Left" Width="70" Margin="20 0 0 0" Command="{Binding Submit}" CommandParameter="{Binding ElementName=DownloadPage}"></Button>
+      <Button Content="取消" DockPanel.Dock="Right" Width="70" Margin="0 0 20 0" Command="{Binding Close}" CommandParameter="{Binding ElementName=DownloadPage}"></Button>
+    </DockPanel>
+  </Grid>
 </Window>
