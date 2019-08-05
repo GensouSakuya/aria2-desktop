@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace GensouSakuya.Aria2.Desktop.Model
+namespace GensouSakuya.Aria2.Desktop.Core
 {
     public class Aria2Config
     {

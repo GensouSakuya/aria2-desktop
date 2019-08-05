@@ -1,4 +1,4 @@
-﻿namespace GensouSakuya.Aria2.Desktop.Model
+﻿namespace GensouSakuya.Aria2.Desktop.Core
 {
     public static class ConfigConst
     {

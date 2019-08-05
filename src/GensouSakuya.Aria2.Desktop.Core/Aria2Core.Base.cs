@@ -1,5 +1,4 @@
-﻿using GensouSakuya.Aria2.Desktop.Model;
-using System;
+﻿using System;
 
 namespace GensouSakuya.Aria2.Desktop.Core
 {

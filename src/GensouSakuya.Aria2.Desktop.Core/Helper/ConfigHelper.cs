@@ -1,5 +1,4 @@
-﻿using GensouSakuya.Aria2.Desktop.Model;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.IO;
 
 namespace GensouSakuya.Aria2.Desktop.Core
