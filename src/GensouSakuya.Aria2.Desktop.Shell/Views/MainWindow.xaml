@@ -34,7 +34,7 @@
         <RowDefinition Height="*"></RowDefinition>
       </Grid.RowDefinitions>
       <ctrl:ToolBar  Grid.Row="0"/>
-      <view:DownloadList  Grid.Row="1"/>
+      <view:DownloadTaskList Grid.Row="1"/>
     </Grid>
   </Grid>
 

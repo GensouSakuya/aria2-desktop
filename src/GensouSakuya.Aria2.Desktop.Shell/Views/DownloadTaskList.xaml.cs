@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace GensouSakuya.Aria2.Desktop.Shell.Views
 {
-    public class DownloadList : UserControl
+    public class DownloadTaskList : UserControl
     {
-        public DownloadList()
+        public DownloadTaskList()
         {
             this.InitializeComponent();
         }

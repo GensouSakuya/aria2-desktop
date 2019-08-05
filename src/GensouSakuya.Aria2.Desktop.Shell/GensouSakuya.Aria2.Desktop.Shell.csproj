@@ -25,8 +25,8 @@
   <ItemGroup>
     <AvaloniaResource Remove="Controls\DownloadTaskLabel.xaml" />
     <AvaloniaResource Remove="Controls\ToolButton.xaml" />
-    <AvaloniaResource Remove="Views\DownloadList.xaml" />
     <AvaloniaResource Remove="Views\DownloadPage.xaml" />
+    <AvaloniaResource Remove="Views\DownloadTaskList.xaml" />
     <AvaloniaResource Remove="Views\ErrorDialog.xaml" />
     <AvaloniaResource Remove="Views\LogoControl.xaml" />
     <AvaloniaResource Remove="Views\PageList.xaml" />
@@ -35,8 +35,8 @@
 
   <ItemGroup>
     <None Remove="Controls\DownloadTaskLabel.xaml" />
-    <None Remove="Views\DownloadList.xaml" />
     <None Remove="Views\DownloadPage.xaml" />
+    <None Remove="Views\DownloadTaskList.xaml" />
     <None Remove="Views\ErrorDialog.xaml" />
     <None Remove="Views\LogoControl.xaml" />
     <None Remove="Views\PageList.xaml" />
@@ -63,7 +63,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\DownloadList.xaml">
+    <EmbeddedResource Include="Views\DownloadTaskList.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -90,6 +90,11 @@
   <ItemGroup>
     <ProjectReference Include="..\GensouSakuya.Aria2.Desktop.Core\GensouSakuya.Aria2.Desktop.Core.csproj" />
     <ProjectReference Include="..\GensouSakuya.Aria2.Desktop.Model\GensouSakuya.Aria2.Desktop.Model.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\DownloadTaskList.xaml.cs">
+      <DependentUpon>DownloadTaskList.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Update="Controls\ToolBar.xaml">
