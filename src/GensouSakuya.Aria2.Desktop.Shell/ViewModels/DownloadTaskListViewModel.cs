@@ -1,25 +1,36 @@
-﻿using GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels;
+﻿using Avalonia.Threading;
+using GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels;
+using GensouSakuya.Aria2.Desktop.Shell.Helper;
+using ReactiveUI;
+using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace GensouSakuya.Aria2.Desktop.Shell.ViewModels
 {
-    public class DownloadTaskListViewModel: ViewModelBase
+    public class DownloadTaskListViewModel : ViewModelBase
     {
         public DownloadTaskListViewModel()
         {
             Tasks = new ObservableCollection<DownloadTaskItemViewModel>();
-            Tasks.Add(new DownloadTaskItemViewModel
+            DispatcherTimer.Run(() =>
             {
-                Progress = 20, TaskName = "新任务1"
-            });Tasks.Add(new DownloadTaskItemViewModel
-            {
-                Progress = 20.2m, TaskName = "新任务2"
-            });Tasks.Add(new DownloadTaskItemViewModel
-            {
-                Progress = 70, TaskName = "新任务3"
-            });
+                if (Aria2Helper.Aria2 == null)
+                    return false;
+                var tasks = new ObservableCollection<DownloadTaskItemViewModel>();
+
+                Aria2Helper.Aria2.DownloadTaskView.Select(p => p.ConvertToViewModel()).ToList().ForEach(p => tasks.Add(p));
+                Tasks = tasks;
+                return true;
+            }, new TimeSpan(1000));
         }
-        
-        public ObservableCollection<DownloadTaskItemViewModel> Tasks { get; set; }
+
+        public ObservableCollection<DownloadTaskItemViewModel> Tasks
+        {
+            get => _tasks;
+            set => this.RaiseAndSetIfChanged(ref _tasks, value);
+        }
+
+        private ObservableCollection<DownloadTaskItemViewModel> _tasks;
     }
 }
