@@ -4,7 +4,7 @@ using GensouSakuya.Aria2.Desktop.Shell.Helper;
 
 namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
 {
-    public class DownloadTaskLabelViewModel: ViewModelBase
+    public class DownloadTaskItemViewModel: ViewModelBase
     {
         public Bitmap Img { get; set; } = ImgResourceHelper.FileIcon;
         public string TaskName { get; set; } = "新任务";

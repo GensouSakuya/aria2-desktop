@@ -4,9 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels"
              mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="50"
-             x:Class="GensouSakuya.Aria2.Desktop.Shell.Controls.DownloadTaskLabel">
+             x:Class="GensouSakuya.Aria2.Desktop.Shell.Controls.DownloadTaskItem">
   <UserControl.DataContext>
-    <vm:DownloadTaskLabelViewModel></vm:DownloadTaskLabelViewModel>
+    <vm:DownloadTaskItemViewModel></vm:DownloadTaskItemViewModel>
   </UserControl.DataContext>
   <StackPanel Name="buttonStack" VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal">
     <Image Source="{Binding Img}" Width="50" Height="50"></Image>
