@@ -41,7 +41,7 @@ namespace Shell
 
         private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            var status = await MainManager.Aria2Core.GetDownloadProcess(model.DownloadUrl);
+            var status = await MainManager.Aria2Core.GetTask(model.DownloadUrl);
             MessageBox.Show(status.Status.ToString());
         }
     }

@@ -20,12 +20,12 @@ namespace Shell
             //_otherTasks = new DownloadStatusInfoList(allTasks.Where(p => p.Status != DownloadStatus.Active));
         }
 
-        public static List<DownloadStatusInfo> GetAllCompletedTask()
+        public static List<DownloadTask> GetAllCompletedTask()
         {
             return _allTasks.GetWithCondition(p => p.Status == DownloadStatus.Complete);
         }
 
-        public static List<DownloadStatusInfo> GetDownloadingTasks()
+        public static List<DownloadTask> GetDownloadingTasks()
         {
             return _downloadingTasks.List;
         }
@@ -41,7 +41,7 @@ namespace Shell
                         var downloadingTasks = _downloadingTasks.List;
                         downloadingTasks.ForEach(p =>
                         {
-                            p = MainManager.Aria2Core.GetTaskDownloadStatus(p.GID);
+                            //p = MainManager.Aria2Core.GetTask(p.GID);
                         });
                         var otherTasks = downloadingTasks.Where(p => p.Status != DownloadStatus.Active).ToList();
                         if (otherTasks.Any())

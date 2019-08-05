@@ -6,14 +6,14 @@ namespace GensouSakuya.Aria2.Desktop.Model
 {
     public class DownloadStatusInfoList
     {
-        private List<DownloadStatusInfo> _list = new List<DownloadStatusInfo>();
+        private List<DownloadTask> _list = new List<DownloadTask>();
         private volatile object locker = new object();
 
-        public List<DownloadStatusInfo> List
+        public List<DownloadTask> List
         {
             get
             {
-                var tempList = new List<DownloadStatusInfo>();
+                var tempList = new List<DownloadTask>();
                 lock (locker)
                 {
                     _list.ForEach(item => tempList.Add(item));
@@ -29,9 +29,9 @@ namespace GensouSakuya.Aria2.Desktop.Model
             }
         }
 
-        public List<DownloadStatusInfo> GetWithCondition(Func<DownloadStatusInfo, bool> condition)
+        public List<DownloadTask> GetWithCondition(Func<DownloadTask, bool> condition)
         {
-            var tempList = new List<DownloadStatusInfo>();
+            var tempList = new List<DownloadTask>();
             lock (locker)
             {
                 tempList = _list.Where(condition).ToList();
@@ -39,9 +39,9 @@ namespace GensouSakuya.Aria2.Desktop.Model
             return tempList;
         }
 
-        public List<DownloadStatusInfo> RemoveAll(Predicate<DownloadStatusInfo> condition)
+        public List<DownloadTask> RemoveAll(Predicate<DownloadTask> condition)
         {
-            var tempList = new List<DownloadStatusInfo>();
+            var tempList = new List<DownloadTask>();
             lock (locker)
             {
                 _list.RemoveAll(condition);
@@ -50,9 +50,9 @@ namespace GensouSakuya.Aria2.Desktop.Model
             return tempList;
         }
 
-        public List<DownloadStatusInfo> AddRange(IEnumerable<DownloadStatusInfo> list)
+        public List<DownloadTask> AddRange(IEnumerable<DownloadTask> list)
         {
-            var tempList = new List<DownloadStatusInfo>();
+            var tempList = new List<DownloadTask>();
             lock (locker)
             {
                 _list.AddRange(list);
@@ -63,7 +63,7 @@ namespace GensouSakuya.Aria2.Desktop.Model
 
         public DownloadStatusInfoList() { }
 
-        public DownloadStatusInfoList(IEnumerable<DownloadStatusInfo> list)
+        public DownloadStatusInfoList(IEnumerable<DownloadTask> list)
         {
             _list = list.ToList();
         }

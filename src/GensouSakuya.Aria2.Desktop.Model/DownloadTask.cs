@@ -2,7 +2,7 @@
 
 namespace GensouSakuya.Aria2.Desktop.Model
 {
-    public class DownloadStatusInfo
+    public class DownloadTask
     {
         public string GID { get; set; }
         public DownloadStatus Status { get; set; }

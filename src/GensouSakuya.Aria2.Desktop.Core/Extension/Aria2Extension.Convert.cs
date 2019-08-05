@@ -4,13 +4,13 @@ using System;
 
 namespace GensouSakuya.Aria2.Desktop.Core
 {
-    public static partial class Aria2Extension
+    public static class Aria2Extension
     {
-        public static DownloadStatusInfo Convert(this DownloadStatusModel model)
+        public static DownloadTask Convert(this DownloadStatusModel model)
         {
             DownloadStatus status;
             Enum.TryParse(model.Status, out status);
-            return new DownloadStatusInfo
+            return new DownloadTask
             {
                 GID = model.GID,
                 Status = status,

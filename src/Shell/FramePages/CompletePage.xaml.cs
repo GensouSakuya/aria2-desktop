@@ -22,7 +22,7 @@ namespace Shell
     public partial class CompletePage : Page
     {
         private DispatcherTimer _dispatcherTimer;
-        private List<DownloadStatusInfo> _completedTasks = new List<DownloadStatusInfo>();
+        private List<DownloadTask> _completedTasks = new List<DownloadTask>();
 
         public CompletePage()
         {
