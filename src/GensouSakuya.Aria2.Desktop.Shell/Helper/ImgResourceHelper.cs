@@ -9,6 +9,8 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Helper
     {
         public static Bitmap DownloadIcon => GetImg("Icons/icon-wm10-download.png");
 
+        public static Bitmap FileIcon => GetImg("Icons/icon-wm10-page.png");
+
         private static Bitmap GetImg(string assertPath)
         {
             var uri = new Uri($"avares://{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}/{assertPath}");
