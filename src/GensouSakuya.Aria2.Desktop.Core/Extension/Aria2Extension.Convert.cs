@@ -2,6 +2,7 @@
 using GensouSakuya.Aria2.Desktop.Model;
 using System;
 using System.Linq;
+using System.IO;
 
 namespace GensouSakuya.Aria2.Desktop.Core
 {
@@ -11,12 +12,21 @@ namespace GensouSakuya.Aria2.Desktop.Core
         {
             DownloadStatus status;
             Enum.TryParse(model.Status, true, out status);
+            var filename = "新任务";
+            if (model.Files != null && model.Files.Count == 1)
+            {
+                var file = model.Files.First();
+                if (File.Exists(file.Path))
+                {
+                    filename = new FileInfo(file.Path).Name;
+                }
+            }
             return new DownloadTask
             {
                 GID = model.GID,
                 Status = status,
                 //暂时先不处理多文件的任务名
-                TaskName = (model.Files?.Count ?? 0)== 1? new System.IO.FileInfo(model.Files.First().Path).Name:"新任务",
+                TaskName = filename,
                 CompletedLength = model.CompletedLength,
                 DownloadSpeed = model.DownloadSpeed,
                 TotalLength = model.TotalLength,
