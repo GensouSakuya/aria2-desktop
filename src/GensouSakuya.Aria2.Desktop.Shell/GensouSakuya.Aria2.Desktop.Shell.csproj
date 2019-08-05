@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <AvaloniaResource Remove="Controls\DownloadTaskLabel.xaml" />
     <AvaloniaResource Remove="Controls\ToolButton.xaml" />
     <AvaloniaResource Remove="Views\DownloadList.xaml" />
     <AvaloniaResource Remove="Views\DownloadPage.xaml" />
@@ -33,6 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Controls\DownloadTaskLabel.xaml" />
     <None Remove="Views\DownloadList.xaml" />
     <None Remove="Views\DownloadPage.xaml" />
     <None Remove="Views\ErrorDialog.xaml" />
@@ -77,6 +79,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Other\ErrorDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\DownloadTaskLabel.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>

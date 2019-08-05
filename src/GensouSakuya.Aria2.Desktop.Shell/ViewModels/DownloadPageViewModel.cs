@@ -1,5 +1,4 @@
 ﻿using GensouSakuya.Aria2.Desktop.Shell.Helper;
-using GensouSakuya.Aria2.Desktop.Core;
 using System.Threading.Tasks;
 
 namespace GensouSakuya.Aria2.Desktop.Shell.ViewModels

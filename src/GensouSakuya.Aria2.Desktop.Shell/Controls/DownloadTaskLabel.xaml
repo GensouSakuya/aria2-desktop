@@ -1,0 +1,14 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="50"
+             x:Class="GensouSakuya.Aria2.Desktop.Shell.Controls.DownloadTaskLabel">
+  <UserControl.DataContext>
+    <vm:DownloadTaskLabelViewModel></vm:DownloadTaskLabelViewModel>
+  </UserControl.DataContext>
+  <StackPanel Name="buttonStack" VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal">
+    <Image Source="{Binding Img}" Width="50" Height="50"></Image>
+  </StackPanel>
+</UserControl>
