@@ -16,7 +16,6 @@ namespace GensouSakuya.Aria2.Desktop.Core
 
         public void Start()
         {
-            //_configFilePath = configFilePath ?? ConfigConst.Default_Config_File_Path;
             if (Aria2 == null)
             {
                 Aria2 = Aria2Config.IsAria2ServerExist
@@ -25,39 +24,24 @@ namespace GensouSakuya.Aria2.Desktop.Core
             }
         }
 
-        public List<DownloadStatusInfo> GetAllTasks()
+        private static readonly List<DownloadStatus> ListeningStatus = new List<DownloadStatus>
         {
-            var downloadTaskModelList = new List<DownloadStatusModel>();
-            var lockObj = new object();
-            var taskList = new List<Task>();
-            taskList.Add(Task.Factory.StartNew(() =>
+            DownloadStatus.Active, DownloadStatus.Paused, DownloadStatus.Waiting
+        };
+
+        public List<DownloadStatusInfo> AllDownloadTask { get; set; } = new List<DownloadStatusInfo>();
+
+        public void RefreshProcessingTasks()
+        {
+            AllDownloadTask.Where(p => ListeningStatus.Contains(p.Status)).ToList().ForEach(async p =>
             {
-                lock (lockObj)
-                {
-                    downloadTaskModelList.AddRange(Aria2.TellActive().Result);
-                }
-            }));
-            taskList.Add(Task.Factory.StartNew(() =>
-            {
-                lock (lockObj)
-                {
-                    downloadTaskModelList.AddRange(Aria2.TellWaiting().Result);
-                }
-            }));
-            taskList.Add(Task.Factory.StartNew(() =>
-            {
-                lock (lockObj)
-                {
-                    downloadTaskModelList.AddRange(Aria2.TellStopped().Result);
-                }
-            }));
-            Task.WaitAll(taskList.ToArray());
-            return downloadTaskModelList.Select(p => p.Convert()).ToList();
+                p = await GetTaskDownloadStatus(p.GID);
+            });
         }
 
-        public DownloadStatusInfo GetTaskDownloadStatus(string gid)
+        public async Task<DownloadStatusInfo> GetTaskDownloadStatus(string gid)
         {
-            return Aria2.TellStatus(gid).Result.Convert();
+            return (await Aria2.TellStatus(gid)).Convert();
         }
 
         public void Shutdown()
