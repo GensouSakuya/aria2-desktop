@@ -8,7 +8,7 @@ namespace GensouSakuya.Aria2.Desktop.Model
         {
             base.OnConfiguring(builder);
             builder.UseSqlite("Data Source = data.db;");
-
+            builder.EnableSensitiveDataLogging();
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
