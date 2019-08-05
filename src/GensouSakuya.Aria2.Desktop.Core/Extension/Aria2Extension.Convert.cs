@@ -9,7 +9,7 @@ namespace GensouSakuya.Aria2.Desktop.Core
         public static DownloadTask Convert(this DownloadStatusModel model)
         {
             DownloadStatus status;
-            Enum.TryParse(model.Status, out status);
+            Enum.TryParse(model.Status, true, out status);
             return new DownloadTask
             {
                 GID = model.GID,
