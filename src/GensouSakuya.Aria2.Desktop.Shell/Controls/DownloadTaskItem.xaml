@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="50"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="50"
              x:Class="GensouSakuya.Aria2.Desktop.Shell.Controls.DownloadTaskItem">
   <UserControl.DataContext>
     <vm:DownloadTaskItemViewModel></vm:DownloadTaskItemViewModel>
@@ -11,15 +11,25 @@
   <Grid>
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="Auto"></ColumnDefinition>
+      <ColumnDefinition Width="150"></ColumnDefinition>
       <ColumnDefinition Width="*"></ColumnDefinition>
     </Grid.ColumnDefinitions>
     <Image Grid.Column="0" Source="{Binding Img}" Width="50" Height="50"></Image>
-    <DockPanel Grid.Column="1" VerticalAlignment="Center" LastChildFill="True" Margin="10 0 20 0">
+    <DockPanel Grid.Column="1" VerticalAlignment="Center" LastChildFill="False" Margin="10 0 20 0">
       <DockPanel DockPanel.Dock="Top" LastChildFill="False">
-        <TextBlock Text="{Binding TaskName}" DockPanel.Dock="Left"></TextBlock>
-        <TextBlock Text="{Binding DownloadSpeedStr}" DockPanel.Dock="Right"></TextBlock>
+        <TextBlock Text="{Binding TaskName}" DockPanel.Dock="Top"></TextBlock>
+        <TextBlock Text="{Binding TotalSizeStr}" DockPanel.Dock="Bottom"></TextBlock>
       </DockPanel>
-      <ProgressBar Minimum="0" Maximum="100" Value="{Binding Progress}" Height="10" VerticalAlignment="Bottom"></ProgressBar>
+    </DockPanel>
+    <DockPanel Grid.Column="2" VerticalAlignment="Center" LastChildFill="True" Margin="10 0 20 0">
+      <Grid DockPanel.Dock="Top">
+        <ProgressBar Minimum="0" Maximum="100" Value="{Binding Progress}" Height="20"  VerticalAlignment="Bottom"></ProgressBar>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding ProgressStr}"></TextBlock>
+      </Grid>
+      <DockPanel LastChildFill="False">
+        <TextBlock Text="{Binding DownloadSpeedStr}" DockPanel.Dock="Left"></TextBlock>
+        <TextBlock Text="{Binding LeftTime}" DockPanel.Dock="Right"></TextBlock>
+      </DockPanel>
     </DockPanel>
   </Grid>
 </UserControl>
