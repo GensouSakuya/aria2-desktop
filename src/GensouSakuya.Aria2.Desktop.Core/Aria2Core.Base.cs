@@ -21,6 +21,7 @@ namespace GensouSakuya.Aria2.Desktop.Core
                     : Aria2Helper.StartUp(Aria2Config.Aria2Path, Aria2Config.ToArgs(), Aria2Config.Aria2Host, Aria2Config.ListenPort);
                 
                 InitDownloadTasks();
+                AutoRefresh();
             }
         }
 
