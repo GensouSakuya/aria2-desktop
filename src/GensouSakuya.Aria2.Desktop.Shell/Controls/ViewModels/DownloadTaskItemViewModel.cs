@@ -10,6 +10,21 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
         public Bitmap Img { get; set; } = ImgResourceHelper.FileIcon;
         public string TaskName { get; set; } = "新任务";
         public decimal Progress { get; set; } = 0m;
+
+        public decimal DownloadSpeed { get; set; } = 0m;
+
+        public string DownloadSpeedStr
+        {
+            get
+            {
+                if (DownloadSpeed <= 0)
+                {
+                    return "";
+                }
+
+                return Tools.ToStringWithUnit(DownloadSpeed) + "/s";
+            }
+        }
     }
 
     internal static class DownloadTaskListViewModelExtension
@@ -18,7 +33,7 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
         {
             return new DownloadTaskItemViewModel
             {
-                TaskName = task.TaskName, Progress = task.CompletePercent,
+                TaskName = task.TaskName, Progress = task.CompletePercent, DownloadSpeed = task.DownloadSpeed
             };
         }
     }
