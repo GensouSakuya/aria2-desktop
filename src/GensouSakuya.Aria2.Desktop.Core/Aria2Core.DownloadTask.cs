@@ -26,7 +26,10 @@ namespace GensouSakuya.Aria2.Desktop.Core
             DownloadTasks.Where(p => ListeningStatus.Contains(p.Status)).ToList().ForEach(async p =>
             {
                 var entity = await GetTask(p.GID);
-                Update(p, entity);
+                if (p != entity)
+                {
+                    Update(p, entity);
+                }
             });
 
             SaveChanges();
