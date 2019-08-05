@@ -1,5 +1,4 @@
 ﻿using GensouSakuya.Aria2.Desktop.Model;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,22 +11,9 @@ namespace GensouSakuya.Aria2.Desktop.Core
     {
         private volatile object _taskListLock = new object();
 
-        protected void DbInit()
-        {
-            ///Context考虑改为全局唯一
-            using (var context = new Model.DbContext())
-            {
-                if (context.Database.GetPendingMigrations().Any())
-                {
-                    context.Database.Migrate();
-                }
-            }
-        }
-
         protected void InitDownloadTasks()
         {
             DbInit();
-            AllDownloadTask = GetList();
         }
 
         private static readonly List<DownloadStatus> ListeningStatus = new List<DownloadStatus>
@@ -35,18 +21,18 @@ namespace GensouSakuya.Aria2.Desktop.Core
             DownloadStatus.Active, DownloadStatus.Paused, DownloadStatus.Waiting
         };
 
-        public List<DownloadTask> AllDownloadTask { get; set; } = new List<DownloadTask>();
-
         public void RefreshProcessingTasks()
         {
             lock (_taskListLock)
             {
-                AllDownloadTask.Where(p => ListeningStatus.Contains(p.Status)).ToList().ForEach(async p =>
+                DownloadTasks.Where(p => ListeningStatus.Contains(p.Status)).ToList().ForEach(async p =>
                 {
-                    p = await GetTask(p.GID);
-                    UpdateTask(p);
+                    var entity = await GetTask(p.GID);
+                    Update(p, entity);
                 });
             }
+
+            SaveChanges();
         }
 
         public async Task<DownloadTask> GetTask(string gid)
@@ -60,9 +46,10 @@ namespace GensouSakuya.Aria2.Desktop.Core
             var newTask = await GetTask(newGid);
             lock (_taskListLock)
             {
-                AllDownloadTask.Add(newTask);
+                DownloadTasks.Add(newTask);
             }
-            InsertTask(newTask);
+
+            SaveChanges();
             return newGid;
         }
 

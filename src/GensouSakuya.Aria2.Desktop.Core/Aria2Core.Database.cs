@@ -2,43 +2,34 @@
 using System.Collections.Generic;
 using System.Linq;
 using GensouSakuya.Aria2.Desktop.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace GensouSakuya.Aria2.Desktop.Core
 {
     public partial class Aria2Core: IDisposable
     {
-        public List<DownloadTask> GetList()
+        public DbSet<DownloadTask> DownloadTasks
         {
-            using (var context = new DbContext())
+            get { return DbContext.DownloadTasks; }
+        }
+
+        protected void DbInit()
+        {
+            if (DbContext.Database.GetPendingMigrations().Any())
             {
-                return context.DownloadTasks.ToList();
+                DbContext.Database.Migrate();
             }
         }
 
-        //public void SaveChanges()
-        //{
-        //    using (var context = new DbContext())
-        //    {
-        //        context.SaveChanges();
-        //    }
-        //}
-
-        public void InsertTask(DownloadTask task)
+        public void Update<T>(T oriItem,T newItem) where T:class
         {
-            using (var context = new DbContext())
-            {
-                context.DownloadTasks.Add(task);
-                context.SaveChanges();
-            }
+            DbContext.Entry<T>(oriItem).State = EntityState.Detached;
+            DbContext.Entry<T>(newItem).State = EntityState.Modified; 
         }
 
-        public void UpdateTask(DownloadTask task)
+        public void SaveChanges()
         {
-            using (var context = new DbContext())
-            {
-                context.Entry<DownloadTask>(task).State = Microsoft.EntityFrameworkCore.EntityState.Modified; 
-                context.SaveChanges();   
-            }
+            DbContext.SaveChanges();
         }
     }
 }

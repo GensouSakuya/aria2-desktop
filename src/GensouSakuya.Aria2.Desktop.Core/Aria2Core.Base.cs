@@ -1,4 +1,5 @@
 ﻿using System;
+using GensouSakuya.Aria2.Desktop.Model;
 
 namespace GensouSakuya.Aria2.Desktop.Core
 {
@@ -6,10 +7,12 @@ namespace GensouSakuya.Aria2.Desktop.Core
     {
         private readonly Aria2Config Aria2Config;
         protected SDK.Aria2Client Aria2 { get; private set; }
+        private readonly DbContext DbContext;
 
-        public Aria2Core(Aria2Config config)
+        public Aria2Core(Aria2Config config,DbContext context)
         {
             Aria2Config = config;
+            DbContext = context;
         }
 
         public void Start()

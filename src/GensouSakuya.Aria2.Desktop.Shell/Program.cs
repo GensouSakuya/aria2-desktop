@@ -33,7 +33,7 @@ namespace GensouSakuya.Aria2.Desktop.Shell
                 config = new Aria2Config();
             }
 
-            AvaloniaLocator.CurrentMutable.BindToSelf<Aria2Core>(new Aria2Core(config));
+            AvaloniaLocator.CurrentMutable.BindToSelf<Aria2Core>(new Aria2Core(config,new DbContext()));
             Aria2Helper.Aria2.Start();
             MainWindow = new MainWindow
             {
