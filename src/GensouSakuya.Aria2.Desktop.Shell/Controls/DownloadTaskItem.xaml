@@ -8,9 +8,15 @@
   <UserControl.DataContext>
     <vm:DownloadTaskItemViewModel></vm:DownloadTaskItemViewModel>
   </UserControl.DataContext>
-  <StackPanel Name="buttonStack" VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal">
-    <Image Source="{Binding Img}" Width="50" Height="50"></Image>
-    <TextBlock Text="{Binding TaskName}"></TextBlock>
-    <ProgressBar Minimum="0" Maximum="100" Value="{Binding Progress}" Height="10"></ProgressBar>
-  </StackPanel>
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto"></ColumnDefinition>
+      <ColumnDefinition Width="*"></ColumnDefinition>
+    </Grid.ColumnDefinitions>
+    <Image Grid.Column="0" Source="{Binding Img}" Width="50" Height="50"></Image>
+    <DockPanel Grid.Column="1" VerticalAlignment="Center" LastChildFill="True" Margin="10 0 20 0">
+      <TextBlock DockPanel.Dock="Top" Text="{Binding TaskName}" HorizontalAlignment="Left"></TextBlock>
+      <ProgressBar Minimum="0" Maximum="100" Value="{Binding Progress}" Height="10" VerticalAlignment="Bottom"></ProgressBar>
+    </DockPanel>
+  </Grid>
 </UserControl>
