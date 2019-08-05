@@ -23,14 +23,11 @@ namespace GensouSakuya.Aria2.Desktop.Core
 
         public void RefreshProcessingTasks()
         {
-            lock (_taskListLock)
+            DownloadTasks.Where(p => ListeningStatus.Contains(p.Status)).ToList().ForEach(async p =>
             {
-                DownloadTasks.Where(p => ListeningStatus.Contains(p.Status)).ToList().ForEach(async p =>
-                {
-                    var entity = await GetTask(p.GID);
-                    Update(p, entity);
-                });
-            }
+                var entity = await GetTask(p.GID);
+                Update(p, entity);
+            });
 
             SaveChanges();
         }
@@ -40,17 +37,13 @@ namespace GensouSakuya.Aria2.Desktop.Core
             return (await Aria2.TellStatus(gid)).Convert();
         }
 
-        public async Task<string> StartDownload(string url)
+        public async Task StartDownload(string url)
         {
             var newGid = await Aria2.AddUri(url);
             var newTask = await GetTask(newGid);
-            lock (_taskListLock)
-            {
-                DownloadTasks.Add(newTask);
-            }
+            DownloadTasks.Add(newTask);
 
             SaveChanges();
-            return newGid;
         }
 
         public void AutoRefresh()
