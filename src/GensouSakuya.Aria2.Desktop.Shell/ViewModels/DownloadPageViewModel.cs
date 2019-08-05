@@ -7,7 +7,7 @@ namespace GensouSakuya.Aria2.Desktop.Shell.ViewModels
     {
         public DownloadPageViewModel()
         {
-            DownloadLink = "1234";
+            DownloadLink = "";
         }
 
         public string DownloadLink { get; set; }
