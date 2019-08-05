@@ -1,9 +1,12 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GensouSakuya.Aria2.Desktop.Model
 {
     public class DownloadTask
     {
+        [Key]
         public string GID { get; set; }
         public DownloadStatus Status { get; set; }
         public long TotalLength { get; set; }
@@ -14,7 +17,9 @@ namespace GensouSakuya.Aria2.Desktop.Model
             get { return TotalLength == 0 ? 0 : Math.Round(CompletePercent / TotalLength, 1); }
         }
         
+        [NotMapped]
         public decimal DownloadSpeed { get; set; }
+        [NotMapped]
         public decimal UploadSpeed { get; set; }
     }
 

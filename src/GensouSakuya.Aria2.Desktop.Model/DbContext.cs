@@ -14,7 +14,6 @@ namespace GensouSakuya.Aria2.Desktop.Model
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.Entity<DownloadTask>().Ignore(p => p.DownloadSpeed).Ignore(p => p.UploadSpeed);
         }
 
         public DbSet<DownloadTask> DownloadTasks { get; set; }
