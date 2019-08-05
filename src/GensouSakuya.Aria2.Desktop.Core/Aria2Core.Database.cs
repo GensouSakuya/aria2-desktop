@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using GensouSakuya.Aria2.Desktop.Model;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,6 +30,11 @@ namespace GensouSakuya.Aria2.Desktop.Core
         public void SaveChanges()
         {
             DbContext.SaveChanges();
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            await DbContext.SaveChangesAsync();
         }
     }
 }
