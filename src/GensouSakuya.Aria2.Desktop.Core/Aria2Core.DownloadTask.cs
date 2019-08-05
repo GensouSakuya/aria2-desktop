@@ -62,6 +62,7 @@ namespace GensouSakuya.Aria2.Desktop.Core
                     try
                     {
                         RefreshProcessingTasks();
+                        DownloadTaskView = DownloadTasks.ToList();
                     }
                     catch
                     {

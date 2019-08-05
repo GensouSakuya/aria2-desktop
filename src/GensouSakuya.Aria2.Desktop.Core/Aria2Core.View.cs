@@ -9,9 +9,6 @@ namespace GensouSakuya.Aria2.Desktop.Core
 {
     public partial class Aria2Core: IDisposable
     {
-        public List<DownloadTask> AllDownloadTask
-        {
-            get { return DbContext.DownloadTasks.ToList(); }
-        }
+        public List<DownloadTask> DownloadTaskView { get; private set; }
     }
 }
