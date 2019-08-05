@@ -12,7 +12,7 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
             Buttons = new ObservableCollection<ToolButtonViewModel>();
             Buttons.Add(new ToolButtonViewModel
             {
-                Img = BitmapHelper.GetImg("Icons/icon-wm10-download.png"),
+                Img = ImgResourceHelper.DownloadIcon,
                 Click = () =>
                 {
                     var page = new DownloadPage();
