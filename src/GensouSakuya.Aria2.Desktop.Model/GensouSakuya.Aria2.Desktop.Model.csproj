@@ -10,7 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GensouSakuya.Aria2.SDK" Version="0.8.0" />
+    <PackageReference Include="GensouSakuya.Aria2.SDK" Version="0.8.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.6" />
   </ItemGroup>
 
 </Project>
