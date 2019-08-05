@@ -8,6 +8,7 @@ namespace GensouSakuya.Aria2.Desktop.Model
     {
         [Key]
         public string GID { get; set; }
+        public string TaskName { get; set; }
         public DownloadStatus Status { get; set; }
         public long TotalLength { get; set; }
         public long CompletedLength { get; set; }
