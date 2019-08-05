@@ -8,6 +8,11 @@ namespace GensouSakuya.Aria2.Desktop.Core
 {
     public partial class Aria2Core: IDisposable
     {
+        protected void InitDownloadTasks()
+        {
+            AllDownloadTask = GetList();
+        }
+
         private static readonly List<DownloadStatus> ListeningStatus = new List<DownloadStatus>
         {
             DownloadStatus.Active, DownloadStatus.Paused, DownloadStatus.Waiting

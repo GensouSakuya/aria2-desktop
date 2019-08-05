@@ -2,8 +2,11 @@
 
 namespace GensouSakuya.Aria2.Desktop.Core
 {
-    public partial class Aria2Core: IDisposable
+    public partial class Aria2Core : IDisposable
     {
+        private readonly Aria2Config Aria2Config;
+        protected SDK.Aria2Client Aria2 { get; private set; }
+
         public Aria2Core(Aria2Config config)
         {
             Aria2Config = config;
@@ -16,6 +19,8 @@ namespace GensouSakuya.Aria2.Desktop.Core
                 Aria2 = Aria2Config.IsAria2ServerExist
                     ? Aria2Helper.Connect(Aria2Config.Aria2Host, Aria2Config.ListenPort)
                     : Aria2Helper.StartUp(Aria2Config.Aria2Path, Aria2Config.ToArgs(), Aria2Config.Aria2Host, Aria2Config.ListenPort);
+                
+                InitDownloadTasks();
             }
         }
 
@@ -32,8 +37,5 @@ namespace GensouSakuya.Aria2.Desktop.Core
             Shutdown();
         }
 
-        private readonly Aria2Config Aria2Config;
-
-        protected GensouSakuya.Aria2.SDK.Aria2Client Aria2 { get; private set; } = null;
     }
 }
