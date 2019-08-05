@@ -14,7 +14,7 @@ namespace GensouSakuya.Aria2.Desktop.Model
 
         public decimal CompletePercent
         {
-            get { return TotalLength == 0 ? 0 : Math.Round(CompletePercent / TotalLength, 1); }
+            get { return TotalLength == 0 ? 0 : Math.Round((decimal)CompletedLength / TotalLength, 1); }
         }
         
         [NotMapped]
