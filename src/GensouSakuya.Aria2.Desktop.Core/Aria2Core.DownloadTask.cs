@@ -49,6 +49,14 @@ namespace GensouSakuya.Aria2.Desktop.Core
             SaveChanges();
         }
 
+        public async Task Pause(string gid)
+        {
+            await Aria2.Pause(gid);
+            DownloadTasks.Find(gid).Status = DownloadStatus.Paused;
+
+            SaveChanges();
+        }
+
         public void AutoRefresh()
         {
             Task.Factory.StartNew(() =>
