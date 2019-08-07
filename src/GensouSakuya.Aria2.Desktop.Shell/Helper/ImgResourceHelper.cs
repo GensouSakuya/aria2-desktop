@@ -13,9 +13,9 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Helper
 
         public static Bitmap StartDownloadIcon => GetImg("Icons/icon-wm10-play.png");
 
-        public static Bitmap PauseDownloadIcon => GetImg("Icons/icon-wm10-play.png");
+        public static Bitmap PauseDownloadIcon => GetImg("Icons/icon-wm10-pause.png");
 
-        public static Bitmap DeleteDownloadTaskIcon => GetImg("Icons/icon-wm10-play.png");
+        public static Bitmap DeleteDownloadTaskIcon => GetImg("Icons/icon-wm10-delete.png");
 
         private static Bitmap GetImg(string assertPath)
         {
