@@ -99,17 +99,6 @@
       <DependentUpon>DownloadTaskList.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <None Update="Controls\ToolBar.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Controls\ToolButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\Other\ErrorDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-  </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="xcopy /E/I/Y/D &quot;$(SolutionDir)\Aria2&quot; &quot;$(OutDir)\Aria2&quot;" />
   </Target>
