@@ -17,7 +17,14 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls
             {
                 Tapped += (sender2, e2) =>
                 {
-                    (this.DataContext as ToolButtonViewModel)?.Click();
+                    if (this.DataContext is ToolButtonViewModel)
+                    {
+                        var model = this.DataContext as ToolButtonViewModel;
+                        if (model.Click != null)
+                        {
+                            model.Click();
+                        }
+                    }
                 };
             };
         }
