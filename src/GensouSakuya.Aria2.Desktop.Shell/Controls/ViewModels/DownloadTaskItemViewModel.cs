@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using Avalonia.Diagnostics.ViewModels;
 using Avalonia.Media.Imaging;
 using GensouSakuya.Aria2.Desktop.Model;
@@ -8,6 +9,8 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
 {
     public class DownloadTaskItemViewModel: ViewModelBase
     {
+        public string GID { get; set; }
+
         public Bitmap Img { get; set; } = ImgResourceHelper.FileIcon;
         public string TaskName { get; set; } = "新任务";
 
@@ -48,6 +51,48 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
         public decimal DownloadSpeed { get; set; } = 0m;
         public string DownloadSpeedStr => Status != DownloadStatus.Active ? "" : Tools.ToStringWithUnit(DownloadSpeed) + "/s";
 
+        public ObservableCollection<ToolButtonViewModel> Buttons
+        {
+            get
+            {
+                var buttons = new ObservableCollection<ToolButtonViewModel>();
+
+                if (Status == DownloadStatus.Active)
+                {
+                    buttons.Add(new ToolButtonViewModel
+                    {
+                        Img = ImgResourceHelper.PauseDownloadIcon,
+                        Click = async () =>
+                        {
+                            await Aria2Helper.Aria2.Pause(GID);
+                        }
+                    });
+                }
+
+                if (Status == DownloadStatus.Paused)
+                {
+                    buttons.Add(new ToolButtonViewModel
+                    {
+                        Img = ImgResourceHelper.StartDownloadIcon,
+                        //Click = async () =>
+                        //{
+                        //    await Aria2Helper.Aria2.Pause(GID);
+                        //}
+                    });
+                }
+
+                buttons.Add(new ToolButtonViewModel
+                {
+                    Img = ImgResourceHelper.DeleteDownloadTaskIcon,
+                    Click = async () =>
+                    {
+                        await Aria2Helper.Aria2.Pause(GID);
+                    }
+                });
+
+                return buttons;
+            }
+        }
     }
 
     internal static class DownloadTaskListViewModelExtension
@@ -56,6 +101,7 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
         {
             return new DownloadTaskItemViewModel
             {
+                GID = task.GID,
                 TaskName = task.TaskName,
                 Progress = task.CompletePercent,
                 DownloadSpeed = task.DownloadSpeed,
