@@ -11,6 +11,12 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Helper
 
         public static Bitmap FileIcon => GetImg("Icons/icon-wm10-page.png");
 
+        public static Bitmap StartDownloadIcon => GetImg("Icons/icon-wm10-play.png");
+
+        public static Bitmap PauseDownloadIcon => GetImg("Icons/icon-wm10-play.png");
+
+        public static Bitmap DeleteDownloadTaskIcon => GetImg("Icons/icon-wm10-play.png");
+
         private static Bitmap GetImg(string assertPath)
         {
             var uri = new Uri($"avares://{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}/{assertPath}");
