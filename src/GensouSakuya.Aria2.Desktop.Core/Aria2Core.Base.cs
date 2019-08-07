@@ -7,12 +7,14 @@ namespace GensouSakuya.Aria2.Desktop.Core
     {
         private readonly Aria2Config Aria2Config;
         protected SDK.Aria2Client Aria2 { get; private set; }
-        private readonly DbContext DbContext;
+        //private readonly Func<DbContext> DbContextGetter;
+        //private DbContext DbContext => DbContextGetter();
 
-        public Aria2Core(Aria2Config config,DbContext context)
+        public Aria2Core(Aria2Config config/*,Func<DbContext>  getter*/)
         {
             Aria2Config = config;
-            DbContext = context;
+            ////DbContext = context;
+            //DbContextGetter = getter;
         }
 
         public void Start()

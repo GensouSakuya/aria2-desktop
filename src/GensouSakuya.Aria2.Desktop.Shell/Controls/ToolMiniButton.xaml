@@ -8,6 +8,7 @@
   <UserControl.DataContext>
     <vm:ToolButtonViewModel/>
   </UserControl.DataContext>
-    <Image Source="{Binding Img}" Width="30" Height="30"></Image>
-
+    <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+      <Image Source="{Binding Img}" Width="30" Height="30"></Image>
+    </StackPanel>
 </UserControl>

@@ -86,7 +86,7 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
                     Img = ImgResourceHelper.DeleteDownloadTaskIcon,
                     Click = async () =>
                     {
-                        await Aria2Helper.Aria2.Pause(GID);
+                        await Aria2Helper.Aria2.Delete(GID);
                     }
                 });
 

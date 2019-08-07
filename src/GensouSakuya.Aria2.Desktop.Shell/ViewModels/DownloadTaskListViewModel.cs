@@ -22,7 +22,7 @@ namespace GensouSakuya.Aria2.Desktop.Shell.ViewModels
                 Aria2Helper.Aria2.DownloadTaskView.Select(p => p.ConvertToViewModel()).ToList().ForEach(p => tasks.Add(p));
                 Tasks = tasks;
                 return true;
-            }, new TimeSpan(1000));
+            }, new TimeSpan(1000000));
         }
 
         public ObservableCollection<DownloadTaskItemViewModel> Tasks

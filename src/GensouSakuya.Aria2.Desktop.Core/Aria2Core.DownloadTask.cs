@@ -31,8 +31,6 @@ namespace GensouSakuya.Aria2.Desktop.Core
                     Update(p, entity);
                 }
             });
-
-            SaveChanges();
         }
 
         public async Task<DownloadTask> GetTask(string gid)
@@ -44,17 +42,24 @@ namespace GensouSakuya.Aria2.Desktop.Core
         {
             var newGid = await Aria2.AddUri(url);
             var newTask = await GetTask(newGid);
-            DownloadTasks.Add(newTask);
-
-            SaveChanges();
+            Add(newTask);
         }
 
         public async Task Pause(string gid)
         {
             await Aria2.Pause(gid);
-            DownloadTasks.Find(gid).Status = DownloadStatus.Paused;
+            var task = DownloadTask(gid);
+            task.Status = DownloadStatus.Paused;
+            Update(task);
+        }
 
-            SaveChanges();
+        public async Task Delete(string gid)
+        {
+            var task = DownloadTask(gid);
+            if (task == null)
+                return;
+
+            await Delete(task);
         }
 
         public void AutoRefresh()
