@@ -46,6 +46,7 @@ namespace GensouSakuya.Aria2.Desktop.Core
         {
             var newGid = await Aria2.AddUri(url);
             var newTask = await GetTask(newGid);
+            newTask.Link = url;
             Add(newTask);
         }
 

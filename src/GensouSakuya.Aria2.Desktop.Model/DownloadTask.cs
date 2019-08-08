@@ -13,6 +13,7 @@ namespace GensouSakuya.Aria2.Desktop.Model
         public DownloadStatus Status { get; set; }
         public long TotalLength { get; set; }
         public long CompletedLength { get; set; }
+        public string Link { get; set; }
 
         public decimal CompletePercent
         {
@@ -31,17 +32,19 @@ namespace GensouSakuya.Aria2.Desktop.Model
                    TaskName == task.TaskName &&
                    Status == task.Status &&
                    TotalLength == task.TotalLength &&
-                   CompletedLength == task.CompletedLength;
+                   CompletedLength == task.CompletedLength &&
+                   Link == task.Link;
         }
 
         public override int GetHashCode()
         {
-            var hashCode = -2130185868;
+            var hashCode = -889318115;
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(GID);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(TaskName);
             hashCode = hashCode * -1521134295 + Status.GetHashCode();
             hashCode = hashCode * -1521134295 + TotalLength.GetHashCode();
             hashCode = hashCode * -1521134295 + CompletedLength.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Link);
             return hashCode;
         }
     }
