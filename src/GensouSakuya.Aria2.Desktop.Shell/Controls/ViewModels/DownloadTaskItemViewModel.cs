@@ -1,22 +1,27 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using Avalonia.Diagnostics.ViewModels;
 using Avalonia.Media.Imaging;
 using GensouSakuya.Aria2.Desktop.Model;
 using GensouSakuya.Aria2.Desktop.Shell.Helper;
+using GensouSakuya.Aria2.Desktop.Shell.ViewModels;
 
 namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
 {
-    public class DownloadTaskItemViewModel: ViewModelBase
+    public class DownloadTaskItemViewModel: ViewModelBase, IDataMergable
     {
+        #region Property
+
         public string GID { get; set; }
+        public string TaskName { get; set; } = "新任务";
+        public DownloadStatus Status { get; set; }
+        public decimal CompleteSize { get; set; }
+        public decimal TotalSize { get; set; }
+
+        #endregion
 
         public Bitmap Img { get; set; } = ImgResourceHelper.FileIcon;
-        public string TaskName { get; set; } = "新任务";
 
-        public DownloadStatus Status { get; set; }
 
-        public decimal CompleteSize { get; set; }
         public decimal LeftSize => TotalSize - CompleteSize;
         public decimal LeftSeconds => DownloadSpeed > 0 ? LeftSize / DownloadSpeed : -1;
 
@@ -42,7 +47,6 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
             }
         }
 
-        public decimal TotalSize { get; set; }
         public string TotalSizeStr => $"{Tools.ToStringWithUnit(TotalSize)}";
 
         public decimal Progress { get; set; } = 0m;
@@ -106,6 +110,19 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
         public override int GetHashCode()
         {
             return HashCode.Combine(GID, Status, CompleteSize, TotalSize);
+        }
+
+        public object GetKey() => GID;
+
+        public void Update(IDataMergable data)
+        {
+            if (data == null || !(data is DownloadTaskItemViewModel))
+                return;
+            var newTask = data as DownloadTaskItemViewModel;
+            Status = newTask.Status;
+            CompleteSize = newTask.CompleteSize;
+            TotalSize = newTask.TotalSize;
+            TaskName = newTask.TaskName;
         }
     }
 

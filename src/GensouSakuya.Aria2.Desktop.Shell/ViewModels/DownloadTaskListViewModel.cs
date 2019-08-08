@@ -17,12 +17,14 @@ namespace GensouSakuya.Aria2.Desktop.Shell.ViewModels
             {
                 if (Aria2Helper.Aria2 == null)
                     return false;
-                var tasks = new ObservableCollection<DownloadTaskItemViewModel>();
 
-                Aria2Helper.Aria2.DownloadTaskView.Select(p => p.ConvertToViewModel()).ToList().ForEach(p => tasks.Add(p));
-                Tasks = tasks;
+                var tasks = new ObservableCollection<DownloadTaskItemViewModel>(
+                    Aria2Helper.Aria2.DownloadTaskView.Select(p => p.ConvertToViewModel()).ToList());
+
+                ViewModelListMerge(_tasks, tasks);
+
                 return true;
-            }, new TimeSpan(1000000));
+            }, new TimeSpan(200000));
         }
 
         public ObservableCollection<DownloadTaskItemViewModel> Tasks
