@@ -24,7 +24,7 @@ namespace GensouSakuya.Aria2.Desktop.Shell.ViewModels
                 ViewModelListMerge(_tasks, tasks);
 
                 return true;
-            }, new TimeSpan(200000));
+            }, new TimeSpan(20000));
         }
 
         public ObservableCollection<DownloadTaskItemViewModel> Tasks
