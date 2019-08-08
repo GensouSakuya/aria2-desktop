@@ -30,7 +30,7 @@ namespace GensouSakuya.Aria2.Desktop.Core
                 {
                     await SetError(p.GID);
                 }
-                if (p != entity)
+                else if (p != entity)
                 {
                     await UpdateAsync(p, entity);
                 }
