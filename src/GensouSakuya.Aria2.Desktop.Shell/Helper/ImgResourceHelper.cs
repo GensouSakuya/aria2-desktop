@@ -17,6 +17,8 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Helper
 
         public static Bitmap DeleteDownloadTaskIcon => GetImg("Icons/icon-wm10-delete.png");
 
+        public static Bitmap RestartDownloadTaskIcon => GetImg("Icons/icon-wm10-refresh.png");
+
         private static Bitmap GetImg(string assertPath)
         {
             var uri = new Uri($"avares://{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}/{assertPath}");
