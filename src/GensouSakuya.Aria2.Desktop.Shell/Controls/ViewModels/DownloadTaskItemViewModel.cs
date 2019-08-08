@@ -78,10 +78,10 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
                     buttons.Add(new ToolButtonViewModel
                     {
                         Img = ImgResourceHelper.StartDownloadIcon,
-                        //Click = async () =>
-                        //{
-                        //    await Aria2Helper.Aria2.Pause(GID);
-                        //}
+                        Click = async () =>
+                        {
+                            await Aria2Helper.Aria2.Unpause(GID);
+                        }
                     });
                 }
 
