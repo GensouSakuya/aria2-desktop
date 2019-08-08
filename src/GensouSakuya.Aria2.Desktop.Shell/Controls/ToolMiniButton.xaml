@@ -8,6 +8,19 @@
   <UserControl.DataContext>
     <vm:ToolButtonViewModel/>
   </UserControl.DataContext>
+  <UserControl.Styles>
+    <Style Selector="StackPanel">
+      <Setter Property="Opacity" Value="0.7"/>
+      <Setter Property="Transitions">
+        <Transitions>
+          <DoubleTransition Property="Opacity" Duration="0:0:0.2"/>
+        </Transitions>
+      </Setter>
+    </Style>
+    <Style Selector="StackPanel:pointerover">
+      <Setter Property="Opacity" Value="1"/>
+    </Style>
+  </UserControl.Styles>
     <StackPanel Orientation="Vertical" VerticalAlignment="Center">
       <Image Source="{Binding Img}" Width="30" Height="30"></Image>
     </StackPanel>
