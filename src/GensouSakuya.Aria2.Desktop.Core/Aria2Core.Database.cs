@@ -75,10 +75,5 @@ namespace GensouSakuya.Aria2.Desktop.Core
                 await context.SaveChangesAsync();
             }
         }
-
-        public void SaveChanges()
-        {
-            DbContext.SaveChanges();
-        }
     }
 }
