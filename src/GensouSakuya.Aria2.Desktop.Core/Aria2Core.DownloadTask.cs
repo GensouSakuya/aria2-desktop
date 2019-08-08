@@ -26,6 +26,10 @@ namespace GensouSakuya.Aria2.Desktop.Core
             DownloadTasks.Where(p => ListeningStatus.Contains(p.Status)).ToList().ForEach(async p =>
             {
                 var entity = await GetTask(p.GID);
+                if (p == null)
+                {
+                    await SetError(p.GID);
+                }
                 if (p != entity)
                 {
                     await UpdateAsync(p, entity);
@@ -50,7 +54,7 @@ namespace GensouSakuya.Aria2.Desktop.Core
             await Aria2.Pause(gid);
             var task = DownloadTask(gid);
             task.Status = DownloadStatus.Paused;
-            Update(task);
+            await Update(task);
         }
 
         public async Task Delete(string gid)
@@ -60,6 +64,13 @@ namespace GensouSakuya.Aria2.Desktop.Core
                 return;
 
             await DeleteAsync(task);
+        }
+
+        protected async Task SetError(string gid)
+        {
+            var task = DownloadTask(gid);
+            task.Status = DownloadStatus.Error;
+            await Update(task);
         }
 
         public void AutoRefresh()
