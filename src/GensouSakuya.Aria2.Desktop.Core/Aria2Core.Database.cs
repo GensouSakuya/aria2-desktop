@@ -48,13 +48,13 @@ namespace GensouSakuya.Aria2.Desktop.Core
             }
         }
 
-        public void Update<T>(T oriItem,T newItem) where T:class
+        public async Task UpdateAsync<T>(T oriItem,T newItem) where T:class
         {
             using (var context = new Model.DbContext())
             {
                 context.Entry<T>(oriItem).State = EntityState.Detached;
                 context.Entry<T>(newItem).State = EntityState.Modified;
-                context.SaveChanges();
+                await context.SaveChangesAsync();
             }
         }
 
@@ -67,7 +67,7 @@ namespace GensouSakuya.Aria2.Desktop.Core
             }
         }
 
-        public async Task Delete<T>(T entity) where T : class
+        public async Task DeleteAsync<T>(T entity) where T : class
         {
             using (var context = new Model.DbContext())
             {

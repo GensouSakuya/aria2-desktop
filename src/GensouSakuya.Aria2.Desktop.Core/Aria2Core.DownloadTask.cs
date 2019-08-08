@@ -28,7 +28,7 @@ namespace GensouSakuya.Aria2.Desktop.Core
                 var entity = await GetTask(p.GID);
                 if (p != entity)
                 {
-                    Update(p, entity);
+                    await UpdateAsync(p, entity);
                 }
             });
         }
@@ -59,7 +59,7 @@ namespace GensouSakuya.Aria2.Desktop.Core
             if (task == null)
                 return;
 
-            await Delete(task);
+            await DeleteAsync(task);
         }
 
         public void AutoRefresh()
