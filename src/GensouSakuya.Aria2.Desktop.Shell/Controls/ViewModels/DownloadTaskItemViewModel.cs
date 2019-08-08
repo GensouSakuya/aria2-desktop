@@ -93,6 +93,20 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
                 return buttons;
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is DownloadTaskItemViewModel model &&
+                   GID == model.GID &&
+                   Status == model.Status &&
+                   CompleteSize == model.CompleteSize &&
+                   TotalSize == model.TotalSize;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(GID, Status, CompleteSize, TotalSize);
+        }
     }
 
     internal static class DownloadTaskListViewModelExtension
