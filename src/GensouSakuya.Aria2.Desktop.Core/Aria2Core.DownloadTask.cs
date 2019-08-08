@@ -39,7 +39,7 @@ namespace GensouSakuya.Aria2.Desktop.Core
 
         public async Task<DownloadTask> GetTask(string gid)
         {
-            return (await Aria2.TellStatus(gid)).Convert();
+            return (await Aria2.TellStatus(gid))?.Convert();
         }
 
         public async Task StartDownload(string url)

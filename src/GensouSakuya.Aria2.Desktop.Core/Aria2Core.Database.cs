@@ -41,6 +41,8 @@ namespace GensouSakuya.Aria2.Desktop.Core
 
         public void Add<T>(T entity) where T : class
         {
+            if (entity == null)
+                return;
             using (var context = new Model.DbContext())
             {
                 context.Set<T>().Add(entity);
