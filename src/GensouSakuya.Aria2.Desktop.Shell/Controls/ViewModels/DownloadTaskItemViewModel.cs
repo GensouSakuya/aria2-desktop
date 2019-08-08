@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using Avalonia.Media.Imaging;
 using GensouSakuya.Aria2.Desktop.Model;
+using GensouSakuya.Aria2.Desktop.Resource;
 using GensouSakuya.Aria2.Desktop.Shell.Helper;
 using GensouSakuya.Aria2.Desktop.Shell.ViewModels;
 
@@ -19,7 +21,7 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
 
         #endregion
 
-        public Bitmap Img { get; set; } = ImgResourceHelper.FileIcon;
+        public Bitmap Img { get; set; } = BitmapHelper.GetImg(Icons.File);
 
 
         public decimal LeftSize => TotalSize - CompleteSize;
@@ -65,7 +67,7 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
                 {
                     buttons.Add(new ToolButtonViewModel
                     {
-                        Img = ImgResourceHelper.PauseDownloadIcon,
+                        Img = BitmapHelper.GetImg(Icons.Pause),
                         Click = async () =>
                         {
                             await Aria2Helper.Aria2.Pause(GID);
@@ -76,7 +78,7 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
                 {
                     buttons.Add(new ToolButtonViewModel
                     {
-                        Img = ImgResourceHelper.StartDownloadIcon,
+                        Img = BitmapHelper.GetImg(Icons.Start),
                         Click = async () =>
                         {
                             await Aria2Helper.Aria2.Unpause(GID);
@@ -87,7 +89,7 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
                 {
                     buttons.Add(new ToolButtonViewModel
                     {
-                        Img = ImgResourceHelper.RestartDownloadTaskIcon,
+                        Img = BitmapHelper.GetImg(Icons.Refresh),
                         Click = async () =>
                         {
                             await Aria2Helper.Aria2.Restart(GID);
@@ -97,7 +99,7 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
 
                 buttons.Add(new ToolButtonViewModel
                 {
-                    Img = ImgResourceHelper.DeleteDownloadTaskIcon,
+                    Img = BitmapHelper.GetImg(Icons.Delete),
                     Click = async () =>
                     {
                         await Aria2Helper.Aria2.Delete(GID);

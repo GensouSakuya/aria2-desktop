@@ -11,7 +11,6 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="Icons\" />
     <Compile Update="**\*.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
@@ -19,7 +18,6 @@
       <SubType>Designer</SubType>
     </AvaloniaResource>
     <AvaloniaResource Include="Assets\*" />
-    <AvaloniaResource Include="Icons\*" />
   </ItemGroup>
 
   <ItemGroup>
@@ -95,6 +93,7 @@
   <ItemGroup>
     <ProjectReference Include="..\GensouSakuya.Aria2.Desktop.Core\GensouSakuya.Aria2.Desktop.Core.csproj" />
     <ProjectReference Include="..\GensouSakuya.Aria2.Desktop.Model\GensouSakuya.Aria2.Desktop.Model.csproj" />
+    <ProjectReference Include="..\GensouSakuya.Aria2.Desktop.Resource\GensouSakuya.Aria2.Desktop.Resource.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Controls\DownloadTaskItem.xaml.cs">

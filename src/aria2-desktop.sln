@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GensouSakuya.Aria2.Desktop.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GensouSakuya.Aria2.Desktop.Shell", "GensouSakuya.Aria2.Desktop.Shell\GensouSakuya.Aria2.Desktop.Shell.csproj", "{830D4DB3-18A7-4228-87F4-F896A2A5094C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GensouSakuya.Aria2.Desktop.Migration", "GensouSakuya.Aria2.Desktop.Migration\GensouSakuya.Aria2.Desktop.Migration.csproj", "{62AF1E20-A4EC-4891-A454-F6505F334103}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GensouSakuya.Aria2.Desktop.Migration", "GensouSakuya.Aria2.Desktop.Migration\GensouSakuya.Aria2.Desktop.Migration.csproj", "{62AF1E20-A4EC-4891-A454-F6505F334103}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GensouSakuya.Aria2.Desktop.Resource", "GensouSakuya.Aria2.Desktop.Resource\GensouSakuya.Aria2.Desktop.Resource.csproj", "{A8C11DB1-1F71-4A4B-87A8-2A6A2ED7009E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{62AF1E20-A4EC-4891-A454-F6505F334103}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62AF1E20-A4EC-4891-A454-F6505F334103}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62AF1E20-A4EC-4891-A454-F6505F334103}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8C11DB1-1F71-4A4B-87A8-2A6A2ED7009E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8C11DB1-1F71-4A4B-87A8-2A6A2ED7009E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8C11DB1-1F71-4A4B-87A8-2A6A2ED7009E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8C11DB1-1F71-4A4B-87A8-2A6A2ED7009E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
