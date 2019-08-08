@@ -71,6 +71,18 @@ namespace GensouSakuya.Aria2.Desktop.Core
                 await Update(task);
             }
         }
+        
+        public async Task Restart(string gid)
+        {
+            var task = DownloadTask(gid);
+            if (task == null)
+                return;
+            if (task.Status == DownloadStatus.Error)
+            {
+                await Delete(gid);
+                await StartDownload(task.Link);
+            }
+        }
 
         public async Task Delete(string gid)
         {

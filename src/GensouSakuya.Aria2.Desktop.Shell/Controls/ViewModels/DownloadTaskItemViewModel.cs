@@ -72,8 +72,7 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
                         }
                     });
                 }
-
-                if (Status == DownloadStatus.Paused)
+                else if (Status == DownloadStatus.Paused)
                 {
                     buttons.Add(new ToolButtonViewModel
                     {
@@ -81,6 +80,17 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
                         Click = async () =>
                         {
                             await Aria2Helper.Aria2.Unpause(GID);
+                        }
+                    });
+                }
+                else if (Status == DownloadStatus.Error)
+                {
+                    buttons.Add(new ToolButtonViewModel
+                    {
+                        Img = ImgResourceHelper.RestartDownloadTaskIcon,
+                        Click = async () =>
+                        {
+                            await Aria2Helper.Aria2.Restart(GID);
                         }
                     });
                 }
