@@ -4,11 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels"
              xmlns:ctl="clr-namespace:GensouSakuya.Aria2.Desktop.Shell.Controls"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="50"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="70"
              x:Class="GensouSakuya.Aria2.Desktop.Shell.Controls.DownloadTaskItem">
   <UserControl.DataContext>
     <vm:DownloadTaskItemViewModel></vm:DownloadTaskItemViewModel>
   </UserControl.DataContext>
+  <Border Padding="20 5 10 5">
   <Grid>
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -48,4 +49,5 @@
       </ItemsControl>
     </StackPanel>
   </Grid>
+  </Border>
 </UserControl>

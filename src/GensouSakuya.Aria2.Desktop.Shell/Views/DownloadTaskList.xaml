@@ -10,7 +10,7 @@
     <vm:DownloadTaskListViewModel></vm:DownloadTaskListViewModel>
   </UserControl.DataContext>
   <DockPanel VerticalAlignment="Top">
-    <ItemsControl Items="{Binding Tasks}" Margin="15 20 20 0">
+    <ItemsControl Items="{Binding Tasks}">
       <ItemsControl.ItemTemplate>
         <DataTemplate>
           <ctl:DownloadTaskItem DataContext="{Binding .}">
