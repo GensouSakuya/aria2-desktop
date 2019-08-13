@@ -1,4 +1,5 @@
-﻿using Avalonia.Controls;
+﻿using Avalonia.Animation;
+using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
@@ -7,6 +8,10 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls
 {
     public class DownloadTaskItem : UserControl
     {
+        private const double DefaultBackgroundOpacity = 0;
+        private const double SelectedBackgroundOpacity = 0.3;
+        private Border BackgroundBorder => this.FindControl<Border>("backgroundBorder") as Border;
+
         public DownloadTaskItem()
         {
             this.InitializeComponent();
@@ -17,8 +22,12 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls
                 PointerLeave += NewPointerLeave;
             };
 
-            Background = new SolidColorBrush(Colors.Gray, 0);
-
+            BackgroundBorder.Opacity = DefaultBackgroundOpacity;
+            BackgroundBorder.Background = new SolidColorBrush(Colors.Gray);
+            BackgroundBorder.Transitions.Add(new DoubleTransition
+            {
+                Duration = new System.TimeSpan(0, 0, 0, 0, 200), Property = Border.OpacityProperty
+            });
         }
 
         private void InitializeComponent()
@@ -28,12 +37,27 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls
         
         private void NewPointerEnter(object sender, PointerEventArgs e)
         {
-            Background = new SolidColorBrush(Colors.Gray,0.24);
+            OpacitySelected();
         }
 
         private void NewPointerLeave(object sender, PointerEventArgs e)
         {
-            Background = new SolidColorBrush(Colors.Gray, 0);
+            OpacityResume();
         }
+
+        private void OpacitySelected()
+        {
+            OpacityChange(SelectedBackgroundOpacity);
+        }
+
+        private void OpacityResume()
+        {
+            OpacityChange(DefaultBackgroundOpacity);
+        }
+        private void OpacityChange(double value)
+        {
+            BackgroundBorder.Opacity = value;
+        }
+
     }
 }

@@ -9,45 +9,49 @@
   <UserControl.DataContext>
     <vm:DownloadTaskItemViewModel></vm:DownloadTaskItemViewModel>
   </UserControl.DataContext>
-  <Border Padding="20 5 10 5">
-  <Grid>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="Auto"></ColumnDefinition>
-      <ColumnDefinition Width="150"></ColumnDefinition>
-      <ColumnDefinition Width="*"></ColumnDefinition>
-      <ColumnDefinition Width="100"></ColumnDefinition>
-    </Grid.ColumnDefinitions>
-    <Image Grid.Column="0" Source="{Binding Img}" Width="50" Height="50"></Image>
-    <DockPanel Grid.Column="1" VerticalAlignment="Center" LastChildFill="False" Margin="10 0 20 0">
-      <DockPanel DockPanel.Dock="Top" LastChildFill="False">
-        <TextBlock Text="{Binding TaskName}" DockPanel.Dock="Top"></TextBlock>
-        <TextBlock Text="{Binding TotalSizeStr}" DockPanel.Dock="Bottom"></TextBlock>
-      </DockPanel>
-    </DockPanel>
-    <DockPanel Grid.Column="2" VerticalAlignment="Center" LastChildFill="True" Margin="10 0 20 0">
-      <Grid DockPanel.Dock="Top">
-        <ProgressBar Minimum="0" Maximum="100" Value="{Binding Progress}" Height="20"  VerticalAlignment="Bottom"></ProgressBar>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding ProgressStr}"></TextBlock>
+  <Panel>
+    <Border Name="backgroundBorder">
+    </Border>
+    <Border Padding="20 5 10 5">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto"></ColumnDefinition>
+          <ColumnDefinition Width="150"></ColumnDefinition>
+          <ColumnDefinition Width="*"></ColumnDefinition>
+          <ColumnDefinition Width="100"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="0" Source="{Binding Img}" Width="50" Height="50"></Image>
+        <DockPanel Grid.Column="1" VerticalAlignment="Center" LastChildFill="False" Margin="10 0 20 0">
+          <DockPanel DockPanel.Dock="Top" LastChildFill="False">
+            <TextBlock Text="{Binding TaskName}" DockPanel.Dock="Top"></TextBlock>
+            <TextBlock Text="{Binding TotalSizeStr}" DockPanel.Dock="Bottom"></TextBlock>
+          </DockPanel>
+        </DockPanel>
+        <DockPanel Grid.Column="2" VerticalAlignment="Center" LastChildFill="True" Margin="10 0 20 0">
+          <Grid DockPanel.Dock="Top">
+            <ProgressBar Minimum="0" Maximum="100" Value="{Binding Progress}" Height="20"  VerticalAlignment="Bottom"></ProgressBar>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding ProgressStr}"></TextBlock>
+          </Grid>
+          <DockPanel LastChildFill="False">
+            <TextBlock Text="{Binding DownloadSpeedStr}" DockPanel.Dock="Left"></TextBlock>
+            <TextBlock Text="{Binding LeftTime}" DockPanel.Dock="Right"></TextBlock>
+          </DockPanel>
+        </DockPanel>
+        <StackPanel Name="buttonStack" Grid.Column="3" VerticalAlignment="Center">
+          <ItemsControl Items="{Binding Buttons}">
+            <ItemsControl.ItemsPanel>
+              <ItemsPanelTemplate>
+                <WrapPanel Orientation="Horizontal"></WrapPanel>
+              </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+              <DataTemplate>
+                <ctl:ToolMiniButton DataContext="{Binding .}"/>
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+        </StackPanel>
       </Grid>
-      <DockPanel LastChildFill="False">
-        <TextBlock Text="{Binding DownloadSpeedStr}" DockPanel.Dock="Left"></TextBlock>
-        <TextBlock Text="{Binding LeftTime}" DockPanel.Dock="Right"></TextBlock>
-      </DockPanel>
-    </DockPanel>
-    <StackPanel Name="buttonStack" Grid.Column="3" VerticalAlignment="Center">
-      <ItemsControl Items="{Binding Buttons}">
-        <ItemsControl.ItemsPanel>
-          <ItemsPanelTemplate>
-            <WrapPanel Orientation="Horizontal"></WrapPanel>
-          </ItemsPanelTemplate>
-        </ItemsControl.ItemsPanel>
-        <ItemsControl.ItemTemplate>
-          <DataTemplate>
-              <ctl:ToolMiniButton DataContext="{Binding .}"/>
-          </DataTemplate>
-        </ItemsControl.ItemTemplate>
-      </ItemsControl>
-    </StackPanel>
-  </Grid>
-  </Border>
+    </Border>
+  </Panel>
 </UserControl>
