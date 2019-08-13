@@ -10,6 +10,8 @@ namespace GensouSakuya.Aria2.Desktop.Shell.ViewModels
 {
     public class DownloadTaskListViewModel : ViewModelBase
     {
+        private volatile object refreshLock = new object();
+
         public DownloadTaskListViewModel()
         {
             Tasks = new ObservableCollection<DownloadTaskItemViewModel>();
@@ -18,13 +20,16 @@ namespace GensouSakuya.Aria2.Desktop.Shell.ViewModels
                 if (Aria2Helper.Aria2 == null)
                     return false;
 
-                var tasks = new ObservableCollection<DownloadTaskItemViewModel>(
-                    Aria2Helper.Aria2.DownloadTaskView.Select(p => p.ConvertToViewModel()).ToList());
+                lock (refreshLock)
+                {
+                    var tasks = new ObservableCollection<DownloadTaskItemViewModel>(Aria2Helper.Aria2.DownloadTaskView
+                        .Select(p => p.ConvertToViewModel()).ToList());
 
-                ViewModelListMerge(_tasks, tasks);
+                    ViewModelListMerge(_tasks, tasks);
+                }
 
                 return true;
-            }, new TimeSpan(20000));
+            }, new TimeSpan(0, 0, 0, 0, 20));
         }
 
         public ObservableCollection<DownloadTaskItemViewModel> Tasks

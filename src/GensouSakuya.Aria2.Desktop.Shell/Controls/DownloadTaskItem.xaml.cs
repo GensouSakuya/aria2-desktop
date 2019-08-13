@@ -56,7 +56,10 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls
         }
         private void OpacityChange(double value)
         {
-            BackgroundBorder.Opacity = value;
+            if (BackgroundBorder != null)
+            {
+                BackgroundBorder.Opacity = value;
+            }
         }
 
     }
