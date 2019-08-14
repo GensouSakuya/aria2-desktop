@@ -30,10 +30,31 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
         #region Property
 
         public string GID { get; set; }
-        public string TaskName { get; set; } = "新任务";
-        public DownloadStatus Status { get; set; }
-        public decimal CompleteSize { get; set; }
-        public decimal TotalSize { get; set; }
+        private string _taskeName;
+        public string TaskName 
+        {
+            get => _taskeName;
+            set => this.RaiseAndSetIfChanged(ref _taskeName, value);
+        }
+        private DownloadStatus _status;
+        public DownloadStatus Status
+        {
+            get => _status;
+            set => this.RaiseAndSetIfChanged(ref _status, value);
+        }
+        private decimal _completeSize;
+        public decimal CompleteSize
+        {
+            get => _completeSize;
+            set => this.RaiseAndSetIfChanged(ref _completeSize, value);
+        }
+
+        private decimal _totalSize;
+        public decimal TotalSize
+        {
+            get => _totalSize;
+            set => this.RaiseAndSetIfChanged(ref _totalSize, value);
+        }
 
         #endregion
 
@@ -93,7 +114,12 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
             }
         }
 
-        public decimal Progress { get; set; }
+        public decimal _progress;
+        public decimal Progress
+        {
+            get => _progress;
+            set => this.RaiseAndSetIfChanged(ref _progress, value);
+        }
 
         public class ProgressConverter : FromDecimalConverter
         {
