@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
@@ -36,6 +37,55 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
                     return LeftSize / DownloadSpeed;
                 })
                 .ToProperty(this, p => p.LeftSeconds);
+            buttons = this.WhenAnyValue(p => p.Status).DistinctUntilChanged().Select(p =>
+            {
+                var buttons = new List<ToolButtonViewModel>();
+
+                if (Status == DownloadStatus.Active)
+                {
+                    buttons.Add(new ToolButtonViewModel
+                    {
+                        Img = BitmapHelper.GetImg(Icons.Pause),
+                        Click = async () =>
+                        {
+                            await Aria2Helper.Aria2.Pause(GID);
+                        }
+                    });
+                }
+                else if (Status == DownloadStatus.Paused)
+                {
+                    buttons.Add(new ToolButtonViewModel
+                    {
+                        Img = BitmapHelper.GetImg(Icons.Start),
+                        Click = async () =>
+                        {
+                            await Aria2Helper.Aria2.Unpause(GID);
+                        }
+                    });
+                }
+                else if (Status == DownloadStatus.Error)
+                {
+                    buttons.Add(new ToolButtonViewModel
+                    {
+                        Img = BitmapHelper.GetImg(Icons.Refresh),
+                        Click = async () =>
+                        {
+                            await Aria2Helper.Aria2.Restart(GID);
+                        }
+                    });
+                }
+
+                buttons.Add(new ToolButtonViewModel
+                {
+                    Img = BitmapHelper.GetImg(Icons.Delete),
+                    Click = async () =>
+                    {
+                        await Aria2Helper.Aria2.Delete(GID);
+                    }
+                });
+
+                return buttons;
+            }).ToProperty(this, p => p.Buttons);
 
             this.WhenActivated((CompositeDisposable disposables) =>
             {
@@ -95,6 +145,9 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
         
         readonly ObservableAsPropertyHelper<decimal> leftSize;
         public decimal LeftSize => leftSize.Value;
+
+        readonly ObservableAsPropertyHelper<List<ToolButtonViewModel>> buttons;
+        public List<ToolButtonViewModel> Buttons => buttons.Value;
         #endregion
 
         public IBitmap Img { get; set; } = BitmapHelper.GetImg(Icons.File);
@@ -190,59 +243,6 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
                 }
 
                 return true;
-            }
-        }
-
-        public ObservableCollection<ToolButtonViewModel> Buttons
-        {
-            get
-            {
-                var buttons = new ObservableCollection<ToolButtonViewModel>();
-
-                if (Status == DownloadStatus.Active)
-                {
-                    buttons.Add(new ToolButtonViewModel
-                    {
-                        Img = BitmapHelper.GetImg(Icons.Pause),
-                        Click = async () =>
-                        {
-                            await Aria2Helper.Aria2.Pause(GID);
-                        }
-                    });
-                }
-                else if (Status == DownloadStatus.Paused)
-                {
-                    buttons.Add(new ToolButtonViewModel
-                    {
-                        Img = BitmapHelper.GetImg(Icons.Start),
-                        Click = async () =>
-                        {
-                            await Aria2Helper.Aria2.Unpause(GID);
-                        }
-                    });
-                }
-                else if (Status == DownloadStatus.Error)
-                {
-                    buttons.Add(new ToolButtonViewModel
-                    {
-                        Img = BitmapHelper.GetImg(Icons.Refresh),
-                        Click = async () =>
-                        {
-                            await Aria2Helper.Aria2.Restart(GID);
-                        }
-                    });
-                }
-
-                buttons.Add(new ToolButtonViewModel
-                {
-                    Img = BitmapHelper.GetImg(Icons.Delete),
-                    Click = async () =>
-                    {
-                        await Aria2Helper.Aria2.Delete(GID);
-                    }
-                });
-
-                return buttons;
             }
         }
 

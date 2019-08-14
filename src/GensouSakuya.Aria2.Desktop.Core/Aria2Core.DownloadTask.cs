@@ -31,6 +31,7 @@ namespace GensouSakuya.Aria2.Desktop.Core
                 if (entity == null)
                 {
                     await SetError(task.GID);
+                    task.Status = DownloadStatus.Error;
                     continue;
                 }
                 else if (task != entity)
@@ -52,6 +53,7 @@ namespace GensouSakuya.Aria2.Desktop.Core
             var newTask = await GetTask(newGid);
             newTask.Link = url;
             Add(newTask);
+            DownloadTasks.Add(newTask);
         }
 
         public async Task Pause(string gid)
@@ -95,6 +97,7 @@ namespace GensouSakuya.Aria2.Desktop.Core
                 return;
 
             await DeleteAsync(task);
+            DownloadTasks.RemoveAll(p => p.GID == task.GID);
         }
 
         protected async Task SetError(string gid)
@@ -118,7 +121,7 @@ namespace GensouSakuya.Aria2.Desktop.Core
                     {
                         
                     }
-                    Thread.Sleep(200);
+                    Thread.Sleep(500);
                 }
             });
         } 
