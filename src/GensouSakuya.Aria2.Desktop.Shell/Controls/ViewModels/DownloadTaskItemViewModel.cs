@@ -1,16 +1,32 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.IO;
+using System.Reactive.Disposables;
 using Avalonia.Media.Imaging;
 using GensouSakuya.Aria2.Desktop.Model;
 using GensouSakuya.Aria2.Desktop.Resource;
 using GensouSakuya.Aria2.Desktop.Shell.Helper;
 using GensouSakuya.Aria2.Desktop.Shell.ViewModels;
+using ReactiveUI;
 
 namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
 {
-    public class DownloadTaskItemViewModel: ViewModelBase, IDataMergable
+    public class DownloadTaskItemViewModel: ViewModelBase, IDataMergable,ISupportsActivation
     {
+        public ViewModelActivator Activator { get; }
+
+        public DownloadTaskItemViewModel()
+        {
+            Activator = new ViewModelActivator();
+
+            this.WhenActivated((CompositeDisposable disposables) =>
+            {
+                /* handle activation */
+                Disposable
+                    .Create(() => { /* handle deactivation */ })
+                    .DisposeWith(disposables);
+            });
+        }
+
         #region Property
 
         public string GID { get; set; }
@@ -21,40 +37,84 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
 
         #endregion
 
-        public Bitmap Img { get; set; } = BitmapHelper.GetImg(Icons.File);
+        public IBitmap Img { get; set; } = BitmapHelper.GetImg(Icons.File);
 
 
         public decimal LeftSize => TotalSize - CompleteSize;
-        public decimal LeftSeconds => DownloadSpeed > 0 ? LeftSize / DownloadSpeed : -1;
-
-        public string LeftTime
+        public decimal LeftSeconds => Status != DownloadStatus.Active ? -2 : DownloadSpeed <= 0 ? -1 : LeftSize / DownloadSpeed;
+        
+        public class LeftTimeConverter : FromDecimalConverter
         {
-            get
+            public override bool TryConvert(object from, Type toType, object conversionHint, out object result)
             {
-                if (Status != DownloadStatus.Active)
+                try
                 {
-                    return "";
+                    var leftTime = (decimal)from;
+                    if (leftTime == -2)
+                    {
+                        result = "";
+                    }
+                    else if (leftTime == -1)
+                    {
+                        result = "--:--:--";
+                    }
+                    else
+                    {
+                        var timesplan = new TimeSpan(0, 0, (int) leftTime);
+                        result =
+                            $"{Math.Floor(timesplan.TotalHours).ToString("00")}:{Math.Floor(timesplan.TotalMinutes).ToString("00")}:{Math.Floor(timesplan.TotalSeconds).ToString("00")}";
+                    }
+                }
+                catch
+                {
+                    result = null;
+                    return false;
                 }
 
-                if (LeftSeconds <= 0)
-                {
-                    return "--:--:--";
-                }
-                else
-                {
-                    var timesplan = new TimeSpan(0, 0, (int) LeftSeconds);
-                    return
-                        $"{Math.Floor(timesplan.TotalHours).ToString("00")}:{Math.Floor(timesplan.TotalMinutes).ToString("00")}:{Math.Floor(timesplan.TotalSeconds).ToString("00")}";
-                }
+                return true;
             }
         }
 
-        public string TotalSizeStr => $"{Tools.ToStringWithUnit(TotalSize)}";
+        public class TotalSizeConverter : FromDecimalConverter
+        {
+            public override bool TryConvert(object from, Type toType, object conversionHint, out object result)
+            {
+                try
+                {
+                    result = $"{Tools.ToStringWithUnit((decimal) from)}";
+                }
+                catch
+                {
+                    result = null;
+                    return false;
+                }
 
-        public decimal Progress { get; set; } = 0m;
-        public string ProgressStr => $"{Math.Round(Progress, 2).ToString("0.00")}%";
+                return true;
+            }
+        }
+
+        public decimal Progress { get; set; }
+
+        public class ProgressConverter : FromDecimalConverter
+        {
+            public override bool TryConvert(object from, Type toType, object conversionHint, out object result)
+            {
+                try
+                {
+                    result = $"{Math.Round((decimal) from, 2).ToString("0.00")}%";
+                }
+                catch
+                {
+                    result = null;
+                    return false;
+                }
+
+                return true;
+            }
+        }
 
         public decimal DownloadSpeed { get; set; } = 0m;
+
         public string DownloadSpeedStr => Status != DownloadStatus.Active ? "" : Tools.ToStringWithUnit(DownloadSpeed) + "/s";
 
         public ObservableCollection<ToolButtonViewModel> Buttons
