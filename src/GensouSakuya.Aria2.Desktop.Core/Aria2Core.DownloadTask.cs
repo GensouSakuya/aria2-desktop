@@ -52,6 +52,7 @@ namespace GensouSakuya.Aria2.Desktop.Core
             var newTask = await GetTask(newGid);
             newTask.Link = url;
             Add(newTask);
+            DownloadTasks.Add(newTask);
         }
 
         public async Task Pause(string gid)
@@ -95,6 +96,7 @@ namespace GensouSakuya.Aria2.Desktop.Core
                 return;
 
             await DeleteAsync(task);
+            DownloadTasks.RemoveAll(p => p.GID == task.GID);
         }
 
         protected async Task SetError(string gid)
