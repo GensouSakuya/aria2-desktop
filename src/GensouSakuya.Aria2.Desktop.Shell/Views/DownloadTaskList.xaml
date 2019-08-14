@@ -6,14 +6,11 @@
              xmlns:ctl="clr-namespace:GensouSakuya.Aria2.Desktop.Shell.Controls"
              xmlns:vm="clr-namespace:GensouSakuya.Aria2.Desktop.Shell.ViewModels"
              x:Class="GensouSakuya.Aria2.Desktop.Shell.Views.DownloadTaskList">
-  <UserControl.DataContext>
-    <vm:DownloadTaskListViewModel></vm:DownloadTaskListViewModel>
-  </UserControl.DataContext>
   <DockPanel VerticalAlignment="Top">
-    <ItemsControl Items="{Binding Tasks}">
+    <ItemsControl Name="tasks">
       <ItemsControl.ItemTemplate>
         <DataTemplate>
-          <ctl:DownloadTaskItem DataContext="{Binding .}">
+          <ctl:DownloadTaskItem>
           </ctl:DownloadTaskItem>
         </DataTemplate>
       </ItemsControl.ItemTemplate>
