@@ -56,9 +56,9 @@ namespace GensouSakuya.Aria2.Desktop.Core
         //测试后看看是否需要
         //max-upload-limit=0
 
-        //文件保存路径, 默认为当前启动位置
+        //文件保存路径, 默认为当前启动位置下Downloads文件夹
         //dir="./"
-        public string DownloadPath { get; set; } = "./";
+        public string DownloadPath { get; set; } = "./Downloads";
 
         //是否允许跨域访问
         public bool AllowOriginAll { get; set; } = false;
