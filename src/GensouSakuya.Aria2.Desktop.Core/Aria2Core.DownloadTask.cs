@@ -31,6 +31,7 @@ namespace GensouSakuya.Aria2.Desktop.Core
                 if (entity == null)
                 {
                     await SetError(task.GID);
+                    task.Status = DownloadStatus.Error;
                     continue;
                 }
                 else if (task != entity)
@@ -120,7 +121,7 @@ namespace GensouSakuya.Aria2.Desktop.Core
                     {
                         
                     }
-                    Thread.Sleep(200);
+                    Thread.Sleep(500);
                 }
             });
         } 

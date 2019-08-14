@@ -57,7 +57,7 @@ namespace GensouSakuya.Aria2.Desktop.Shell.ViewModels
                 }
 
                 return true;
-            }, new TimeSpan(0, 0, 0, 0, 20));
+            }, new TimeSpan(0, 0, 0, 0, 500));
         }
         
         private readonly ReadOnlyObservableCollection<DownloadTaskItemViewModel> _tasks;
