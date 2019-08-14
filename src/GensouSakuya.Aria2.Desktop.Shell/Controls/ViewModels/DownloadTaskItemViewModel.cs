@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Reactive.Disposables;
+using System.Reactive.Linq;
 using Avalonia.Media.Imaging;
 using GensouSakuya.Aria2.Desktop.Model;
 using GensouSakuya.Aria2.Desktop.Resource;
@@ -17,6 +18,24 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
         public DownloadTaskItemViewModel()
         {
             Activator = new ViewModelActivator();
+
+            progress = this.WhenAnyValue(p => p.CompleteSize, p => p.TotalSize).DistinctUntilChanged()
+                .Select(p => TotalSize == 0 ? 0 : Math.Round((decimal) CompleteSize / TotalSize * 100, 2)).ToProperty(this, p => p.Progress);
+            leftSize = this.WhenAnyValue(p => p.TotalSize, p => p.CompleteSize).DistinctUntilChanged()
+                .Select(p => TotalSize - CompleteSize)
+                .ToProperty(this, p => p.LeftSize);
+            leftSeconds = this.WhenAnyValue(p => p.Status, p => p.DownloadSpeed, p=>p.LeftSize).DistinctUntilChanged()
+                .Select(p =>
+                {
+                    if (Status != DownloadStatus.Active)
+                        return -2;
+                    if (DownloadSpeed <= 0)
+                    {
+                        return -1;
+                    }
+                    return LeftSize / DownloadSpeed;
+                })
+                .ToProperty(this, p => p.LeftSeconds);
 
             this.WhenActivated((CompositeDisposable disposables) =>
             {
@@ -56,13 +75,32 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
             set => this.RaiseAndSetIfChanged(ref _totalSize, value);
         }
 
+        private decimal _downloadSpeed = 0m;
+        public decimal DownloadSpeed
+        {
+            get => _downloadSpeed;
+            set => this.RaiseAndSetIfChanged(ref _downloadSpeed, value);
+        }
+
+        #endregion
+
+        #region View
+        readonly ObservableAsPropertyHelper<decimal> progress;
+        public decimal Progress => progress.Value;
+
+        
+        readonly ObservableAsPropertyHelper<decimal> leftSeconds;
+        public decimal LeftSeconds => leftSeconds.Value;
+        
+        
+        readonly ObservableAsPropertyHelper<decimal> leftSize;
+        public decimal LeftSize => leftSize.Value;
         #endregion
 
         public IBitmap Img { get; set; } = BitmapHelper.GetImg(Icons.File);
 
 
-        public decimal LeftSize => TotalSize - CompleteSize;
-        public decimal LeftSeconds => Status != DownloadStatus.Active ? -2 : DownloadSpeed <= 0 ? -1 : LeftSize / DownloadSpeed;
+        //public decimal LeftSeconds => Status != DownloadStatus.Active ? -2 : DownloadSpeed <= 0 ? -1 : LeftSize / DownloadSpeed;
         
         public class LeftTimeConverter : FromDecimalConverter
         {
@@ -82,8 +120,8 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
                     else
                     {
                         var timesplan = new TimeSpan(0, 0, (int) leftTime);
-                        result =
-                            $"{Math.Floor(timesplan.TotalHours).ToString("00")}:{Math.Floor(timesplan.TotalMinutes).ToString("00")}:{Math.Floor(timesplan.TotalSeconds).ToString("00")}";
+                        
+                        result = $"{Math.Floor(timesplan.TotalHours).ToString("00")}:{timesplan.Minutes.ToString("00")}:{timesplan.Seconds.ToString("00")}";
                     }
                 }
                 catch
@@ -114,13 +152,6 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
             }
         }
 
-        public decimal _progress;
-        public decimal Progress
-        {
-            get => _progress;
-            set => this.RaiseAndSetIfChanged(ref _progress, value);
-        }
-
         public class ProgressConverter : FromDecimalConverter
         {
             public override bool TryConvert(object from, Type toType, object conversionHint, out object result)
@@ -138,10 +169,29 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
                 return true;
             }
         }
+        public class DownloadSpeedConverter : FromDecimalConverter
+        {
+            public override bool TryConvert(object from, Type toType, object conversionHint, out object result)
+            {
+                try
+                {
+                    var speed = (decimal)from;
+                    if (speed < 0)
+                        result = "";
+                    else
+                    {
+                        result = Tools.ToStringWithUnit(speed) + "/s";
+                    }
+                }
+                catch
+                {
+                    result = null;
+                    return false;
+                }
 
-        public decimal DownloadSpeed { get; set; } = 0m;
-
-        public string DownloadSpeedStr => Status != DownloadStatus.Active ? "" : Tools.ToStringWithUnit(DownloadSpeed) + "/s";
+                return true;
+            }
+        }
 
         public ObservableCollection<ToolButtonViewModel> Buttons
         {
@@ -232,7 +282,6 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
             {
                 GID = task.GID,
                 TaskName = task.TaskName,
-                Progress = task.CompletePercent,
                 DownloadSpeed = task.DownloadSpeed,
                 Status = task.Status,
                 TotalSize = task.TotalLength,

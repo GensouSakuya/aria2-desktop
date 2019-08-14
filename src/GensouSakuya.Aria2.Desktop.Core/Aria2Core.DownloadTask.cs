@@ -1,7 +1,6 @@
 ﻿using GensouSakuya.Aria2.Desktop.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -14,6 +13,7 @@ namespace GensouSakuya.Aria2.Desktop.Core
         protected void InitDownloadTasks()
         {
             DbInit();
+            DownloadTasks = GetDownloadTasks;
         }
 
         private static readonly List<DownloadStatus> ListeningStatus = new List<DownloadStatus>
@@ -21,20 +21,24 @@ namespace GensouSakuya.Aria2.Desktop.Core
             DownloadStatus.Active, DownloadStatus.Paused, DownloadStatus.Waiting
         };
 
-        public void RefreshProcessingTasks()
+        public async Task RefreshProcessingTasksAsync()
         {
-            DownloadTasks.Where(p => ListeningStatus.Contains(p.Status)).ToList().ForEach(async p =>
+            foreach (var task in DownloadTasks)
             {
-                var entity = await GetTask(p.GID);
+                if (!ListeningStatus.Contains(task.Status))
+                    continue;
+                var entity = await GetTask(task.GID);
                 if (entity == null)
                 {
-                    await SetError(p.GID);
+                    await SetError(task.GID);
+                    continue;
                 }
-                else if (p != entity)
+                else if (task != entity)
                 {
-                    await UpdateAsync(p, entity);
+                    await UpdateAsync(task, entity);
+                    task.Update(entity);
                 }
-            });
+            }
         }
 
         public async Task<DownloadTask> GetTask(string gid)
@@ -102,14 +106,13 @@ namespace GensouSakuya.Aria2.Desktop.Core
 
         public void AutoRefresh()
         {
-            Task.Factory.StartNew(() =>
+            Task.Factory.StartNew(async () =>
             {
                 while (true)
                 {
                     try
                     {
-                        RefreshProcessingTasks();
-                        DownloadTaskView = DownloadTasks.ToList();
+                        await RefreshProcessingTasksAsync();
                     }
                     catch
                     {

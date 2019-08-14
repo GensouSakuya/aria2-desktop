@@ -37,11 +37,12 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls
                 this.OneWayBind(ViewModel, p => p.TaskName, p => p.TaskNameBlock.Text).DisposeWith(disposables);
                 this.OneWayBind(ViewModel, p => p.TotalSize, p => p.TotalSizeBlock.Text, vmToViewConverterOverride: new TotalSizeConverter())
                     .DisposeWith(disposables);
+                
                 this.OneWayBind(ViewModel, p => p.Progress, p => p.DownloadProgressBar.Value,
                     vmToViewConverterOverride: new DecimalToDoubleConverter()).DisposeWith(disposables);
                 this.OneWayBind(ViewModel, p => p.Progress, p => p.DownloadProgressBlock.Text, vmToViewConverterOverride: new ProgressConverter())
                     .DisposeWith(disposables);
-                this.OneWayBind(ViewModel, p => p.DownloadSpeedStr, p => p.DownloadSpeedBlock.Text)
+                this.OneWayBind(ViewModel, p => p.DownloadSpeed, p => p.DownloadSpeedBlock.Text, vmToViewConverterOverride: new DownloadSpeedConverter())
                     .DisposeWith(disposables);
                 this.OneWayBind(ViewModel, p => p.LeftSeconds, p => p.DownloadLeftTimeBlock.Text, vmToViewConverterOverride: new LeftTimeConverter())
                     .DisposeWith(disposables);
