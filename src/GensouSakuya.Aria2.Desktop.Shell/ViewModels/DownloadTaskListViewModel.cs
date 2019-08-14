@@ -16,9 +16,9 @@ namespace GensouSakuya.Aria2.Desktop.Shell.ViewModels
 
         public DownloadTaskListViewModel()
         {
-            ressssss = new ObservableCollectionExtended<DownloadTaskItemViewModel>(Aria2Helper.Aria2.DownloadTasks
+            result = new ObservableCollectionExtended<DownloadTaskItemViewModel>(Aria2Helper.Aria2.DownloadTasks
                 .Select(p => p.ConvertToViewModel()).ToList());
-            ressssss.ToObservableChangeSet().Bind(out _tasks).Subscribe();
+            result.ToObservableChangeSet().Bind(out _tasks).Subscribe();
             DispatcherTimer.Run(() =>
             {
                 if (Aria2Helper.Aria2 == null)
@@ -27,22 +27,22 @@ namespace GensouSakuya.Aria2.Desktop.Shell.ViewModels
                 lock (refreshLock)
                 {
                     var tasks = Aria2Helper.Aria2.DownloadTasks;
-                    var allGid = tasks.Select(p => p.GID).Union(ressssss.Select(p => p.GID)).ToList();
+                    var allGid = tasks.Select(p => p.GID).Union(result.Select(p => p.GID)).ToList();
 
                     allGid.ForEach(gid =>
                     {
-                        var oriTask = ressssss.FirstOrDefault(p => p.GID == gid);
+                        var oriTask = result.FirstOrDefault(p => p.GID == gid);
                         var ar2Task = tasks.Find(p => p.GID == gid);
 
                         if (oriTask == null)
                         {
-                            ressssss.Add(ar2Task.ConvertToViewModel());
+                            result.Add(ar2Task.ConvertToViewModel());
                             return;
                         }
 
                         if (ar2Task == null)
                         {
-                            ressssss.Remove(oriTask);
+                            result.Remove(oriTask);
                             return;
                         }
 
@@ -63,6 +63,6 @@ namespace GensouSakuya.Aria2.Desktop.Shell.ViewModels
         private readonly ReadOnlyObservableCollection<DownloadTaskItemViewModel> _tasks;
         public ReadOnlyObservableCollection<DownloadTaskItemViewModel> Tasks => _tasks;
 
-        public ObservableCollectionExtended<DownloadTaskItemViewModel> ressssss { get; set; }
+        public ObservableCollectionExtended<DownloadTaskItemViewModel> result { get; set; }
     }
 }
