@@ -15,7 +15,7 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Helper
                 index++;
             }
 
-            return $"{Math.Round(size, 2)}{units[index]}";
+            return $"{Math.Round(size, 2).ToString("N2")} {units[index]}";
         }
     }
 }
