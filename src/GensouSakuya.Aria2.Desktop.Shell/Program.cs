@@ -35,14 +35,14 @@ namespace GensouSakuya.Aria2.Desktop.Shell
             
             AvaloniaLocator.CurrentMutable.BindToSelf<Aria2Core>(new Aria2Core(config));
             Aria2Helper.Aria2.Start();
-            MainWindow = new MainWindow
+            var mainWindow = new MainWindow
             {
                 DataContext = new MainWindowViewModel(),
             };
 
-            app.Run(MainWindow);
-        }
+            AvaloniaLocator.CurrentMutable.BindToSelf<MainWindow>(mainWindow);
 
-        public static MainWindow MainWindow { get; set; }
+            app.Run(mainWindow);
+        }
     }
 }
