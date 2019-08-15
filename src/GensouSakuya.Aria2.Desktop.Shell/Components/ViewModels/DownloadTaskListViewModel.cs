@@ -3,12 +3,13 @@ using DynamicData;
 using DynamicData.Binding;
 using GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels;
 using GensouSakuya.Aria2.Desktop.Shell.Helper;
+using GensouSakuya.Aria2.Desktop.Shell.ViewModels;
 using ReactiveUI;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace GensouSakuya.Aria2.Desktop.Shell.ViewModels
+namespace GensouSakuya.Aria2.Desktop.Shell.Components.ViewModels
 {
     public class DownloadTaskListViewModel : ViewModelBase
     {

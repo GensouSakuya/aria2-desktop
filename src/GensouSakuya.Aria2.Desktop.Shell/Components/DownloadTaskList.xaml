@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="400" Background="#ebf0f6"
              xmlns:ctl="clr-namespace:GensouSakuya.Aria2.Desktop.Shell.Controls"
-             xmlns:vm="clr-namespace:GensouSakuya.Aria2.Desktop.Shell.ViewModels"
-             x:Class="GensouSakuya.Aria2.Desktop.Shell.Views.DownloadTaskList">
+             x:Class="GensouSakuya.Aria2.Desktop.Shell.Components.DownloadTaskList">
   <DockPanel VerticalAlignment="Top">
     <ItemsControl Name="tasks">
       <ItemsControl.ItemTemplate>

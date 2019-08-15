@@ -1,10 +1,10 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-using GensouSakuya.Aria2.Desktop.Shell.ViewModels;
+using GensouSakuya.Aria2.Desktop.Shell.Components.ViewModels;
 using ReactiveUI;
 
-namespace GensouSakuya.Aria2.Desktop.Shell.Views
+namespace GensouSakuya.Aria2.Desktop.Shell.Components
 {
     public class DownloadTaskList : ReactiveUserControl<DownloadTaskListViewModel>
     {

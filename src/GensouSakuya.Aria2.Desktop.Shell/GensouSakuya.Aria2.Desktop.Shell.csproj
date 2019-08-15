@@ -66,7 +66,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\DownloadTaskList.xaml">
+    <EmbeddedResource Include="Components\DownloadTaskList.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -105,11 +105,14 @@
     <Compile Update="Views\CreateDownloadTaskPage.xaml.cs">
       <DependentUpon>CreateDownloadTaskPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\DownloadTaskList.xaml.cs">
+    <Compile Update="Components\DownloadTaskList.xaml.cs">
       <DependentUpon>DownloadTaskList.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Update="Components\DownloadTaskList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
     <None Update="Controls\LogoControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>

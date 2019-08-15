@@ -3,6 +3,7 @@
         xmlns:vm="clr-namespace:GensouSakuya.Aria2.Desktop.Shell.ViewModels;assembly=GensouSakuya.Aria2.Desktop.Shell"
         xmlns:view="clr-namespace:GensouSakuya.Aria2.Desktop.Shell.Views"
         xmlns:ctrl="clr-namespace:GensouSakuya.Aria2.Desktop.Shell.Controls"
+        xmlns:cpn="clr-namespace:GensouSakuya.Aria2.Desktop.Shell.Components"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="400"
@@ -34,8 +35,7 @@
         <RowDefinition Height="*"></RowDefinition>
       </Grid.RowDefinitions>
       <ctrl:ToolBar  Grid.Row="0"/>
-      <view:DownloadTaskList Grid.Row="1"/>
+      <cpn:DownloadTaskList Grid.Row="1"/>
     </Grid>
   </Grid>
-
 </Window>
