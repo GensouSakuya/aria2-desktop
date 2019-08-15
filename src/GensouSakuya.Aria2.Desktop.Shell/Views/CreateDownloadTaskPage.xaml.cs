@@ -12,15 +12,16 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Views
     {
         public TextBox DownloadUrlBox => this.FindControl<TextBox>("downloadBox");
         public Button AddTorrentButton => this.FindControl<Button>("addTorrentButton");
+        public Button AddMagnetPrefixButton => this.FindControl<Button>("addMagnetPrefix");
         public CreateDownloadTaskPage()
         {
             this.WhenActivated(disposables =>
             {
                 this.PointerPressed += DragEvent;
-
+                
                 this.Bind(ViewModel, p => p.DownloadLink, p => p.DownloadUrlBox.Text).DisposeWith(disposables);
                 this.BindCommand(ViewModel, p => p.SubmitTorrent, p => p.AddTorrentButton);
-                /* Handle view activation etc. */
+                this.BindCommand(ViewModel, p => p.AddMagnetPrefixCommand, p => p.AddMagnetPrefixButton);
             });
 
             this.InitializeComponent();

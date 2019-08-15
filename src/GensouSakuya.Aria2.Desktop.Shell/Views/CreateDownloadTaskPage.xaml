@@ -22,6 +22,7 @@
       <TextBox Name="downloadBox" Margin="20" Grid.Row="0" TextWrapping="Wrap" Watermark="请输入Http/Magnet下载链接" AcceptsReturn="True"></TextBox>
       <DockPanel LastChildFill="false" Margin="0 5 20 20" Grid.Row="1">
         <Button Content="添加种子" Name="addTorrentButton" DockPanel.Dock="Left" Width="70" Margin="20 0 0 0"></Button>
+        <Button Content="磁力链前缀" DockPanel.Dock="Left" Width="70" Name="addMagnetPrefix" Margin="10 0 0 0"></Button>
         <Button Content="取消" DockPanel.Dock="Right" Width="70" Margin="10 0 0 0" Command="{Binding Close}" CommandParameter="{Binding ElementName=DownloadPage}"></Button>
         <Button Content="确定" DockPanel.Dock="Right" Width="70" Margin="0 0 10 0" Command="{Binding Submit}" CommandParameter="{Binding ElementName=DownloadPage}"></Button>
       </DockPanel>
