@@ -127,6 +127,9 @@
   <data name="File" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Icons\icon-wm10-page.ico;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Magnet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Icons\oie_1581844KEu7psL4.ico;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Pause" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Icons\icon-wm10-pause.ico;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
