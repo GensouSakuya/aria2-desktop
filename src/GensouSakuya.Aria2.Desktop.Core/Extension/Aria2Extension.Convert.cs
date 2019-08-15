@@ -21,11 +21,14 @@ namespace GensouSakuya.Aria2.Desktop.Core
                     filename = new FileInfo(file.Path).Name;
                 }
             }
+            else if(model.BitTorrent!= null && model.BitTorrent.Info!=null)
+            {
+                filename = model.BitTorrent.Info.Name;
+            }
             return new DownloadTask
             {
                 GID = model.GID,
                 Status = status,
-                //暂时先不处理多文件的任务名
                 TaskName = filename,
                 CompletedLength = model.CompletedLength,
                 DownloadSpeed = model.DownloadSpeed,
