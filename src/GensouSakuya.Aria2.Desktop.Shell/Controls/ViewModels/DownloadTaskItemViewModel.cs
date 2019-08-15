@@ -11,14 +11,10 @@ using ReactiveUI;
 
 namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
 {
-    public class DownloadTaskItemViewModel: ViewModelBase, ISupportsActivation
+    public class DownloadTaskItemViewModel: ViewModelBase
     {
-        public ViewModelActivator Activator { get; }
-
         public DownloadTaskItemViewModel()
         {
-            Activator = new ViewModelActivator();
-
             progress = this.WhenAnyValue(p => p.CompleteSize, p => p.TotalSize).DistinctUntilChanged()
                 .Select(p => TotalSize == 0 ? 0 : Math.Round((decimal) CompleteSize / TotalSize * 100, 2)).ToProperty(this, p => p.Progress);
             leftSize = this.WhenAnyValue(p => p.TotalSize, p => p.CompleteSize).DistinctUntilChanged()
