@@ -14,6 +14,7 @@ namespace GensouSakuya.Aria2.Desktop.Model
         public long TotalLength { get; set; }
         public long CompletedLength { get; set; }
         public string Link { get; set; }
+        public TaskType TaskType { get; set; }
         
         [NotMapped]
         public decimal DownloadSpeed { get; set; }
@@ -64,5 +65,11 @@ namespace GensouSakuya.Aria2.Desktop.Model
         Error = 3,
         Complete = 4,
         Removed = 5
+    }
+
+    public enum TaskType
+    {
+        Http = 1,
+        Torrent = 2,
     }
 }
