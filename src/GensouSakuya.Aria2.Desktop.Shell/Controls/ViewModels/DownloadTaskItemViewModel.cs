@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using Avalonia.Media.Imaging;
@@ -12,7 +11,7 @@ using ReactiveUI;
 
 namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
 {
-    public class DownloadTaskItemViewModel: ViewModelBase, IDataMergable,ISupportsActivation
+    public class DownloadTaskItemViewModel: ViewModelBase, ISupportsActivation
     {
         public ViewModelActivator Activator { get; }
 
@@ -258,19 +257,6 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
         public override int GetHashCode()
         {
             return HashCode.Combine(GID, Status, CompleteSize, TotalSize);
-        }
-
-        public object GetKey() => GID;
-
-        public void Update(IDataMergable data)
-        {
-            if (data == null || !(data is DownloadTaskItemViewModel))
-                return;
-            var newTask = data as DownloadTaskItemViewModel;
-            Status = newTask.Status;
-            CompleteSize = newTask.CompleteSize;
-            TotalSize = newTask.TotalSize;
-            TaskName = newTask.TaskName;
         }
     }
 
