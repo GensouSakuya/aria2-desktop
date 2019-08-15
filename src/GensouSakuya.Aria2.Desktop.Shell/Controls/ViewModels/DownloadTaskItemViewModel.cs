@@ -124,7 +124,13 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
         public decimal DownloadSpeed
         {
             get => _downloadSpeed;
-            set => this.RaiseAndSetIfChanged(ref _downloadSpeed, value);
+            set
+            {
+                //因为Aria2在暂停后还会取到缓缓降低的下载速度，而非直接变成0
+                if (Status != DownloadStatus.Active)
+                    value = -1;
+                this.RaiseAndSetIfChanged(ref _downloadSpeed, value);
+            }
         }
 
         #endregion
@@ -147,9 +153,6 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
 
         public IBitmap Img { get; set; } = BitmapHelper.GetImg(Icons.File);
 
-
-        //public decimal LeftSeconds => Status != DownloadStatus.Active ? -2 : DownloadSpeed <= 0 ? -1 : LeftSize / DownloadSpeed;
-        
         public class LeftTimeConverter : FromDecimalConverter
         {
             public override bool TryConvert(object from, Type toType, object conversionHint, out object result)
