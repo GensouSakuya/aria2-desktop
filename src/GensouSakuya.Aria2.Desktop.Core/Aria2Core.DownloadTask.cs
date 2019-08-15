@@ -50,19 +50,21 @@ namespace GensouSakuya.Aria2.Desktop.Core
         public async Task StartDownload(string url)
         {
             var newGid = await StartHttpDownload(url);
-            await CreateTask(newGid, url);
+            var type = url.StartsWith("magnet") ? TaskType.Torrent : TaskType.Http;
+            await CreateTask(newGid, url, type);
         }
 
         public async Task NewTorrentDownload(string filePath)
         {
             var newGid = await StartTorrentFileDownload(filePath);
-            await CreateTask(newGid, filePath);
+            await CreateTask(newGid, filePath, TaskType.Torrent);
         }
 
-        private async Task CreateTask(string gid, string link)
+        private async Task CreateTask(string gid, string link, TaskType type)
         {
             var newTask = await GetTask(gid);
             newTask.Link = link;
+            newTask.TaskType = type;
             Add(newTask);
             DownloadTasks.Add(newTask);
         }
