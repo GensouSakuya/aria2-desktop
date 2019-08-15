@@ -3,9 +3,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:ctl="clr-namespace:GensouSakuya.Aria2.Desktop.Shell.Controls"
-             xmlns:vm="clr-namespace:GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels"
+             xmlns:vm="clr-namespace:GensouSakuya.Aria2.Desktop.Shell.Components.ViewModels"
              mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="80" Background="#dee8f2"
-             x:Class="GensouSakuya.Aria2.Desktop.Shell.Controls.ToolBar">
+             x:Class="GensouSakuya.Aria2.Desktop.Shell.Components.ToolBar">
   <UserControl.DataContext>
     <vm:ToolBarViewModel></vm:ToolBarViewModel>
   </UserControl.DataContext>

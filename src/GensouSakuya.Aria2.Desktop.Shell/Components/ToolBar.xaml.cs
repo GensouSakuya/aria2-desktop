@@ -1,7 +1,7 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace GensouSakuya.Aria2.Desktop.Shell.Controls
+namespace GensouSakuya.Aria2.Desktop.Shell.Components
 {
     public class ToolBar : UserControl
     {

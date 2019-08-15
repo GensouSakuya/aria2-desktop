@@ -61,7 +61,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Controls\ToolBar.xaml">
+    <EmbeddedResource Include="Components\ToolBar.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -111,6 +111,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Update="Components\DownloadTaskList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Components\ToolBar.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="Controls\LogoControl.xaml">

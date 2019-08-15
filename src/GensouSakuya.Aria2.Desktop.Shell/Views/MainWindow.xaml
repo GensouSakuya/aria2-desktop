@@ -34,7 +34,7 @@
         <RowDefinition Height="Auto"></RowDefinition>
         <RowDefinition Height="*"></RowDefinition>
       </Grid.RowDefinitions>
-      <ctrl:ToolBar  Grid.Row="0"/>
+      <cpn:ToolBar  Grid.Row="0"/>
       <cpn:DownloadTaskList Grid.Row="1"/>
     </Grid>
   </Grid>
