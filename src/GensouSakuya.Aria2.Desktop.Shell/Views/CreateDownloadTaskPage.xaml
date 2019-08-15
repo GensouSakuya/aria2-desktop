@@ -3,14 +3,14 @@
         xmlns:vm="clr-namespace:GensouSakuya.Aria2.Desktop.Shell.ViewModels;assembly=GensouSakuya.Aria2.Desktop.Shell"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" Width="200" Height="250"
+        mc:Ignorable="d" Width="400" Height="250"
         x:Class="GensouSakuya.Aria2.Desktop.Shell.Views.CreateDownloadTaskPage"
 
         HasSystemDecorations="False"
         x:Name="CreateDownloadTaskPage"
         Title="CreateDownloadTaskPage">
   <Design.DataContext>
-    <vm:CreateDownloadTaskViewModel/>
+    <vm:CreateDownloadTaskPageViewModel/>
   </Design.DataContext>
   <!--暂时不加圆角，因为avalonia暂时还不支持背景透明-->
   <Border BorderBrush="Black" BorderThickness="1"   Background="Transparent">
@@ -19,10 +19,11 @@
         <RowDefinition Height="*"></RowDefinition>
         <RowDefinition Height="Auto"></RowDefinition>
       </Grid.RowDefinitions>
-      <TextBox Text="{Binding DownloadLink}" Margin="20" Grid.Row="0"></TextBox>
-      <DockPanel LastChildFill="false" Margin="0 5 0 20" Grid.Row="1">
-        <Button Content="确定" DockPanel.Dock="Left" Width="70" Margin="20 0 0 0" Command="{Binding Submit}" CommandParameter="{Binding ElementName=DownloadPage}"></Button>
-        <Button Content="取消" DockPanel.Dock="Right" Width="70" Margin="0 0 20 0" Command="{Binding Close}" CommandParameter="{Binding ElementName=DownloadPage}"></Button>
+      <TextBox Name="downloadBox" Margin="20" Grid.Row="0" TextWrapping="Wrap" Watermark="请输入Http/Magnet下载链接" AcceptsReturn="True"></TextBox>
+      <DockPanel LastChildFill="false" Margin="0 5 20 20" Grid.Row="1">
+        <Button Content="添加种子" Name="addTorrentButton" DockPanel.Dock="Left" Width="70" Margin="20 0 0 0"></Button>
+        <Button Content="取消" DockPanel.Dock="Right" Width="70" Margin="10 0 0 0" Command="{Binding Close}" CommandParameter="{Binding ElementName=DownloadPage}"></Button>
+        <Button Content="确定" DockPanel.Dock="Right" Width="70" Margin="0 0 10 0" Command="{Binding Submit}" CommandParameter="{Binding ElementName=DownloadPage}"></Button>
       </DockPanel>
     </Grid>
   </Border>

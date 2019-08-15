@@ -18,7 +18,7 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Components.ViewModels
                 Click = () =>
                 {
                     var page = new CreateDownloadTaskPage();
-                    page.DataContext = new CreateDownloadTaskViewModel()
+                    page.DataContext = new CreateDownloadTaskPageViewModel()
                     {
                         Self = page
                     };
