@@ -25,7 +25,7 @@
         <RowDefinition Height="Auto"></RowDefinition>
         <RowDefinition Height="*"></RowDefinition>
       </Grid.RowDefinitions>
-      <view:LogoControl Grid.Row="0"/>
+      <ctrl:LogoControl Grid.Row="0"/>
       <view:PageList Grid.Row="1"/>
     </Grid>
     <Grid Grid.Column="1">

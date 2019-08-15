@@ -1,10 +1,7 @@
-﻿using System;
-using Avalonia;
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-using Avalonia.Styling;
 
-namespace GensouSakuya.Aria2.Desktop.Shell.Views
+namespace GensouSakuya.Aria2.Desktop.Shell.Controls
 {
     public class LogoControl : UserControl
     {

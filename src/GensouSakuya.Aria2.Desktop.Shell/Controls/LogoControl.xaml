@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" Width="170" Height="100" Background="#245496"
-             x:Class="GensouSakuya.Aria2.Desktop.Shell.Views.LogoControl">
+             x:Class="GensouSakuya.Aria2.Desktop.Shell.Controls.LogoControl">
     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" >
       <Border BorderBrush="Azure">
         <TextBlock Text="一个Aria2 Logo" Foreground="White"/>

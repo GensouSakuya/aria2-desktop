@@ -51,7 +51,7 @@
     <EmbeddedResource Include="Controls\ToolMiniButton.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\LogoControl.xaml">
+    <EmbeddedResource Include="Controls\LogoControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -108,6 +108,11 @@
     <Compile Update="Views\DownloadTaskList.xaml.cs">
       <DependentUpon>DownloadTaskList.xaml</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Controls\LogoControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
   </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="xcopy /E/I/Y/D &quot;$(SolutionDir)\Aria2&quot; &quot;$(OutDir)\Aria2&quot;" />
