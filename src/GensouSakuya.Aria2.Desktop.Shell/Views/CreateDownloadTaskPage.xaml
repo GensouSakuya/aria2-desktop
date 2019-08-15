@@ -4,13 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" Width="200" Height="250"
-        x:Class="GensouSakuya.Aria2.Desktop.Shell.Views.DownloadPage"
+        x:Class="GensouSakuya.Aria2.Desktop.Shell.Views.CreateDownloadTaskPage"
 
         HasSystemDecorations="False"
-        x:Name="DownloadPage"
-        Title="DownloadPage">
+        x:Name="CreateDownloadTaskPage"
+        Title="CreateDownloadTaskPage">
   <Design.DataContext>
-    <vm:DownloadPageViewModel/>
+    <vm:CreateDownloadTaskViewModel/>
   </Design.DataContext>
   <!--暂时不加圆角，因为avalonia暂时还不支持背景透明-->
   <Border BorderBrush="Black" BorderThickness="1"   Background="Transparent">

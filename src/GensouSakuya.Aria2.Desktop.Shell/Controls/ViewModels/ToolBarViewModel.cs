@@ -16,8 +16,8 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Controls.ViewModels
                 Img = BitmapHelper.GetImg(Icons.Download),
                 Click = () =>
                 {
-                    var page = new DownloadPage();
-                    page.DataContext = new DownloadPageViewModel()
+                    var page = new CreateDownloadTaskPage();
+                    page.DataContext = new CreateDownloadTaskViewModel()
                     {
                         Self = page
                     };

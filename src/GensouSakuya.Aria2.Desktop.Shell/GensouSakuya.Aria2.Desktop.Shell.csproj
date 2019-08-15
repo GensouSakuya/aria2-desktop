@@ -24,7 +24,7 @@
     <AvaloniaResource Remove="Controls\DownloadTaskItem.xaml" />
     <AvaloniaResource Remove="Controls\ToolButton.xaml" />
     <AvaloniaResource Remove="Controls\ToolMiniButton.xaml" />
-    <AvaloniaResource Remove="Views\DownloadPage.xaml" />
+    <AvaloniaResource Remove="Views\CreateDownloadTaskPage.xaml" />
     <AvaloniaResource Remove="Views\DownloadTaskList.xaml" />
     <AvaloniaResource Remove="Views\ErrorDialog.xaml" />
     <AvaloniaResource Remove="Views\LogoControl.xaml" />
@@ -35,7 +35,7 @@
   <ItemGroup>
     <None Remove="Controls\DownloadTaskItem.xaml" />
     <None Remove="Controls\ToolMiniButton.xaml" />
-    <None Remove="Views\DownloadPage.xaml" />
+    <None Remove="Views\CreateDownloadTaskPage.xaml" />
     <None Remove="Views\DownloadTaskList.xaml" />
     <None Remove="Views\ErrorDialog.xaml" />
     <None Remove="Views\LogoControl.xaml" />
@@ -76,7 +76,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\DownloadPage.xaml">
+    <EmbeddedResource Include="Views\CreateDownloadTaskPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -101,6 +101,9 @@
     </Compile>
     <Compile Update="Controls\ToolMiniButton.xaml.cs">
       <DependentUpon>ToolMiniButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\CreateDownloadTaskPage.xaml.cs">
+      <DependentUpon>CreateDownloadTaskPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\DownloadTaskList.xaml.cs">
       <DependentUpon>DownloadTaskList.xaml</DependentUpon>

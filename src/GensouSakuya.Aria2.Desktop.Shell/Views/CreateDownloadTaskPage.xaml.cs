@@ -5,9 +5,9 @@ using Avalonia.Markup.Xaml;
 
 namespace GensouSakuya.Aria2.Desktop.Shell.Views
 {
-    public class DownloadPage : Window
+    public class CreateDownloadTaskPage : Window
     {
-        public DownloadPage()
+        public CreateDownloadTaskPage()
         {
             this.InitializeComponent();
 #if DEBUG

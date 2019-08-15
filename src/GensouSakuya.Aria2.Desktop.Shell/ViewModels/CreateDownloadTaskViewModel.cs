@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 
 namespace GensouSakuya.Aria2.Desktop.Shell.ViewModels
 {
-    public class DownloadPageViewModel: ViewModelBase
+    public class CreateDownloadTaskViewModel: ViewModelBase
     {
-        public DownloadPageViewModel()
+        public CreateDownloadTaskViewModel()
         {
             DownloadLink = "";
         }
