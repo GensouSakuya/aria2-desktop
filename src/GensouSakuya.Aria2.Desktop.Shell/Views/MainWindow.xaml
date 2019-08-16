@@ -13,9 +13,6 @@
         VerticalContentAlignment="Stretch"
         HorizontalContentAlignment="Stretch"
         >
-    <Design.DataContext>
-      <vm:MainWindowViewModel/>
-    </Design.DataContext>
   <Grid>
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="Auto"></ColumnDefinition>
