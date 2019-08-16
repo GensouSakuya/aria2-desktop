@@ -15,11 +15,14 @@ namespace GensouSakuya.Aria2.Desktop.Shell.Helper
             window.ShowDialog(MainWindow);
         }
 
-        public static async Task<string[]> OpenFileDialog(List<FileDialogFilter> filters)
+        public static async Task<string[]> OpenFileDialog(List<FileDialogFilter> filters = null)
         {
             var dialog = new OpenFileDialog();
             dialog.AllowMultiple = false;
-            dialog.Filters.AddRange(filters);
+            if (filters != null)
+            {
+                dialog.Filters.AddRange(filters);
+            }
             return await dialog.ShowAsync(MainWindow);
         }
     }
